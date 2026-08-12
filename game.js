@@ -626,6 +626,21 @@ const GameModule = (() => {
       }
     });
 
+    customPractice.addEventListener('click', (event) => {
+      const levelChoice = event.target.closest('.custom-choice[data-level-id]');
+      if (levelChoice) {
+        event.preventDefault();
+        selectCustomLevel(levelChoice.dataset.levelId);
+        return;
+      }
+
+      const subjectChoice = event.target.closest('.custom-subject-choice[data-subject-id]');
+      if (subjectChoice) {
+        event.preventDefault();
+        selectCustomSubject(subjectChoice.dataset.subjectId);
+      }
+    });
+
     window.addEventListener('resize', () => {
       fitSelectionToViewport();
       fitCustomPracticeToViewport();
@@ -849,10 +864,11 @@ const GameModule = (() => {
           type="button"
           class="custom-choice ${option.id === selectedCustomLevelId ? 'selected' : ''}"
           data-level-id="${option.id}"
-          onclick="GameModule.selectCustomLevel('${option.id}')"
+          aria-pressed="${option.id === selectedCustomLevelId}"
         >
-          <span>${option.shortName}</span>
-          <small>${option.description}</small>
+          <span class="choice-check" aria-hidden="true">✓</span>
+          <span class="choice-title">${option.shortName}</span>
+          <small class="choice-desc">${option.description}</small>
         </button>
       `).join('');
     }
@@ -863,16 +879,17 @@ const GameModule = (() => {
           type="button"
           class="custom-subject-choice ${option.id === selectedCustomSubjectId ? 'selected' : ''}"
           data-subject-id="${option.id}"
-          onclick="GameModule.selectCustomSubject('${option.id}')"
+          aria-pressed="${option.id === selectedCustomSubjectId}"
         >
+          <span class="choice-check" aria-hidden="true">✓</span>
           <span class="subject-icon">${option.icon}</span>
-          <span>${option.name}</span>
+          <span class="subject-name">${option.name}</span>
         </button>
       `).join('');
     }
 
     if (summary && level && subject) {
-      summary.textContent = `${level.problemCount} questions • ${subject.name}`;
+      summary.textContent = `${level.shortName} • ${level.problemCount} questions • ${subject.name}`;
     }
 
     fitCustomPracticeToViewport();
