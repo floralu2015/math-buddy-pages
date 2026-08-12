@@ -50,12 +50,36 @@ body {
   animation: float 15s infinite ease-in-out;
 }
 
+.shape-soft {
+  font-size: 2.45rem;
+  opacity: 0.1;
+  text-shadow: 0 6px 18px rgba(74, 33, 135, 0.16);
+  filter: saturate(0.9);
+}
+
+.shape-word {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  opacity: 0.09;
+}
+
 .shape-1 { top: 10%; left: 10%; animation-delay: 0s; }
 .shape-2 { top: 20%; right: 15%; animation-delay: 2s; }
 .shape-3 { top: 60%; left: 5%; animation-delay: 4s; }
 .shape-4 { top: 70%; right: 10%; animation-delay: 6s; }
 .shape-5 { top: 40%; left: 80%; animation-delay: 8s; }
 .shape-6 { top: 85%; left: 50%; animation-delay: 10s; }
+.shape-7 { top: 32%; left: 22%; animation-delay: 1s; animation-duration: 18s; }
+.shape-8 { top: 52%; right: 24%; animation-delay: 5s; animation-duration: 19s; }
+.shape-9 { top: 31%; right: 6%; animation-delay: 7s; animation-duration: 21s; }
+.shape-10 { top: 78%; left: 18%; animation-delay: 3s; animation-duration: 20s; }
+.shape-11 { top: 17%; right: 36%; animation-delay: 9s; animation-duration: 22s; }
+.shape-12 { top: 46%; left: 12%; animation-delay: 11s; animation-duration: 18s; }
+.shape-13 { top: 28%; right: 5%; animation-delay: 13s; animation-duration: 20s; }
+.shape-14 { top: 88%; right: 28%; animation-delay: 15s; animation-duration: 23s; }
+.shape-15 { top: 64%; left: 72%; animation-delay: 17s; animation-duration: 21s; }
+.shape-16 { top: 54%; left: 48%; animation-delay: 19s; animation-duration: 24s; }
 
 @keyframes float {
   0%, 100% { transform: translateY(0) rotate(0deg); }
