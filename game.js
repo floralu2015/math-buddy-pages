@@ -502,7 +502,6 @@ const GameModule = (() => {
         </div>
 
         <div class="problem-container">
-          <div class="problem-label">Solve this:</div>
           <div id="problem-topic" class="problem-topic hidden"></div>
           <div id="problem-text" class="problem-text"></div>
           <div id="problem-latex" class="problem-latex"></div>
@@ -1095,12 +1094,40 @@ const GameModule = (() => {
     isSubmitting = false;
   }
 
+  function normalizeMathPrompt(value = '') {
+    return String(value)
+      .toLowerCase()
+      .replace(/\\frac\{([^{}]+)\}\{([^{}]+)\}/g, '$1/$2')
+      .replace(/\\times|×/g, '*')
+      .replace(/\\div|÷/g, '/')
+      .replace(/\\cdot/g, '*')
+      .replace(/\\sqrt\{([^{}]+)\}/g, 'sqrt$1')
+      .replace(/\\[a-z]+/g, '')
+      .replace(/[{}^?.,:;!$°]/g, '')
+      .replace(/\s+/g, '');
+  }
+
+  function shouldShowEquationLine(problem) {
+    if (!problem?.latex) return false;
+
+    const text = normalizeMathPrompt(problem.text);
+    const latex = normalizeMathPrompt(problem.latex);
+    if (!latex) return false;
+
+    const repeatedExpression = text.includes(latex);
+    const shortDirectPrompt = String(problem.text || '').length < 90
+      && /^(what is|calculate|solve|simplify|expand|factor|convert|write)\b/i.test(String(problem.text || '').trim());
+
+    return !repeatedExpression && !shortDirectPrompt;
+  }
+
   // Display a problem
   function displayProblem(problem) {
     const problemText = document.getElementById('problem-text');
     const problemLatex = document.getElementById('problem-latex');
     const problemNumber = document.getElementById('problem-number');
     const problemTopic = document.getElementById('problem-topic');
+    const problemCard = document.querySelector('.problem-container');
 
     problemText.textContent = problem.text;
     currentGame.currentHint = problem.hint || null;
@@ -1113,8 +1140,10 @@ const GameModule = (() => {
       problemTopic.classList.add('hidden');
     }
 
-    // Render LaTeX if available
-    if (problem.latex) {
+    const showEquation = shouldShowEquationLine(problem);
+    problemCard?.classList.toggle('single-prompt', !showEquation);
+
+    if (showEquation) {
       problemLatex.innerHTML = `\\[${problem.latex}\\]`;
       problemLatex.classList.remove('hidden');
       if (window.MathJax) {

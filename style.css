@@ -1650,25 +1650,30 @@ header h1 {
   position: relative;
   overflow: hidden;
   text-align: center;
-  padding: 30px 20px;
+  padding: 28px 22px 30px;
   background:
-    radial-gradient(circle at 12% 18%, rgba(255, 209, 102, 0.55) 0 12%, transparent 13%),
-    radial-gradient(circle at 88% 12%, rgba(78, 205, 196, 0.34) 0 10%, transparent 11%),
-    linear-gradient(135deg, #fff7d6 0%, #e7fbff 44%, #f1e8ff 100%);
-  border-radius: 20px;
+    radial-gradient(circle at 10% 14%, rgba(255, 209, 102, 0.34) 0 11%, transparent 12%),
+    radial-gradient(circle at 90% 14%, rgba(78, 205, 196, 0.24) 0 10%, transparent 11%),
+    linear-gradient(135deg, #fcfffb 0%, #eefaff 52%, #f7f1ff 100%);
+  border-radius: 24px;
   margin-bottom: 20px;
-  border: 3px solid #ffd166;
-  box-shadow: 0 14px 34px rgba(67, 87, 173, 0.13);
+  border: 2px solid rgba(255, 209, 102, 0.72);
+  box-shadow: 0 16px 36px rgba(67, 87, 173, 0.16);
+}
+
+.problem-container.single-prompt {
+  padding: 34px 22px 36px;
 }
 
 .problem-container::after {
-  content: "✦";
+  content: "?";
   position: absolute;
-  right: 18px;
-  top: 12px;
+  right: 16px;
+  bottom: -22px;
   color: #ff8c42;
-  font-size: 1.6rem;
-  opacity: 0.7;
+  font-size: 5rem;
+  font-weight: 900;
+  opacity: 0.08;
   animation: twinkle 1.8s ease-in-out infinite;
 }
 
@@ -1696,7 +1701,7 @@ header h1 {
   justify-content: center;
   min-height: 28px;
   padding: 5px 12px;
-  margin-bottom: 12px;
+  margin-bottom: 18px;
   border-radius: 999px;
   background: #223843;
   color: #ffe9a8;
@@ -1707,14 +1712,25 @@ header h1 {
 }
 
 .problem-text {
-  font-size: 1.3rem;
+  position: relative;
+  z-index: 1;
+  font-size: clamp(1.55rem, 4.8vw, 2.25rem);
+  line-height: 1.12;
   font-weight: 800;
   color: #1f3140;
   margin-bottom: 15px;
 }
 
+.problem-container.single-prompt .problem-text {
+  font-size: clamp(1.85rem, 5.8vw, 2.85rem);
+  margin-bottom: 0;
+}
+
 .problem-latex {
+  position: relative;
+  z-index: 1;
   font-size: 1.5rem;
+  color: #243746;
 }
 
 .problem-latex.hidden {
@@ -2334,6 +2350,10 @@ header h1 {
 
   .problem-text {
     font-size: 1.12rem;
+  }
+
+  .problem-container.single-prompt .problem-text {
+    font-size: clamp(1.7rem, 7.5vw, 2.15rem);
   }
 
   .problem-topic {
