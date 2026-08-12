@@ -51,6 +51,68 @@ const GameModule = (() => {
     { id: 'rightTriangles', name: 'Right Triangles & Pythagorean', icon: '△', topics: ['pythagorean theorem', 'scale factor'] }
   ];
 
+  const CELEBRATION_LINES = [
+    'That one clicked.',
+    'Nice thinking.',
+    'You built the pattern.',
+    'Sharp move.',
+    'That is how math muscles grow.'
+  ];
+
+  const COACHING_POPUPS = [
+    {
+      title: 'Pause and name the move',
+      body: 'When a problem feels loud, make it smaller: what operation is it asking for first?',
+      quote: 'Small steps still count as forward.'
+    },
+    {
+      title: 'Use the scratchpad in your head',
+      body: 'Say the fact out loud, write the related fact, or turn it into a friendlier problem.',
+      quote: 'Mistakes are data. Use them.'
+    },
+    {
+      title: 'Try the inverse',
+      body: 'Stuck on division? Think multiplication. Stuck on an equation? Undo the last operation first.',
+      quote: 'A hard problem is just a puzzle that has not opened yet.'
+    },
+    {
+      title: 'Story break',
+      body: 'Katherine Johnson checked and rechecked tiny calculations that helped send astronauts safely through space. Careful math matters.',
+      quote: 'Precision is powerful.'
+    },
+    {
+      title: 'Fact power',
+      body: 'Fast facts make room in your brain for harder ideas like fractions, ratios, and equations.',
+      quote: 'Fluency is freedom.'
+    }
+  ];
+
+  const TOPIC_TIPS = {
+    'multiplication facts': 'Say the full fact out loud, then connect it to a nearby fact you already know.',
+    'division facts': 'Use the matching multiplication fact. Division and multiplication are partners.',
+    'missing factors': 'Turn the blank into division: total divided by the known factor.',
+    'fraction operations': 'Check the denominators first. Same denominator means add or subtract the tops.',
+    'mixed numbers': 'Whole times denominator, then add the numerator.',
+    decimals: 'Line up the decimal points before you add or subtract.',
+    percentages: 'Convert the percent to a friendly fraction or decimal.',
+    'percent change': 'Find the change first, then divide by the original amount.',
+    'integer operations': 'Picture the number line and track direction.',
+    ratios: 'Look for the scale factor between matching parts.',
+    'two-step equations': 'Undo operations in reverse order: add/subtract first, then multiply/divide.',
+    inequalities: 'Solve like an equation, and flip the sign if you multiply or divide by a negative.',
+    'distributive property': 'Multiply the outside number by every term inside the parentheses.',
+    'combine like terms': 'Group matching variable terms, then group plain numbers.',
+    'gcf factoring': 'Find the largest shared factor and pull it outside the parentheses.',
+    'data and statistics': 'Write the total you need, then compare it with the total you already have.',
+    'scale factor': 'Corresponding sides use the same multiplier.',
+    'angle relationships': 'Straight lines add to 180 degrees; full turns add to 360 degrees.',
+    'surface area and volume': 'Volume fills space, so multiply length, width, and height for a rectangular prism.',
+    'scientific notation': 'Move the decimal until the front number is between 1 and 10.',
+    slope: 'Slope is change in y divided by change in x.',
+    'slope-intercept form': 'Use y = mx + b. m is slope, b is the y-intercept.',
+    'pythagorean theorem': 'For right triangles, square both legs and add them to find the hypotenuse squared.'
+  };
+
   // Game state
   let currentGame = null;
   let userIdentifier = null;
@@ -64,6 +126,11 @@ const GameModule = (() => {
   let selectedCustomSubjectId = 'factMix';
   let quizTopics = [];
   let concepts = [];
+  let audioContext = null;
+  let consecutiveWrong = 0;
+  let hintCountInRound = 0;
+  let stuckTimer = null;
+  let lastPopupAt = 0;
 
   // DOM elements (will be set after DOM loads)
   let gameContainer, gameSelection, gamePlay, gameResults, customPractice, quizPicker, conceptPicker, conceptDisplay;
@@ -88,6 +155,146 @@ const GameModule = (() => {
       const v = c === 'x' ? r : (r & 0x3 | 0x8);
       return v.toString(16);
     });
+  }
+
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = String(text ?? '');
+    return div.innerHTML;
+  }
+
+  function getAudioContext() {
+    if (!window.AudioContext && !window.webkitAudioContext) return null;
+    if (!audioContext) {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      audioContext = new AudioContextClass();
+    }
+    if (audioContext.state === 'suspended') {
+      audioContext.resume().catch(() => {});
+    }
+    return audioContext;
+  }
+
+  function playTone(frequency, startTime, duration, type = 'sine', gain = 0.06) {
+    const context = getAudioContext();
+    if (!context) return;
+
+    const oscillator = context.createOscillator();
+    const volume = context.createGain();
+    oscillator.type = type;
+    oscillator.frequency.setValueAtTime(frequency, startTime);
+    volume.gain.setValueAtTime(0.0001, startTime);
+    volume.gain.exponentialRampToValueAtTime(gain, startTime + 0.015);
+    volume.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
+    oscillator.connect(volume);
+    volume.connect(context.destination);
+    oscillator.start(startTime);
+    oscillator.stop(startTime + duration + 0.02);
+  }
+
+  function playSound(kind) {
+    const context = getAudioContext();
+    if (!context) return;
+    const now = context.currentTime;
+    const sounds = {
+      start: [[392, 0, 0.08], [523, 0.08, 0.1]],
+      correct: [[523, 0, 0.08], [659, 0.08, 0.08], [784, 0.16, 0.14]],
+      streak: [[659, 0, 0.07], [784, 0.07, 0.07], [988, 0.14, 0.18]],
+      wrong: [[196, 0, 0.1, 'triangle', 0.035], [164, 0.11, 0.16, 'triangle', 0.025]],
+      hint: [[440, 0, 0.07], [554, 0.08, 0.12]],
+      popup: [[330, 0, 0.08], [494, 0.08, 0.14]]
+    };
+
+    (sounds[kind] || sounds.hint).forEach(([frequency, offset, duration, type = 'sine', gain = 0.055]) => {
+      playTone(frequency, now + offset, duration, type, gain);
+    });
+  }
+
+  function pick(items) {
+    return items[Math.floor(Math.random() * items.length)];
+  }
+
+  function startStuckTimer() {
+    clearTimeout(stuckTimer);
+    stuckTimer = setTimeout(() => {
+      if (!currentGame || isSubmitting) return;
+      showEncouragement({
+        title: 'Try one brave step',
+        body: 'If you are stuck, press Hint or write the first operation you see. You do not need the whole answer at once.',
+        quote: 'One clear step can unlock the next one.'
+      });
+    }, 26000);
+  }
+
+  function showEncouragement(message = null, force = false) {
+    const now = Date.now();
+    if (!force && now - lastPopupAt < 12000) return;
+    lastPopupAt = now;
+
+    const popup = document.getElementById('encouragement-pop');
+    if (!popup) return;
+    const note = message || pick(COACHING_POPUPS);
+    document.getElementById('encouragement-title').textContent = note.title;
+    document.getElementById('encouragement-body').textContent = note.body;
+    document.getElementById('encouragement-quote').textContent = note.quote;
+    popup.classList.remove('hidden');
+    popup.classList.remove('leaving');
+    playSound('popup');
+
+    clearTimeout(popup.dismissTimer);
+    popup.dismissTimer = setTimeout(() => closeEncouragement(), 9000);
+  }
+
+  function closeEncouragement(immediate = false) {
+    const popup = document.getElementById('encouragement-pop');
+    if (!popup || popup.classList.contains('hidden')) return;
+    if (immediate) {
+      popup.classList.add('hidden');
+      popup.classList.remove('leaving');
+      return;
+    }
+    popup.classList.add('leaving');
+    setTimeout(() => {
+      popup.classList.add('hidden');
+      popup.classList.remove('leaving');
+    }, 220);
+  }
+
+  function animateProblemCard(kind) {
+    const problemCard = document.querySelector('.problem-container');
+    if (!problemCard) return;
+    problemCard.classList.remove('answer-correct', 'answer-wrong', 'new-problem');
+    void problemCard.offsetWidth;
+    problemCard.classList.add(kind);
+  }
+
+  function buildExplanationHtml(data, submittedAnswer) {
+    const topic = currentGame?.currentTopic || '';
+    const topicTip = TOPIC_TIPS[topic] || 'Write one clean step, check it, then move to the next step.';
+    const explanation = data.explanation || 'Review the operation, then compare your work with the correct answer.';
+    const title = data.correct ? 'Why it works' : 'Learn from this one';
+    const answerLine = data.correct
+      ? `Your answer ${submittedAnswer || data.correctAnswer} fits the pattern.`
+      : `Correct answer: ${data.correctAnswer}. Your try: ${submittedAnswer || 'blank'}.`;
+    const steps = explanation
+      .split(/(?:;\s+|\.\s+)/)
+      .map(step => step.trim())
+      .filter(Boolean)
+      .slice(0, 4);
+
+    return `
+      <div class="learning-card">
+        <div class="learning-card-header">
+          <span>${data.correct ? '★' : '↺'}</span>
+          <strong>${title}</strong>
+        </div>
+        <p class="answer-line">${escapeHtml(answerLine)}</p>
+        <ol class="explanation-steps">
+          ${steps.map(step => `<li>${escapeHtml(step)}.</li>`).join('')}
+        </ol>
+        <p class="topic-tip"><strong>Next time:</strong> ${escapeHtml(topicTip)}</p>
+      </div>
+    `;
   }
 
   // Create game UI elements
@@ -373,6 +580,14 @@ const GameModule = (() => {
             Back to Menu
           </button>
         </div>
+      </div>
+
+      <div id="encouragement-pop" class="encouragement-pop hidden" role="status" aria-live="polite">
+        <button class="encouragement-close" type="button" onclick="GameModule.closeEncouragement()">×</button>
+        <span class="encouragement-spark">✦</span>
+        <strong id="encouragement-title">Keep going</strong>
+        <p id="encouragement-body">Try one small step.</p>
+        <small id="encouragement-quote">Small steps count.</small>
       </div>
     `;
 
@@ -782,6 +997,10 @@ const GameModule = (() => {
   // Start a game
   async function startGame(gameType, quizTopicId = null, customOptions = null) {
     try {
+      playSound('start');
+      closeEncouragement();
+      consecutiveWrong = 0;
+      hintCountInRound = 0;
       lastGameType = gameType; // Store for play again
       if (quizTopicId) {
         lastQuizTopic = quizTopicId;
@@ -920,6 +1139,9 @@ const GameModule = (() => {
 
     // Hide feedback
     document.getElementById('feedback-display').classList.add('hidden');
+    closeEncouragement();
+    animateProblemCard('new-problem');
+    startStuckTimer();
 
     // Reset buttons
     resetButtonsForNewQuestion();
@@ -974,7 +1196,7 @@ const GameModule = (() => {
       }
 
       // Show feedback
-      showFeedback(data);
+      showFeedback(data, answer);
 
       // Update score and streak
       currentGame.score = data.score || currentGame.score;
@@ -985,7 +1207,7 @@ const GameModule = (() => {
       // Check if game is over
       if (data.gameOver) {
         // Show results quickly
-        setTimeout(() => showResults(data), 600);
+        setTimeout(() => showResults(data), 1800);
       } else if (data.nextProblem) {
         // Store next problem and show Next button
         currentGame.pendingProblem = data.nextProblem;
@@ -1021,40 +1243,72 @@ const GameModule = (() => {
   }
 
   // Show feedback for answer
-  function showFeedback(data) {
+  function showFeedback(data, submittedAnswer = '') {
+    clearTimeout(stuckTimer);
+    closeEncouragement(true);
     const feedback = document.getElementById('feedback-display');
     feedback.classList.remove('hidden');
 
     if (data.correct) {
+      consecutiveWrong = 0;
+      const celebrationLine = pick(CELEBRATION_LINES);
+      playSound(data.streak >= 3 ? 'streak' : 'correct');
+      animateProblemCard('answer-correct');
       feedback.className = 'feedback-display correct';
       feedback.innerHTML = `
         <span class="feedback-icon">✓</span>
         <span class="feedback-text">Correct! +${data.xpEarned} XP</span>
-        <span class="feedback-explanation">${data.explanation || 'Lock that pattern in and keep going.'}</span>
+        <span class="feedback-cheer">${escapeHtml(celebrationLine)}</span>
+        ${buildExplanationHtml(data, submittedAnswer)}
       `;
       // Play celebration for streaks
-      if (typeof celebrate === 'function' && currentGame && currentGame.streak >= 3) {
+      if (typeof celebrate === 'function' && data.streak >= 3) {
         celebrate();
       }
+      if (data.streak > 0 && data.streak % 4 === 0) {
+        showEncouragement({
+          title: `${data.streak} in a row`,
+          body: 'That streak came from focus, not luck. Keep using the same careful steps.',
+          quote: 'Confidence is built one correct step at a time.'
+        }, true);
+      }
     } else {
+      consecutiveWrong++;
+      playSound('wrong');
+      animateProblemCard('answer-wrong');
       feedback.className = 'feedback-display incorrect';
       feedback.innerHTML = `
         <span class="feedback-icon">✗</span>
         <span class="feedback-text">The answer was: ${data.correctAnswer}</span>
-        <span class="feedback-explanation">${data.explanation || ''}</span>
+        ${buildExplanationHtml(data, submittedAnswer)}
       `;
+      if (consecutiveWrong >= 2) {
+        showEncouragement(pick(COACHING_POPUPS), true);
+      }
     }
   }
 
   // Show hint
   function showHint() {
+    clearTimeout(stuckTimer);
+    hintCountInRound++;
+    playSound('hint');
     const feedback = document.getElementById('feedback-display');
     feedback.classList.remove('hidden');
     feedback.className = 'feedback-display hint';
+    const topicTip = TOPIC_TIPS[currentGame?.currentTopic] || 'Name the operation first. Then solve one clean step.';
     feedback.innerHTML = `
       <span class="feedback-icon">💡</span>
-      <span class="feedback-text">${currentGame?.currentHint || 'Take your time. Name the operation first, then do the arithmetic.'}</span>
+      <span class="feedback-text">${escapeHtml(currentGame?.currentHint || 'Take your time. Name the operation first, then do the arithmetic.')}</span>
+      <span class="feedback-explanation">${escapeHtml(topicTip)}</span>
     `;
+    if (hintCountInRound === 1 || hintCountInRound % 3 === 0) {
+      showEncouragement({
+        title: 'Hints are strategy',
+        body: 'Good learners use clues. Read the hint, do one written step, then try the answer.',
+        quote: 'Getting help is part of getting stronger.'
+      });
+    }
   }
 
   // Quit game
@@ -1073,6 +1327,7 @@ const GameModule = (() => {
 
     currentGame = null;
     isSubmitting = false;
+    clearTimeout(stuckTimer);
     stopTimer();
     showSelection();
   }
@@ -1080,8 +1335,10 @@ const GameModule = (() => {
   // Show results screen
   function showResults(data) {
     stopTimer();
+    clearTimeout(stuckTimer);
     currentGame = null;
     isSubmitting = false;
+    playSound((data.stats?.accuracy || 0) >= 70 ? 'streak' : 'popup');
 
     gamePlay.classList.add('hidden');
     gameResults.classList.remove('hidden');
@@ -1219,6 +1476,7 @@ const GameModule = (() => {
     selectCustomLevel,
     selectCustomSubject,
     startCustomPractice,
+    closeEncouragement,
     showConceptPicker,
     showConcept,
     practiceConceptQuiz
