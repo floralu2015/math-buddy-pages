@@ -844,9 +844,9 @@ header h1 {
 /* Game container */
 .game-container {
   width: 100%;
-  max-width: 980px;
+  max-width: min(1120px, 100%);
   margin: 0 auto;
-  padding: 15px;
+  padding: clamp(8px, 1.2vw, 14px);
   position: relative;
   z-index: 1;
 }
@@ -859,8 +859,8 @@ header h1 {
 .game-screen {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(247, 252, 255, 0.98) 100%);
-  border-radius: 25px;
-  padding: 20px;
+  border-radius: clamp(18px, 2vw, 25px);
+  padding: clamp(12px, 1.6vw, 18px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
@@ -876,8 +876,18 @@ header h1 {
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  margin-bottom: 15px;
+  margin-bottom: clamp(8px, 1vw, 12px);
   font-family: 'Nunito', sans-serif;
+}
+
+#game-selection {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(10px, 1.2vw, 14px);
+}
+
+#game-selection .back-to-tutor {
+  justify-self: start;
 }
 
 .back-to-tutor:hover {
@@ -895,9 +905,9 @@ header h1 {
 .game-hero {
   position: relative;
   overflow: hidden;
-  border-radius: 26px;
-  padding: 24px 28px;
-  margin-bottom: 18px;
+  border-radius: clamp(18px, 2vw, 24px);
+  padding: clamp(14px, 2vw, 22px) clamp(16px, 2.2vw, 26px);
+  margin-bottom: 0;
   color: white;
   background:
     radial-gradient(circle at 84% 14%, rgba(255, 219, 112, 0.96) 0 8%, rgba(255, 219, 112, 0.25) 9%, transparent 14%),
@@ -921,17 +931,17 @@ header h1 {
   position: relative;
   text-align: left;
   color: white;
-  font-size: clamp(1.9rem, 4vw, 3rem);
+  font-size: clamp(1.65rem, 3.2vw, 2.7rem);
   line-height: 1;
-  margin: 8px 0 8px;
+  margin: clamp(5px, 0.8vw, 8px) 0 clamp(5px, 0.8vw, 8px);
   max-width: 560px;
 }
 
 .game-hero p {
   position: relative;
   max-width: 560px;
-  font-size: 1rem;
-  line-height: 1.45;
+  font-size: clamp(0.86rem, 1.15vw, 0.98rem);
+  line-height: 1.35;
   font-weight: 700;
   opacity: 0.96;
 }
@@ -939,7 +949,7 @@ header h1 {
 .game-hero-kicker {
   position: relative;
   display: inline-block;
-  padding: 6px 12px;
+  padding: 5px 11px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.2);
   color: #ffe9a8;
@@ -952,15 +962,15 @@ header h1 {
 .practice-lanes {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
-  margin: -4px 0 18px;
+  gap: clamp(8px, 1vw, 10px);
+  margin: 0;
 }
 
 .practice-lane {
   position: relative;
   overflow: hidden;
-  min-height: 84px;
-  padding: 15px 16px;
+  min-height: clamp(60px, 7.5vh, 74px);
+  padding: 12px 14px 12px 16px;
   border-radius: 18px;
   background: linear-gradient(135deg, #ffffff 0%, #f3fbff 100%);
   border: 2px solid rgba(34, 56, 67, 0.08);
@@ -985,9 +995,9 @@ header h1 {
 
 .lane-label {
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   color: #2d5f73;
-  font-size: 0.72rem;
+  font-size: clamp(0.62rem, 0.8vw, 0.7rem);
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -996,7 +1006,7 @@ header h1 {
 .practice-lane strong {
   display: block;
   color: #223843;
-  font-size: 0.98rem;
+  font-size: clamp(0.84rem, 1.05vw, 0.96rem);
   line-height: 1.2;
 }
 
@@ -1004,9 +1014,9 @@ header h1 {
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin: 0 0 20px;
-  padding: 18px;
+  gap: clamp(10px, 1vw, 13px);
+  margin: 0;
+  padding: clamp(12px, 1.3vw, 16px);
   border: 3px solid #249f91;
   border-radius: 22px;
   background:
@@ -1029,12 +1039,12 @@ header h1 {
   flex: 0 0 auto;
   display: grid;
   place-items: center;
-  width: 54px;
-  height: 54px;
+  width: clamp(42px, 4.7vw, 52px);
+  height: clamp(42px, 4.7vw, 52px);
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.72);
   box-shadow: inset 0 -3px 0 rgba(34, 56, 67, 0.08), 0 8px 14px rgba(34, 56, 67, 0.1);
-  font-size: 2.2rem;
+  font-size: clamp(1.7rem, 2.3vw, 2.1rem);
 }
 
 .builder-entry-copy {
@@ -1055,15 +1065,15 @@ header h1 {
 
 .builder-entry-copy strong {
   display: block;
-  margin: 3px 0;
-  font-size: 1.18rem;
+  margin: 2px 0;
+  font-size: clamp(1rem, 1.25vw, 1.14rem);
   line-height: 1.15;
 }
 
 .builder-entry-copy small {
   display: block;
   color: #5f6d76;
-  font-size: 0.86rem;
+  font-size: clamp(0.74rem, 0.95vw, 0.84rem);
   font-weight: 800;
   line-height: 1.3;
 }
@@ -1274,22 +1284,22 @@ header h1 {
     radial-gradient(circle at 100% 0%, rgba(255, 209, 102, 0.26), transparent 28%),
     linear-gradient(135deg, #4059b8 0%, #75419a 100%);
   border-radius: 20px;
-  padding: 18px;
-  margin-bottom: 20px;
+  padding: clamp(12px, 1.3vw, 16px);
+  margin-bottom: 0;
   color: white;
   box-shadow: 0 12px 26px rgba(66, 74, 164, 0.22);
 }
 
 .level-display {
-  font-size: 1.1rem;
+  font-size: clamp(0.92rem, 1.2vw, 1.06rem);
   font-weight: 700;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .xp-bar-container {
   background: rgba(255, 255, 255, 0.3);
   border-radius: 10px;
-  height: 14px;
+  height: clamp(10px, 1.2vw, 13px);
   overflow: hidden;
   margin-bottom: 5px;
   box-shadow: inset 0 2px 5px rgba(33, 24, 74, 0.16);
@@ -1303,7 +1313,7 @@ header h1 {
 }
 
 .xp-display {
-  font-size: 0.9rem;
+  font-size: clamp(0.78rem, 1vw, 0.9rem);
   text-align: right;
   opacity: 0.9;
 }
@@ -1312,8 +1322,8 @@ header h1 {
 .game-modes {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-  margin: 4px 0 24px;
+  gap: clamp(9px, 1.25vw, 14px);
+  margin: 0;
 }
 
 .game-mode-btn {
@@ -1325,27 +1335,27 @@ header h1 {
   overflow: hidden;
   background: var(--card-bg);
   border: 3px solid var(--card-border);
-  border-radius: 24px;
-  padding: 18px 18px 22px;
+  border-radius: clamp(17px, 1.8vw, 22px);
+  padding: clamp(12px, 1.2vw, 16px) clamp(12px, 1.2vw, 16px) clamp(20px, 1.7vw, 24px);
   cursor: pointer;
   transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
   text-align: center;
   font-family: 'Nunito', sans-serif;
-  min-height: 166px;
+  min-height: clamp(96px, 11vh, 120px);
   box-shadow: 0 10px 22px var(--card-glow), inset 0 -4px 0 rgba(34, 56, 67, 0.06);
 }
 
 .game-mode-btn::before {
   content: "Practice";
   position: absolute;
-  top: 12px;
-  left: 14px;
+  top: clamp(8px, 1vw, 11px);
+  left: clamp(10px, 1vw, 13px);
   z-index: 2;
-  padding: 4px 9px;
+  padding: 3px 8px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.64);
   color: rgba(34, 56, 67, 0.78);
-  font-size: 0.62rem;
+  font-size: clamp(0.54rem, 0.7vw, 0.6rem);
   font-weight: 900;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -1355,10 +1365,10 @@ header h1 {
 .game-mode-btn::after {
   content: "";
   position: absolute;
-  left: 16px;
-  right: 16px;
-  bottom: 14px;
-  height: 8px;
+  left: clamp(12px, 1.2vw, 16px);
+  right: clamp(12px, 1.2vw, 16px);
+  bottom: clamp(10px, 1.1vw, 13px);
+  height: clamp(5px, 0.8vw, 7px);
   border-radius: 999px;
   background: linear-gradient(90deg, var(--card-accent), rgba(255, 255, 255, 0.7));
   opacity: 0.85;
@@ -1386,8 +1396,8 @@ header h1 {
 }
 
 .game-mode-btn.featured {
-  min-height: 188px;
-  padding: 24px 18px 24px;
+  min-height: clamp(104px, 12vh, 132px);
+  padding: clamp(14px, 1.3vw, 18px) clamp(12px, 1.2vw, 16px) clamp(20px, 1.7vw, 24px);
   color: #223843;
   border-width: 4px;
 }
@@ -1487,30 +1497,30 @@ header h1 {
   z-index: 1;
   display: grid;
   place-items: center;
-  width: 58px;
-  height: 58px;
-  margin: 22px auto 12px;
-  border-radius: 20px;
+  width: clamp(34px, 3.8vw, 48px);
+  height: clamp(34px, 3.8vw, 48px);
+  margin: clamp(16px, 1.7vw, 20px) auto clamp(5px, 0.8vw, 8px);
+  border-radius: clamp(15px, 1.7vw, 18px);
   background: rgba(255, 255, 255, 0.66);
-  font-size: 2.25rem;
+  font-size: clamp(1.35rem, 2vw, 1.9rem);
   box-shadow: inset 0 -3px 0 rgba(34, 56, 67, 0.08), 0 8px 16px rgba(34, 56, 67, 0.1);
 }
 
 .mode-title {
   position: relative;
   z-index: 1;
-  font-size: 1.14rem;
+  font-size: clamp(0.82rem, 1.05vw, 1rem);
   font-weight: 900;
   color: #23343d;
   display: block;
-  margin-bottom: 7px;
+  margin-bottom: 4px;
   line-height: 1.14;
 }
 
 .mode-desc {
   position: relative;
   z-index: 1;
-  font-size: 0.88rem;
+  font-size: clamp(0.6rem, 0.8vw, 0.76rem);
   color: rgba(35, 52, 61, 0.72);
   display: block;
   line-height: 1.3;
@@ -1525,19 +1535,205 @@ header h1 {
 /* Badges display */
 .badges-display {
   border-top: 2px solid #eee;
-  padding-top: 15px;
+  padding-top: clamp(8px, 1vw, 12px);
 }
 
 .badges-display h3 {
-  font-size: 1rem;
+  font-size: clamp(0.86rem, 1vw, 0.96rem);
   color: #666;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .badges-list {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+@media (min-width: 900px) {
+  #game-selection {
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 0.34fr);
+    align-items: stretch;
+  }
+
+  #game-selection .back-to-tutor,
+  #game-selection .game-modes,
+  #game-selection .badges-display {
+    grid-column: 1 / -1;
+  }
+
+  #game-selection .game-hero,
+  #game-selection .game-progress-bar,
+  #game-selection .practice-lanes,
+  #game-selection .practice-builder-entry {
+    height: 100%;
+  }
+
+  #game-selection .game-progress-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  #game-selection .practice-builder-entry {
+    min-height: 0;
+  }
+}
+
+@media (min-width: 900px) and (max-height: 1050px) {
+  body {
+    padding-top: max(8px, env(safe-area-inset-top));
+    padding-bottom: max(8px, env(safe-area-inset-bottom));
+  }
+
+  .game-container {
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+
+  .game-screen {
+    padding: 8px 12px;
+  }
+
+  #game-selection {
+    gap: 8px;
+  }
+
+  .back-to-tutor {
+    margin-bottom: 0;
+    font-size: 0.85rem;
+    line-height: 1;
+  }
+
+  .game-hero {
+    padding: 12px 18px;
+  }
+
+  .game-hero::after {
+    font-size: 3.8rem;
+  }
+
+  #game-selection .game-hero h2 {
+    font-size: clamp(1.35rem, 2.6vw, 2rem);
+    margin: 4px 0;
+  }
+
+  .game-hero p {
+    font-size: 0.76rem;
+    line-height: 1.25;
+  }
+
+  .game-progress-bar {
+    padding: 10px 14px;
+  }
+
+  .level-display {
+    margin-bottom: 5px;
+    font-size: 0.86rem;
+  }
+
+  .xp-display {
+    font-size: 0.74rem;
+  }
+
+  .practice-lane {
+    min-height: 50px;
+    padding: 8px 10px 8px 14px;
+    border-radius: 14px;
+  }
+
+  .lane-label {
+    margin-bottom: 2px;
+    font-size: 0.54rem;
+  }
+
+  .practice-lane strong {
+    font-size: 0.78rem;
+  }
+
+  .practice-builder-entry {
+    padding: 9px 11px;
+    border-radius: 16px;
+  }
+
+  .builder-entry-copy small {
+    display: none;
+  }
+
+  .builder-entry-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 13px;
+    font-size: 1.5rem;
+  }
+
+  .builder-entry-copy strong {
+    font-size: 0.9rem;
+  }
+
+  .game-mode-btn {
+    min-height: 88px;
+    padding: 8px 10px 14px;
+    border-width: 2px;
+    border-radius: 16px;
+  }
+
+  .game-mode-btn.featured {
+    min-height: 92px;
+    border-width: 3px;
+  }
+
+  .game-mode-btn::before {
+    top: 7px;
+    left: 8px;
+    padding: 2px 6px;
+    font-size: 0.48rem;
+  }
+
+  .game-mode-btn::after {
+    bottom: 7px;
+    height: 5px;
+  }
+
+  .mode-icon {
+    width: 30px;
+    height: 30px;
+    margin-top: 16px;
+    margin-bottom: 4px;
+    border-radius: 10px;
+    font-size: 1.24rem;
+  }
+
+  .mode-title {
+    font-size: 0.8rem;
+    margin-bottom: 2px;
+  }
+
+  .mode-desc {
+    font-size: 0.58rem;
+    line-height: 1.18;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .badges-display {
+    padding-top: 5px;
+  }
+
+  .badges-display h3 {
+    display: inline;
+    margin-right: 10px;
+  }
+
+  .badges-list {
+    display: inline-flex;
+  }
+
+  .no-badges {
+    font-size: 0.82rem;
+  }
 }
 
 .badge {
@@ -2167,11 +2363,41 @@ header h1 {
 /* Mobile adjustments for game */
 @media (max-width: 820px) {
   .game-modes {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .practice-lanes {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .lane-label {
+    font-size: 0.58rem;
+  }
+
+  .practice-lane strong {
+    font-size: 0.78rem;
+  }
+
+  .game-mode-btn,
+  .game-mode-btn.featured {
+    min-height: 94px;
+  }
+
+  .mode-desc {
+    display: none;
+  }
+
+  .badges-display {
+    padding-top: 6px;
+  }
+
+  .badges-display h3 {
+    display: inline;
+    margin-right: 8px;
+  }
+
+  .badges-list {
+    display: inline-flex;
   }
 
   .custom-option-row {
@@ -2185,16 +2411,16 @@ header h1 {
 
 @media (max-width: 500px) {
   .game-container {
-    padding: 10px;
+    padding: 8px;
   }
 
   .game-screen {
-    padding: 14px;
+    padding: 12px;
     border-radius: 20px;
   }
 
   .game-hero {
-    padding: 18px 16px;
+    padding: 12px;
     border-radius: 18px;
   }
 
@@ -2205,16 +2431,41 @@ header h1 {
   }
 
   .game-hero h2 {
-    font-size: 2rem;
+    font-size: 1.55rem;
+  }
+
+  .game-hero p {
+    font-size: 0.76rem;
+  }
+
+  .game-progress-bar {
+    padding: 10px 12px;
   }
 
   .practice-lane {
-    min-height: 72px;
+    min-height: 58px;
+    padding: 10px 8px 10px 12px;
+  }
+
+  .practice-lanes {
+    gap: 7px;
   }
 
   .practice-builder-entry {
     align-items: flex-start;
-    padding: 14px;
+    padding: 11px;
+  }
+
+  .builder-entry-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 14px;
+    font-size: 1.55rem;
+  }
+
+  .builder-entry-copy small {
+    font-size: 0.68rem;
+    line-height: 1.2;
   }
 
   .builder-entry-arrow {
@@ -2251,26 +2502,44 @@ header h1 {
   }
 
   .game-modes {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
   }
 
   .game-mode-btn,
   .game-mode-btn.featured {
-    min-height: 158px;
-    padding: 18px 14px 28px;
+    min-height: 88px;
+    padding: 10px 6px 14px;
+    border-width: 2px;
+    border-radius: 16px;
   }
 
   .game-mode-btn::before {
-    top: 10px;
-    left: 12px;
+    top: 6px;
+    left: 6px;
+    padding: 2px 5px;
+    max-width: calc(100% - 12px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.46rem;
   }
 
   .mode-icon {
-    width: 52px;
-    height: 52px;
-    margin: 20px auto 10px;
-    border-radius: 17px;
-    font-size: 2rem;
+    width: 30px;
+    height: 30px;
+    margin: 17px auto 5px;
+    border-radius: 12px;
+    font-size: 1.35rem;
+  }
+
+  .mode-title {
+    font-size: 0.66rem;
+    line-height: 1.05;
+  }
+
+  .mode-desc {
+    display: none;
   }
 
   .game-header {
