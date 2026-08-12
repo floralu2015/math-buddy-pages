@@ -132,6 +132,7 @@ const GameModule = (() => {
   let stuckTimer = null;
   let lastPopupAt = 0;
   let lobbyFitRequest = 0;
+  let customFitRequest = 0;
 
   // DOM elements (will be set after DOM loads)
   let gameContainer, gameSelection, gamePlay, gameResults, customPractice, quizPicker, conceptPicker, conceptDisplay;
@@ -413,7 +414,8 @@ const GameModule = (() => {
       </div>
 
       <!-- Custom Practice Builder Screen -->
-      <div id="custom-practice" class="game-screen hidden">
+      <div id="custom-practice" class="custom-practice-shell hidden">
+        <div class="custom-practice-inner game-screen">
         <button class="back-btn" onclick="GameModule.showSelection()">← Back</button>
         <div class="builder-hero">
           <span class="builder-hero-kicker">custom round</span>
@@ -452,6 +454,7 @@ const GameModule = (() => {
           </div>
           <div id="custom-subject-options" class="custom-subject-grid"></div>
         </section>
+        </div>
       </div>
 
       <!-- Quiz Topic Picker Screen -->
@@ -623,7 +626,10 @@ const GameModule = (() => {
       }
     });
 
-    window.addEventListener('resize', fitSelectionToViewport);
+    window.addEventListener('resize', () => {
+      fitSelectionToViewport();
+      fitCustomPracticeToViewport();
+    });
   }
 
   function fitSelectionToViewport() {
@@ -655,6 +661,43 @@ const GameModule = (() => {
         const scaledHeight = inner.getBoundingClientRect().height;
         if (scaledHeight) {
           gameSelection.style.height = `${Math.ceil(scaledHeight)}px`;
+        }
+      });
+    });
+  }
+
+  function fitCustomPracticeToViewport() {
+    if (!customPractice || customPractice.classList.contains('hidden')) return;
+
+    const requestId = ++customFitRequest;
+    const inner = customPractice.querySelector('.custom-practice-inner');
+    if (!inner) return;
+
+    customPractice.style.height = 'auto';
+    customPractice.style.setProperty('--custom-scale', '1');
+
+    if (window.innerWidth < 700) return;
+
+    requestAnimationFrame(() => {
+      if (requestId !== customFitRequest) return;
+      if (!customPractice || customPractice.classList.contains('hidden')) return;
+
+      const shellRect = customPractice.getBoundingClientRect();
+      const availableHeight = Math.max(560, window.innerHeight - shellRect.top - 12);
+      const naturalHeight = inner.scrollHeight;
+      if (!naturalHeight) return;
+
+      const widthLimitedScale = (window.innerWidth - 24) / Math.max(1, inner.offsetWidth);
+      const maxScale = window.innerWidth < 700 ? 1 : Math.min(1.48, widthLimitedScale);
+      const minScale = window.innerWidth < 700 ? 0.72 : 0.66;
+      const scale = Math.min(maxScale, Math.max(minScale, availableHeight / naturalHeight));
+      customPractice.style.setProperty('--custom-scale', scale.toFixed(3));
+
+      requestAnimationFrame(() => {
+        if (requestId !== customFitRequest) return;
+        const scaledHeight = inner.getBoundingClientRect().height;
+        if (scaledHeight) {
+          customPractice.style.height = `${Math.ceil(scaledHeight)}px`;
         }
       });
     });
@@ -831,6 +874,8 @@ const GameModule = (() => {
     if (summary && level && subject) {
       summary.textContent = `${level.problemCount} questions • ${subject.name}`;
     }
+
+    fitCustomPracticeToViewport();
   }
 
   function getSelectedCustomLevel() {
@@ -884,6 +929,7 @@ const GameModule = (() => {
     if (conceptDisplay) conceptDisplay.classList.add('hidden');
     customPractice.classList.remove('hidden');
     renderCustomPracticeControls();
+    fitCustomPracticeToViewport();
   }
 
   // Start a quiz with specific topic
