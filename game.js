@@ -36,15 +36,19 @@ const GameModule = (() => {
   ];
 
   const CUSTOM_SUBJECTS = [
-    { id: 'factMix', name: 'Fact mix', icon: '⚔️', topics: ['multiplication facts', 'division facts', 'missing factors'] },
-    { id: 'multiplication', name: 'Multiplication', icon: '✖️', topics: ['multiplication facts', 'multi-digit multiplication'] },
-    { id: 'division', name: 'Division', icon: '➗', topics: ['division facts'] },
-    { id: 'fractions', name: 'Fractions', icon: '🍕', topics: ['fraction operations', 'basic fractions', 'mixed numbers'] },
-    { id: 'decimals', name: 'Decimals', icon: '🔢', topics: ['decimals'] },
-    { id: 'equations', name: 'Equations', icon: '⚖️', topics: ['two-step equations', 'inequalities'] },
-    { id: 'ratios', name: 'Ratios', icon: '📏', topics: ['ratios'] },
-    { id: 'geometry', name: 'Geometry', icon: '📐', topics: ['scale factor', 'angle relationships', 'surface area and volume'] },
-    { id: 'data', name: 'Data', icon: '📊', topics: ['data and statistics'] }
+    { id: 'factMix', name: 'Times Tables & Division', icon: '⚔️', topics: ['multiplication facts', 'division facts', 'missing factors'] },
+    { id: 'wholeNumberWords', name: 'Word Problems & Whole Numbers', icon: '🧠', topics: ['foundation review', 'multi-step problems', 'multi-digit multiplication'] },
+    { id: 'fractions', name: 'Fractions & Mixed Numbers', icon: '🍕', topics: ['fraction operations', 'basic fractions', 'mixed numbers'] },
+    { id: 'decimalsPercents', name: 'Decimals, Percents & Money', icon: '%', topics: ['decimals', 'percentages', 'percent change'] },
+    { id: 'integers', name: 'Integers & Number Lines', icon: '↔️', topics: ['integer operations'] },
+    { id: 'ratios', name: 'Ratios, Rates & Scale', icon: '📏', topics: ['ratios', 'scale factor'] },
+    { id: 'equations', name: 'Equations & Inequalities', icon: '⚖️', topics: ['two-step equations', 'inequalities'] },
+    { id: 'algebraEssentials', name: 'Distribute, Combine & Factor', icon: '🧩', topics: ['distributive property', 'combine like terms', 'gcf factoring'] },
+    { id: 'data', name: 'Data & Statistics', icon: '📊', topics: ['data and statistics'] },
+    { id: 'geometry', name: 'Geometry, Angles & Volume', icon: '📐', topics: ['angle relationships', 'surface area and volume', 'scale factor'] },
+    { id: 'exponentsRoots', name: 'Exponents, Roots & Scientific Notation', icon: '√', topics: ['scientific notation', 'integer operations'] },
+    { id: 'linear', name: 'Slope & Linear Relationships', icon: '📈', topics: ['slope', 'slope-intercept form'] },
+    { id: 'rightTriangles', name: 'Right Triangles & Pythagorean', icon: '△', topics: ['pythagorean theorem', 'scale factor'] }
   ];
 
   // Game state

@@ -15,8 +15,8 @@
   const TOPICS = {
     easy: ['addition', 'subtraction', 'simple multiplication', 'counting'],
     medium: ['multiplication facts', 'division facts', 'missing factors', 'basic fractions', 'decimals'],
-    hard: ['foundation review', 'fraction operations', 'mixed numbers', 'percentages', 'multi-step problems', 'data and statistics', 'multi-digit multiplication'],
-    challenge: ['grade 6 bridge', 'ratios', 'two-step equations', 'inequalities', 'scale factor', 'angle relationships', 'surface area and volume']
+    hard: ['foundation review', 'fraction operations', 'mixed numbers', 'percentages', 'percent change', 'multi-step problems', 'integer operations', 'scientific notation', 'data and statistics', 'multi-digit multiplication'],
+    challenge: ['grade 6 bridge', 'ratios', 'two-step equations', 'inequalities', 'distributive property', 'combine like terms', 'gcf factoring', 'slope', 'slope-intercept form', 'scale factor', 'angle relationships', 'surface area and volume', 'pythagorean theorem']
   };
   const LEGACY_MODE_CONFIGS = {
     speed: {
@@ -159,8 +159,8 @@
     return problem(`What is ${a} × ${b}?`, `${a} \\times ${b}`, a * b, `Break ${a} into ${tens} + ${ones}.`, `${a} × ${b} = ${tens * b} + ${ones * b} = ${a * b}.`);
   }
 
-  function foundationReview() {
-    const kind = choice(['fractionOfNumber', 'decimalAdd', 'decimalSubtract', 'fractionSimplify', 'area', 'orderOps']);
+  function foundationReview(kindOverride = null) {
+    const kind = kindOverride || choice(['fractionOfNumber', 'decimalAdd', 'decimalSubtract', 'fractionSimplify', 'area', 'orderOps']);
     if (kind === 'fractionOfNumber') {
       const denominator = choice([3, 4, 5, 6, 8, 10, 12]);
       const multiplier = randomInt(2, 9);
@@ -204,8 +204,211 @@
     return problem(`Calculate: ${c} + ${a} × ${b}`, `${c} + ${a} \\times ${b}`, c + a * b, 'Multiply before adding.', `${a} × ${b} = ${a * b}; ${c} + ${a * b} = ${c + a * b}.`);
   }
 
+  function fractionPractice(topic = 'fraction operations') {
+    if (topic === 'basic fractions') return foundationReview(choice(['fractionOfNumber', 'fractionSimplify']));
+    if (topic === 'mixed numbers') {
+      const whole = randomInt(1, 5);
+      const denominator = choice([3, 4, 5, 6, 8]);
+      const numerator = randomInt(1, denominator - 1);
+      const improper = whole * denominator + numerator;
+      return {
+        problem: `Convert ${whole} ${numerator}/${denominator} to an improper fraction.`,
+        problemLatex: `${whole}\\frac{${numerator}}{${denominator}}`,
+        answer: `${improper}/${denominator}`,
+        acceptableAnswers: [`${improper}/${denominator}`],
+        hint: `Multiply ${whole} by ${denominator}, then add ${numerator}.`,
+        explanation: `${whole} × ${denominator} + ${numerator} = ${improper}, so the fraction is ${improper}/${denominator}.`
+      };
+    }
+    const denominator = choice([4, 6, 8, 10, 12]);
+    const a = randomInt(1, Math.floor(denominator / 2));
+    const b = randomInt(1, denominator - a - 1);
+    return {
+      problem: `What is ${a}/${denominator} + ${b}/${denominator}?`,
+      problemLatex: `\\frac{${a}}{${denominator}} + \\frac{${b}}{${denominator}}`,
+      answer: `${a + b}/${denominator}`,
+      acceptableAnswers: [`${a + b}/${denominator}`],
+      hint: 'The denominators already match, so add the numerators.',
+      explanation: `${a}/${denominator} + ${b}/${denominator} = ${a + b}/${denominator}.`
+    };
+  }
+
+  function decimalPractice() {
+    return foundationReview(choice(['decimalAdd', 'decimalSubtract']));
+  }
+
+  function percentagePractice() {
+    const percent = choice([10, 20, 25, 50, 75]);
+    const whole = choice([40, 60, 80, 100, 120, 200]);
+    const answer = whole * percent / 100;
+    return problem(`What is ${percent}% of ${whole}?`, `${percent}\\% \\times ${whole}`, answer, `${percent}% means ${percent} out of 100.`, `${whole} × ${percent / 100} = ${answer}.`);
+  }
+
+  function multiStepPractice() {
+    return foundationReview('orderOps');
+  }
+
+  function integerOperations() {
+    const kind = choice(['add', 'subtract', 'multiply']);
+    if (kind === 'add') {
+      const a = randomInt(3, 14);
+      const b = randomInt(5, 18);
+      const answer = b - a;
+      return problem(`What is -${a} + ${b}?`, `-${a} + ${b}`, answer, `Start at -${a} and move ${b} spaces right.`, `-${a} + ${b} = ${answer}.`);
+    }
+    if (kind === 'subtract') {
+      const a = randomInt(4, 16);
+      const b = randomInt(2, 12);
+      const answer = -a - b;
+      return problem(`What is -${a} - ${b}?`, `-${a} - ${b}`, answer, `Subtracting ${b} moves ${b} more spaces left.`, `-${a} - ${b} = ${answer}.`);
+    }
+    const a = randomInt(3, 9);
+    const b = randomInt(3, 8);
+    return problem(`What is -${a} × ${b}?`, `-${a} \\times ${b}`, -a * b, 'A negative times a positive is negative.', `-${a} × ${b} = ${-a * b}.`);
+  }
+
+  function scientificNotation() {
+    if (Math.random() < 0.5) {
+      const coefficient = randomInt(12, 98) / 10;
+      const exponent = randomInt(3, 6);
+      const value = coefficient * (10 ** exponent);
+      const answer = `${coefficient} x 10^${exponent}`;
+      return {
+        problem: `Write ${value.toLocaleString('en-US')} in scientific notation.`,
+        problemLatex: `${value}`,
+        answer,
+        acceptableAnswers: [answer, `${coefficient} × 10^${exponent}`, `${coefficient}*10^${exponent}`, `${coefficient} times 10^${exponent}`],
+        hint: 'Move the decimal until the first number is at least 1 and less than 10.',
+        explanation: `${value.toLocaleString('en-US')} = ${coefficient} × 10^${exponent}.`
+      };
+    }
+    const coefficient = randomInt(12, 98) / 10;
+    const exponent = randomInt(2, 4);
+    const zeros = '0'.repeat(exponent - 1);
+    const value = `0.${zeros}${String(coefficient).replace('.', '')}`;
+    const answer = `${coefficient} x 10^-${exponent}`;
+    return {
+      problem: `Write ${value} in scientific notation.`,
+      problemLatex: value,
+      answer,
+      acceptableAnswers: [answer, `${coefficient} × 10^-${exponent}`, `${coefficient}*10^-${exponent}`, `${coefficient} times 10^-${exponent}`],
+      hint: `Move the decimal ${exponent} places to make ${coefficient}.`,
+      explanation: `${value} = ${coefficient} × 10^-${exponent}.`
+    };
+  }
+
+  function percentChange() {
+    const original = choice([20, 24, 30, 40, 50, 60, 80]);
+    const percent = choice([10, 15, 20, 25, 50]);
+    const increase = Math.random() < 0.6;
+    const change = original * percent / 100;
+    const newValue = increase ? original + change : original - change;
+    return {
+      problem: `A price ${increase ? 'increases' : 'decreases'} from $${original} to $${newValue}. What is the percent change?`,
+      problemLatex: `\\frac{${Math.abs(newValue - original)}}{${original}} \\times 100\\%`,
+      answer: String(percent),
+      acceptableAnswers: [String(percent), `${percent}%`, `${percent} percent`, `${percent / 100}`],
+      hint: 'Percent change is change divided by the original amount.',
+      explanation: `The change is ${Math.abs(newValue - original)}. ${Math.abs(newValue - original)} ÷ ${original} = ${percent / 100} = ${percent}%.`
+    };
+  }
+
+  function distributiveProperty() {
+    const a = randomInt(2, 8);
+    const b = randomInt(2, 7);
+    const c = randomInt(2, 12);
+    return {
+      problem: `Expand: ${a}(${b}x + ${c})`,
+      problemLatex: `${a}(${b}x + ${c})`,
+      answer: `${a * b}x + ${a * c}`,
+      acceptableAnswers: [`${a * b}x + ${a * c}`, `${a * b}x+${a * c}`],
+      hint: `Multiply both terms inside the parentheses by ${a}.`,
+      explanation: `${a} × ${b}x = ${a * b}x and ${a} × ${c} = ${a * c}, so the expanded form is ${a * b}x + ${a * c}.`
+    };
+  }
+
+  function combineLikeTerms() {
+    const a = randomInt(2, 9);
+    const b = randomInt(2, 9);
+    const c = randomInt(1, 12);
+    const d = randomInt(1, 8);
+    const constant = c - d;
+    const expression = constant < 0
+      ? `${a + b}x - ${Math.abs(constant)}`
+      : `${a + b}x + ${constant}`;
+    return {
+      problem: `Simplify: ${a}x + ${c} + ${b}x - ${d}`,
+      problemLatex: `${a}x + ${c} + ${b}x - ${d}`,
+      answer: expression,
+      acceptableAnswers: [expression, expression.replace(/\s+/g, '')],
+      hint: 'Combine the x terms, then combine the plain numbers.',
+      explanation: `${a}x + ${b}x = ${a + b}x and ${c} - ${d} = ${constant}.`
+    };
+  }
+
+  function gcfFactoring() {
+    const factor = choice([2, 3, 4, 5, 6]);
+    const a = randomInt(2, 7);
+    const b = randomInt(2, 9);
+    return {
+      problem: `Factor using the GCF: ${factor * a}x + ${factor * b}`,
+      problemLatex: `${factor * a}x + ${factor * b}`,
+      answer: `${factor}(${a}x + ${b})`,
+      acceptableAnswers: [`${factor}(${a}x + ${b})`, `${factor}(${a}x+${b})`, `${factor} * (${a}x + ${b})`],
+      hint: `The greatest common factor is ${factor}.`,
+      explanation: `Factor out ${factor}: ${factor * a}x + ${factor * b} = ${factor}(${a}x + ${b}).`
+    };
+  }
+
+  function slopeProblem() {
+    const x1 = randomInt(-3, 3);
+    const y1 = randomInt(-4, 5);
+    const slope = choice([-3, -2, -1, 2, 3, 4]);
+    const run = choice([2, 3, 4]);
+    const x2 = x1 + run;
+    const y2 = y1 + slope * run;
+    return {
+      problem: `What is the slope through (${x1}, ${y1}) and (${x2}, ${y2})?`,
+      problemLatex: `m = \\frac{${y2} - ${y1}}{${x2} - ${x1}}`,
+      answer: String(slope),
+      acceptableAnswers: [String(slope), `m=${slope}`, `m = ${slope}`],
+      hint: 'Slope is change in y divided by change in x.',
+      explanation: `Change in y is ${y2 - y1}; change in x is ${x2 - x1}. Slope = ${y2 - y1} ÷ ${x2 - x1} = ${slope}.`
+    };
+  }
+
+  function slopeInterceptForm() {
+    const slope = choice([-3, -2, -1, 2, 3, 4]);
+    const intercept = choice([-5, -3, -1, 2, 4, 6]);
+    const sign = intercept < 0 ? '-' : '+';
+    const absIntercept = Math.abs(intercept);
+    const answer = `y = ${slope === -1 ? '-' : slope === 1 ? '' : slope}x ${sign} ${absIntercept}`;
+    return {
+      problem: `Write the line with slope ${slope} and y-intercept ${intercept} in slope-intercept form.`,
+      problemLatex: `m = ${slope}, b = ${intercept}`,
+      answer,
+      acceptableAnswers: [answer, answer.replace(/\s+/g, ''), answer.replace('y = ', '')],
+      hint: 'Use y = mx + b.',
+      explanation: `Substitute m = ${slope} and b = ${intercept} into y = mx + b.`
+    };
+  }
+
+  function surfaceAreaVolume() {
+    const length = randomInt(3, 9);
+    const width = randomInt(2, 8);
+    const height = randomInt(2, 7);
+    const volume = length * width * height;
+    return problem(`A rectangular prism is ${length} cm long, ${width} cm wide, and ${height} cm tall. What is its volume?`, `${length} \\times ${width} \\times ${height}`, volume, 'Volume is length times width times height.', `V = ${length} × ${width} × ${height} = ${volume} cubic centimeters.`);
+  }
+
+  function pythagoreanTheorem() {
+    const triples = [[3, 4, 5], [5, 12, 13], [6, 8, 10], [8, 15, 17], [9, 12, 15]];
+    const [a, b, c] = choice(triples);
+    return problem(`A right triangle has legs ${a} and ${b}. What is the hypotenuse?`, `${a}^2 + ${b}^2 = c^2`, c, 'Use a^2 + b^2 = c^2.', `${a}^2 + ${b}^2 = ${a * a + b * b}, so c = ${c}.`);
+  }
+
   function grade6Bridge(topic) {
-    const kind = topic && topic !== 'grade 6 bridge' ? topic : choice(['two-step equations', 'inequalities', 'ratios', 'data and statistics', 'scale factor', 'angle relationships']);
+    const kind = topic && topic !== 'grade 6 bridge' ? topic : choice(['two-step equations', 'inequalities', 'ratios', 'data and statistics', 'scale factor', 'angle relationships', 'slope']);
     if (kind === 'two-step equations' || kind === 'algebra basics') {
       const x = randomInt(3, 12);
       const a = randomInt(2, 6);
@@ -248,6 +451,16 @@
       const angle = choice([45, 55, 65, 75, 105, 115, 125, 135]);
       return problem(`Two angles form a straight line. One is ${angle}°. What is the other?`, `${angle}^\\circ + x = 180^\\circ`, 180 - angle, 'Straight-line angles add to 180°.', `180 - ${angle} = ${180 - angle}.`);
     }
+    if (kind === 'percent change') return percentChange();
+    if (kind === 'integer operations') return integerOperations();
+    if (kind === 'scientific notation') return scientificNotation();
+    if (kind === 'distributive property') return distributiveProperty();
+    if (kind === 'combine like terms') return combineLikeTerms();
+    if (kind === 'gcf factoring') return gcfFactoring();
+    if (kind === 'slope') return slopeProblem();
+    if (kind === 'slope-intercept form') return slopeInterceptForm();
+    if (kind === 'surface area and volume') return surfaceAreaVolume();
+    if (kind === 'pythagorean theorem') return pythagoreanTheorem();
     return foundationReview();
   }
 
@@ -290,21 +503,29 @@
       'missing factors': missingFactor,
       'multi-digit multiplication': multiDigitMultiplication,
       'foundation review': foundationReview,
-      'basic fractions': foundationReview,
-      'fraction operations': foundationReview,
-      'mixed numbers': foundationReview,
-      decimals: foundationReview,
-      percentages: foundationReview,
-      'multi-step problems': foundationReview,
+      'basic fractions': () => fractionPractice('basic fractions'),
+      'fraction operations': () => fractionPractice('fraction operations'),
+      'mixed numbers': () => fractionPractice('mixed numbers'),
+      decimals: decimalPractice,
+      percentages: percentagePractice,
+      'percent change': percentChange,
+      'multi-step problems': multiStepPractice,
+      'integer operations': integerOperations,
+      'scientific notation': scientificNotation,
       'data and statistics': () => grade6Bridge('data and statistics'),
       ratios: () => grade6Bridge('ratios'),
       'two-step equations': () => grade6Bridge('two-step equations'),
       inequalities: () => grade6Bridge('inequalities'),
       'algebra basics': () => grade6Bridge('two-step equations'),
+      'distributive property': distributiveProperty,
+      'combine like terms': combineLikeTerms,
+      'gcf factoring': gcfFactoring,
+      slope: slopeProblem,
+      'slope-intercept form': slopeInterceptForm,
       'scale factor': () => grade6Bridge('scale factor'),
       'angle relationships': () => grade6Bridge('angle relationships'),
-      'surface area and volume': foundationReview,
-      'pythagorean theorem': () => grade6Bridge('scale factor'),
+      'surface area and volume': surfaceAreaVolume,
+      'pythagorean theorem': pythagoreanTheorem,
       'grade 6 bridge': () => grade6Bridge('grade 6 bridge')
     };
     let generated = (generators[selectedTopic] || foundationReview)();
