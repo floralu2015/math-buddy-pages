@@ -64,6 +64,7 @@
 
   const CONCEPTS = [
     { id: 'addition', name: 'Addition', icon: '➕', description: 'Combining numbers together', relatedQuiz: 'addition' },
+    { id: 'subtraction', name: 'Subtraction', icon: '➖', description: 'Taking away or finding the difference', relatedQuiz: 'subtraction' },
     { id: 'multiplication', name: 'Multiplication', icon: '✖️', description: 'Repeated addition and times tables', relatedQuiz: 'multiplication' },
     { id: 'division', name: 'Division', icon: '➗', description: 'Splitting into equal groups', relatedQuiz: 'division' },
     { id: 'fractions', name: 'Fractions', icon: '🍕', description: 'Parts of a whole', relatedQuiz: 'fractions' },
@@ -72,6 +73,29 @@
     { id: 'geometryMeasurement', name: 'Geometry & Measurement', icon: '📐', description: 'Scale, area, volume, and angles', relatedQuiz: 'geometryMeasurement' },
     { id: 'statistics', name: 'Data & Statistics', icon: '📊', description: 'Mean, median, mode, and range', relatedQuiz: 'statistics' }
   ];
+
+  const CONCEPT_EXPLANATIONS = {
+    subtraction: `## What is Subtraction?
+Subtraction means taking away or finding the difference between numbers. When you see the - sign, ask: what is left, or how far apart are these numbers?
+
+## Real-World Examples
+- Sarah has 12 stickers and gives away 5. She has \\(12 - 5 = 7\\) stickers left.
+- A game score changes from 23 to 17. The difference is \\(23 - 17 = 6\\).
+
+## Key Words to Know
+- **Difference**: The answer when you subtract
+- **Minus (-)**: The subtraction sign
+- **Take away**: Remove some from the starting amount
+
+## Quick Tips
+- Count back for small numbers
+- Count up from the smaller number to the bigger number to find the difference
+- Use addition to check: if \\(15 - 7 = 8\\), then \\(8 + 7 = 15\\)
+
+## Try It!
+What is \\(18 - 9\\)?
+Answer: \\(9\\)`
+  };
 
   function json(data, init = {}) {
     return Promise.resolve(new Response(JSON.stringify(data), {
@@ -779,12 +803,14 @@
     }
     if (path === '/api/concepts') return json({ success: true, concepts: CONCEPTS });
     if (path.startsWith('/api/concepts/') && path.endsWith('/explain')) {
+      const conceptId = decodeURIComponent(path.split('/')[3] || '');
+      const concept = CONCEPTS.find(item => item.id === conceptId);
       return json({
-        success: true,
-        name: 'Math Concept',
-        icon: '💡',
-        relatedQuiz: null,
-        explanation: '## Quick explanation\nThis GitHub version keeps concepts simple. Pick a practice deck to build the skill with examples.'
+        success: Boolean(concept),
+        name: concept?.name || 'Math Concept',
+        icon: concept?.icon || '💡',
+        relatedQuiz: concept?.relatedQuiz || null,
+        explanation: CONCEPT_EXPLANATIONS[conceptId] || '## Quick explanation\nThis GitHub version keeps concepts simple. Pick a practice deck to build the skill with examples.'
       });
     }
     if (path === '/api/game/start') return json(startGame(body));
