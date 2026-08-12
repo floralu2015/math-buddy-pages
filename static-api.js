@@ -18,6 +18,26 @@
     hard: ['foundation review', 'fraction operations', 'mixed numbers', 'percentages', 'multi-step problems', 'data and statistics', 'multi-digit multiplication'],
     challenge: ['grade 6 bridge', 'ratios', 'two-step equations', 'inequalities', 'scale factor', 'angle relationships', 'surface area and volume']
   };
+  const LEGACY_MODE_CONFIGS = {
+    speed: {
+      difficulty: 'hard',
+      maxProblems: 10,
+      topics: ['multiplication facts', 'division facts', 'missing factors', 'multi-digit multiplication', 'two-step equations']
+    },
+    streak: {
+      difficulty: 'hard',
+      topics: ['multiplication facts', 'division facts', 'foundation review', 'fraction operations', 'decimals', 'ratios', 'two-step equations']
+    },
+    daily: {
+      difficulty: 'challenge',
+      maxProblems: 1,
+      topics: ['grade 6 bridge', 'two-step equations', 'inequalities', 'ratios', 'data and statistics', 'scale factor', 'angle relationships']
+    },
+    levelup: {
+      difficulty: 'medium',
+      topics: ['multiplication facts', 'division facts', 'foundation review', 'fraction operations', 'decimals']
+    }
+  };
 
   const QUIZ_TOPICS = {
     addition: { name: 'Addition', icon: '➕', description: 'Practice adding numbers', difficulty: 'easy', problems: 5, topics: ['addition'] },
@@ -352,11 +372,11 @@
     let topic = null;
     let quizName = null;
 
-    if (body.gameType === 'levelup') difficulty = 'easy';
-    if (body.gameType === 'speed') maxProblems = 10;
-    if (body.gameType === 'daily') {
-      difficulty = 'hard';
-      maxProblems = 1;
+    if (LEGACY_MODE_CONFIGS[body.gameType]) {
+      const modeConfig = LEGACY_MODE_CONFIGS[body.gameType];
+      difficulty = modeConfig.difficulty;
+      maxProblems = modeConfig.maxProblems || maxProblems;
+      topicPool = modeConfig.topics;
     }
     if (body.gameType === 'quiz' && QUIZ_TOPICS[body.quizTopic]) {
       const quiz = QUIZ_TOPICS[body.quizTopic];

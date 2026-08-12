@@ -156,37 +156,37 @@ const GameModule = (() => {
           <button class="game-mode-btn" onclick="GameModule.startGame('speed')">
             <span class="mode-icon">⚡</span>
             <span class="mode-title">Speed Challenge</span>
-            <span class="mode-desc">10 problems, beat the clock!</span>
+            <span class="mode-desc">10 fast 5th/6th grade facts and equations</span>
           </button>
 
           <button class="game-mode-btn" onclick="GameModule.startGame('streak')">
             <span class="mode-icon">🔥</span>
             <span class="mode-title">Streak Challenge</span>
-            <span class="mode-desc">How many in a row?</span>
+            <span class="mode-desc">Keep a streak across core bridge skills</span>
           </button>
 
           <button class="game-mode-btn daily" onclick="GameModule.startGame('daily')">
             <span class="mode-icon">📅</span>
             <span class="mode-title">Daily Challenge</span>
-            <span class="mode-desc" id="daily-status">Today's special problem!</span>
+            <span class="mode-desc" id="daily-status">Daily 6th grade readiness problem</span>
           </button>
 
           <button class="game-mode-btn" onclick="GameModule.startGame('levelup')">
             <span class="mode-icon">📈</span>
             <span class="mode-title">Level Up</span>
-            <span class="mode-desc">Problems get harder!</span>
+            <span class="mode-desc">Start with 5th grade, climb to 6th grade</span>
           </button>
 
           <button class="game-mode-btn quiz-btn" onclick="GameModule.showQuizPicker()">
             <span class="mode-icon">📚</span>
             <span class="mode-title">Practice Quiz</span>
-            <span class="mode-desc">Pick a topic to practice!</span>
+            <span class="mode-desc">Topic decks for 5th repair and 6th prep</span>
           </button>
 
           <button class="game-mode-btn concept-btn" onclick="GameModule.showConceptPicker()">
             <span class="mode-icon">💡</span>
             <span class="mode-title">Learn Concepts</span>
-            <span class="mode-desc">Understand how math works!</span>
+            <span class="mode-desc">Mini lessons for 5th and 6th grade skills</span>
           </button>
         </div>
 
