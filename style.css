@@ -857,7 +857,8 @@ header h1 {
 
 /* Game screens */
 .game-screen {
-  background: white;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(247, 252, 255, 0.98) 100%);
   border-radius: 25px;
   padding: 20px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
@@ -894,14 +895,15 @@ header h1 {
 .game-hero {
   position: relative;
   overflow: hidden;
-  border-radius: 22px;
-  padding: 22px 24px;
+  border-radius: 26px;
+  padding: 24px 28px;
   margin-bottom: 18px;
   color: white;
   background:
-    radial-gradient(circle at 85% 18%, rgba(255, 211, 105, 0.95) 0 8%, transparent 9%),
-    linear-gradient(135deg, #223843 0%, #2d5f73 46%, #ff7a59 100%);
-  box-shadow: 0 12px 28px rgba(34, 56, 67, 0.22);
+    radial-gradient(circle at 84% 14%, rgba(255, 219, 112, 0.96) 0 8%, rgba(255, 219, 112, 0.25) 9%, transparent 14%),
+    radial-gradient(circle at 8% 112%, rgba(42, 210, 190, 0.4) 0 18%, transparent 38%),
+    linear-gradient(135deg, #173341 0%, #2d6575 44%, #ff765b 100%);
+  box-shadow: 0 18px 36px rgba(34, 56, 67, 0.24);
 }
 
 .game-hero::after {
@@ -937,9 +939,9 @@ header h1 {
 .game-hero-kicker {
   position: relative;
   display: inline-block;
-  padding: 5px 10px;
+  padding: 6px 12px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.2);
   color: #ffe9a8;
   font-size: 0.76rem;
   font-weight: 900;
@@ -955,12 +957,30 @@ header h1 {
 }
 
 .practice-lane {
+  position: relative;
+  overflow: hidden;
   min-height: 84px;
-  padding: 13px 14px;
-  border-radius: 16px;
-  background: #f8fafb;
-  border: 2px solid #e8edf1;
-  box-shadow: inset 0 -4px 0 rgba(34, 56, 67, 0.05);
+  padding: 15px 16px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #ffffff 0%, #f3fbff 100%);
+  border: 2px solid rgba(34, 56, 67, 0.08);
+  box-shadow: 0 8px 18px rgba(34, 56, 67, 0.08), inset 0 -4px 0 rgba(34, 56, 67, 0.04);
+}
+
+.practice-lane::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 7px;
+  background: linear-gradient(180deg, #2dd4bf 0%, #38bdf8 100%);
+}
+
+.practice-lane:nth-child(2)::before {
+  background: linear-gradient(180deg, #f97316 0%, #facc15 100%);
+}
+
+.practice-lane:nth-child(3)::before {
+  background: linear-gradient(180deg, #6366f1 0%, #ec4899 100%);
 }
 
 .lane-label {
@@ -986,15 +1006,17 @@ header h1 {
   align-items: center;
   gap: 14px;
   margin: 0 0 20px;
-  padding: 16px;
-  border: 3px solid #2d9c8b;
-  border-radius: 18px;
-  background: linear-gradient(135deg, #d9f8f1 0%, #ffffff 100%);
+  padding: 18px;
+  border: 3px solid #249f91;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 8% 16%, rgba(45, 212, 191, 0.22), transparent 26%),
+    linear-gradient(135deg, #dffbf5 0%, #ffffff 70%);
   color: #223843;
   cursor: pointer;
   font-family: 'Nunito', sans-serif;
   text-align: left;
-  box-shadow: inset 0 -5px 0 rgba(45, 156, 139, 0.12);
+  box-shadow: 0 10px 20px rgba(37, 153, 141, 0.12), inset 0 -5px 0 rgba(45, 156, 139, 0.12);
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
@@ -1005,6 +1027,13 @@ header h1 {
 
 .builder-entry-icon {
   flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: inset 0 -3px 0 rgba(34, 56, 67, 0.08), 0 8px 14px rgba(34, 56, 67, 0.1);
   font-size: 2.2rem;
 }
 
@@ -1241,11 +1270,14 @@ header h1 {
 
 /* Progress bar on selection */
 .game-progress-bar {
-  background: linear-gradient(135deg, #4357ad 0%, #6d3f8d 100%);
-  border-radius: 15px;
-  padding: 15px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(255, 209, 102, 0.26), transparent 28%),
+    linear-gradient(135deg, #4059b8 0%, #75419a 100%);
+  border-radius: 20px;
+  padding: 18px;
   margin-bottom: 20px;
   color: white;
+  box-shadow: 0 12px 26px rgba(66, 74, 164, 0.22);
 }
 
 .level-display {
@@ -1257,9 +1289,10 @@ header h1 {
 .xp-bar-container {
   background: rgba(255, 255, 255, 0.3);
   border-radius: 10px;
-  height: 12px;
+  height: 14px;
   overflow: hidden;
   margin-bottom: 5px;
+  box-shadow: inset 0 2px 5px rgba(33, 24, 74, 0.16);
 }
 
 .xp-bar {
@@ -1279,26 +1312,67 @@ header h1 {
 .game-modes {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 15px;
-  margin-bottom: 20px;
+  gap: 18px;
+  margin: 4px 0 24px;
 }
 
 .game-mode-btn {
-  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
-  border: 3px solid #e0e0e0;
-  border-radius: 20px;
-  padding: 20px 15px;
+  --card-bg: linear-gradient(135deg, #ffffff 0%, #eef4f7 100%);
+  --card-border: #dce6eb;
+  --card-accent: #7c8a95;
+  --card-glow: rgba(34, 56, 67, 0.12);
+  position: relative;
+  overflow: hidden;
+  background: var(--card-bg);
+  border: 3px solid var(--card-border);
+  border-radius: 24px;
+  padding: 18px 18px 22px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
   text-align: center;
   font-family: 'Nunito', sans-serif;
-  min-height: 154px;
+  min-height: 166px;
+  box-shadow: 0 10px 22px var(--card-glow), inset 0 -4px 0 rgba(34, 56, 67, 0.06);
+}
+
+.game-mode-btn::before {
+  content: "Practice";
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  z-index: 2;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.64);
+  color: rgba(34, 56, 67, 0.78);
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 10px rgba(34, 56, 67, 0.08);
+}
+
+.game-mode-btn::after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 14px;
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--card-accent), rgba(255, 255, 255, 0.7));
+  opacity: 0.85;
+}
+
+.game-mode-btn:focus-visible {
+  outline: 4px solid rgba(255, 209, 102, 0.72);
+  outline-offset: 3px;
 }
 
 .game-mode-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  border-color: #667eea;
+  transform: translateY(-5px);
+  box-shadow: 0 16px 30px var(--card-glow), inset 0 -4px 0 rgba(34, 56, 67, 0.05);
+  border-color: var(--card-accent);
 }
 
 .game-mode-btn:active {
@@ -1312,23 +1386,10 @@ header h1 {
 }
 
 .game-mode-btn.featured {
-  position: relative;
-  overflow: hidden;
-  min-height: 178px;
-  padding: 22px 16px;
+  min-height: 188px;
+  padding: 24px 18px 24px;
   color: #223843;
   border-width: 4px;
-}
-
-.game-mode-btn.featured::after {
-  content: "";
-  position: absolute;
-  left: 14px;
-  right: 14px;
-  bottom: 12px;
-  height: 7px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.65);
 }
 
 .game-mode-btn.featured .mode-icon,
@@ -1339,39 +1400,121 @@ header h1 {
 }
 
 .game-mode-btn.times-arena {
-  background: linear-gradient(135deg, #fff1b8 0%, #ffd166 52%, #ff8c42 100%);
-  border-color: #f39c12;
+  --card-bg:
+    radial-gradient(circle at 16% 18%, rgba(255, 255, 255, 0.68), transparent 28%),
+    linear-gradient(135deg, #fff2a8 0%, #ffd166 50%, #ff8c42 100%);
+  --card-border: #f59e0b;
+  --card-accent: #f59e0b;
+  --card-glow: rgba(245, 158, 11, 0.22);
 }
 
 .game-mode-btn.tune-up {
-  background: linear-gradient(135deg, #d9f8f1 0%, #8be0cb 52%, #2d9c8b 100%);
-  border-color: #2d9c8b;
+  --card-bg:
+    radial-gradient(circle at 16% 18%, rgba(255, 255, 255, 0.7), transparent 28%),
+    linear-gradient(135deg, #d7fff4 0%, #7ce0ca 52%, #269b8f 100%);
+  --card-border: #249f91;
+  --card-accent: #249f91;
+  --card-glow: rgba(36, 159, 145, 0.2);
 }
 
 .game-mode-btn.bridge {
-  background: linear-gradient(135deg, #e7e5ff 0%, #a7b5ff 52%, #5a67d8 100%);
-  border-color: #5a67d8;
+  --card-bg:
+    radial-gradient(circle at 16% 18%, rgba(255, 255, 255, 0.72), transparent 28%),
+    linear-gradient(135deg, #ecebff 0%, #aab8ff 52%, #5868dc 100%);
+  --card-border: #5a67d8;
+  --card-accent: #5868dc;
+  --card-glow: rgba(88, 104, 220, 0.22);
+}
+
+.game-mode-btn.times-arena::before {
+  content: "Fact arena";
+}
+
+.game-mode-btn.tune-up::before {
+  content: "Repair skills";
+}
+
+.game-mode-btn.bridge::before {
+  content: "6th grade";
+}
+
+.game-mode-btn:nth-child(4) {
+  --card-bg: linear-gradient(135deg, #fff8df 0%, #e6fbff 100%);
+  --card-border: #f7c948;
+  --card-accent: #f59e0b;
+  --card-glow: rgba(245, 158, 11, 0.14);
+}
+
+.game-mode-btn:nth-child(4)::before {
+  content: "Quick round";
+}
+
+.game-mode-btn:nth-child(5) {
+  --card-bg: linear-gradient(135deg, #fff1ec 0%, #fff7e6 100%);
+  --card-border: #fb7185;
+  --card-accent: #ef4444;
+  --card-glow: rgba(239, 68, 68, 0.13);
+}
+
+.game-mode-btn:nth-child(5)::before {
+  content: "Accuracy";
+}
+
+.game-mode-btn.daily {
+  --card-bg: linear-gradient(135deg, #f7f0ff 0%, #fff5f8 100%);
+  --card-border: #c084fc;
+  --card-accent: #a855f7;
+  --card-glow: rgba(168, 85, 247, 0.14);
+}
+
+.game-mode-btn.daily::before {
+  content: "Today's mix";
+}
+
+.game-mode-btn:nth-child(7) {
+  --card-bg: linear-gradient(135deg, #ecfff5 0%, #f3fbff 100%);
+  --card-border: #34d399;
+  --card-accent: #10b981;
+  --card-glow: rgba(16, 185, 129, 0.14);
+}
+
+.game-mode-btn:nth-child(7)::before {
+  content: "Progress path";
 }
 
 .mode-icon {
-  font-size: 2.5rem;
-  display: block;
-  margin-bottom: 8px;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  margin: 22px auto 12px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.66);
+  font-size: 2.25rem;
+  box-shadow: inset 0 -3px 0 rgba(34, 56, 67, 0.08), 0 8px 16px rgba(34, 56, 67, 0.1);
 }
 
 .mode-title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #333;
+  position: relative;
+  z-index: 1;
+  font-size: 1.14rem;
+  font-weight: 900;
+  color: #23343d;
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 7px;
+  line-height: 1.14;
 }
 
 .mode-desc {
-  font-size: 0.85rem;
-  color: #666;
+  position: relative;
+  z-index: 1;
+  font-size: 0.88rem;
+  color: rgba(35, 52, 61, 0.72);
   display: block;
   line-height: 1.3;
+  font-weight: 800;
 }
 
 .game-mode-btn.featured .mode-desc {
@@ -2113,8 +2256,21 @@ header h1 {
 
   .game-mode-btn,
   .game-mode-btn.featured {
-    min-height: 132px;
-    padding: 18px 14px;
+    min-height: 158px;
+    padding: 18px 14px 28px;
+  }
+
+  .game-mode-btn::before {
+    top: 10px;
+    left: 12px;
+  }
+
+  .mode-icon {
+    width: 52px;
+    height: 52px;
+    margin: 20px auto 10px;
+    border-radius: 17px;
+    font-size: 2rem;
   }
 
   .game-header {
@@ -2327,12 +2483,14 @@ header h1 {
 
 /* Quiz button in game modes */
 .game-mode-btn.quiz-btn {
-  background: linear-gradient(135deg, #e8f4fd 0%, #d1e8fa 100%);
-  border-color: #4a9ede;
+  --card-bg: linear-gradient(135deg, #e7f5ff 0%, #eefbff 100%);
+  --card-border: #38a3df;
+  --card-accent: #0ea5e9;
+  --card-glow: rgba(14, 165, 233, 0.15);
 }
 
-.game-mode-btn.quiz-btn:hover {
-  border-color: #2980b9;
+.game-mode-btn.quiz-btn::before {
+  content: "Topic decks";
 }
 
 @media (max-width: 500px) {
@@ -2347,12 +2505,14 @@ header h1 {
 
 /* Learn Concepts Button */
 .game-mode-btn.concept-btn {
-  background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
-  border-color: #ff9800;
+  --card-bg: linear-gradient(135deg, #fff8e6 0%, #fff0c7 100%);
+  --card-border: #f59e0b;
+  --card-accent: #f59e0b;
+  --card-glow: rgba(245, 158, 11, 0.16);
 }
 
-.game-mode-btn.concept-btn:hover {
-  border-color: #e65100;
+.game-mode-btn.concept-btn::before {
+  content: "Mini lesson";
 }
 
 /* Concept Display Screen */
