@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Math Buddy! 🦉</title>
+  <link rel="stylesheet" href="style.css?v=9">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- MathJax for rendering math equations -->
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      },
+      startup: {
+        pageReady: () => {
+          return MathJax.startup.defaultPageReady();
+        }
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <div class="floating-shapes">
+    <div class="shape shape-1">✕</div>
+    <div class="shape shape-2">÷</div>
+    <div class="shape shape-3">+</div>
+    <div class="shape shape-4">−</div>
+    <div class="shape shape-5">=</div>
+    <div class="shape shape-6">π</div>
+  </div>
+
+  <div class="container">
+    <header>
+      <div id="mascot" class="mascot">🦉</div>
+      <h1>Math Buddy</h1>
+      <p class="subtitle">Your super smart owl friend! 🌟</p>
+      <button id="voice-toggle" class="voice-toggle" title="Toggle voice on/off">
+        <span class="voice-icon">🔊</span>
+        <span class="voice-label">Voice On</span>
+      </button>
+    </header>
+
+    <div class="upload-section">
+      <div class="upload-buttons">
+        <label for="textbook-upload" class="upload-btn textbook-btn">
+          <span class="upload-icon">📸</span>
+          <span>Snap Textbook</span>
+        </label>
+        <label for="work-upload" class="upload-btn work-btn">
+          <span class="upload-icon">📸</span>
+          <span>Snap My Work</span>
+        </label>
+      </div>
+      <!-- Camera inputs - capture="environment" uses rear camera -->
+      <input type="file" id="textbook-upload" accept="image/*" capture="environment">
+      <input type="file" id="work-upload" accept="image/*" capture="environment">
+      <div id="image-preview" class="image-preview"></div>
+      <div id="pending-images-info" class="pending-images-info"></div>
+      <button id="analyze-btn" class="analyze-btn hidden">🔍 Analyze All Images</button>
+    </div>
+
+    <button id="play-games-btn" class="play-games-btn" onclick="GameModule.show()">
+      <span>🎮</span>
+      <span>Play Games!</span>
+    </button>
+
+    <div id="chat-container" class="chat-container">
+      <div id="messages" class="messages">
+        <div class="message assistant">
+          <div class="message-content">
+            🎉 Hey there! I'm Ollie the Math Owl! Take a picture of your homework and let's solve it together. You've got this!
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-section">
+      <div class="audio-control-row" id="audio-control-row" style="display: none;">
+        <button id="audio-btn" class="audio-btn playing">
+          <span class="audio-icon">⏸️</span>
+          <span class="audio-text">Tap to Pause</span>
+        </button>
+      </div>
+      <button id="mic-btn" class="mic-btn">
+        <span class="mic-icon">🎤</span>
+        <span class="mic-text">Tap to Talk</span>
+      </button>
+      <div class="text-input-row">
+        <input type="text" id="text-input" placeholder="Type here...">
+        <button id="send-btn" class="send-btn">Send 🚀</button>
+      </div>
+    </div>
+
+    <button id="new-session-btn" class="new-session-btn">🔄 New Problem</button>
+  </div>
+
+  <script src="static-api.js?v=1"></script>
+  <script src="app.js?v=9"></script>
+  <script src="game.js?v=4"></script>
+</body>
+</html>
