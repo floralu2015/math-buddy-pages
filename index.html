@@ -6,7 +6,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Math Buddy! 🦉</title>
-  <link rel="stylesheet" href="style.css?v=12">
+  <link rel="stylesheet" href="style.css?v=13">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -124,53 +124,70 @@
       </section>
 
       <section id="games-panel" class="home-panel games-home" role="tabpanel" aria-labelledby="games-tab" data-home-panel="games" hidden>
-        <div class="games-home-stage">
-          <div class="games-stage-copy">
-            <span class="games-kicker">math arcade</span>
-            <h2>Pick a quest. Beat the facts. Level up.</h2>
-            <p>Fast rounds, brainy puzzles, streaks, sounds, badges, and real 5th-to-6th grade practice.</p>
-          </div>
-          <button id="play-games-btn" class="play-games-btn" onclick="GameModule.show()">
-            <span>🎮</span>
-            <span>Open Game Arena</span>
-          </button>
-        </div>
-
-        <div class="game-teaser-grid" aria-label="Quick game launchers">
-          <button class="game-teaser-card fact-teaser" onclick="launchHomeGame('quiz', 'multiplicationTables')">
-            <span class="teaser-badge">⚔️</span>
+        <div class="play-game-grid" aria-label="Play Games">
+          <button class="home-game-card feature-card arena-card" onclick="launchHomeGame('quiz', 'multiplicationTables')">
+            <span class="home-card-icon">⚔️</span>
             <strong>Times Table Arena</strong>
-            <small>6s, 7s, 8s, 9s, missing factors, and division facts.</small>
+            <small>36 facts: multiply, divide, missing factors</small>
+            <span class="home-card-rail"></span>
           </button>
-          <button class="game-teaser-card repair-teaser" onclick="launchHomeGame('quiz', 'fifthGradeTuneUp')">
-            <span class="teaser-badge">🛠️</span>
-            <strong>5th Grade Tune-Up</strong>
-            <small>Patch fractions, decimals, division, and word problem habits.</small>
-          </button>
-          <button class="game-teaser-card bridge-teaser" onclick="launchHomeGame('quiz', 'grade6Bridge')">
-            <span class="teaser-badge">🌉</span>
-            <strong>6th Grade Bridge</strong>
-            <small>Ratios, equations, data, angles, scale, and strategy.</small>
-          </button>
-          <button class="game-teaser-card lightning-teaser" onclick="launchHomeGame('mode', 'speed')">
-            <span class="teaser-badge">⚡</span>
-            <strong>Speed Challenge</strong>
-            <small>Quick reps that make the facts stick.</small>
-          </button>
-        </div>
 
-        <div class="game-rally-strip" aria-label="Game rewards">
-          <span>🔥 Streaks</span>
-          <span>🎵 Sounds</span>
-          <span>🏆 Badges</span>
-          <span>💡 Hints</span>
+          <button class="home-game-card feature-card tune-card" onclick="launchHomeGame('quiz', 'fifthGradeTuneUp')">
+            <span class="home-card-icon">🛠️</span>
+            <strong>5th Grade Tune-Up</strong>
+            <small>Fractions, decimals, division, word thinking</small>
+            <span class="home-card-rail"></span>
+          </button>
+
+          <button class="home-game-card feature-card bridge-card" onclick="launchHomeGame('quiz', 'grade6Bridge')">
+            <span class="home-card-icon">🌉</span>
+            <strong>6th Grade Bridge</strong>
+            <small>Equations, ratios, data, geometry</small>
+            <span class="home-card-rail"></span>
+          </button>
+
+          <button class="home-game-card simple-card" onclick="launchHomeGame('mode', 'speed')">
+            <span class="home-card-icon">⚡</span>
+            <strong>Speed Challenge</strong>
+            <small>10 fast 5th/6th grade facts and equations</small>
+          </button>
+
+          <button class="home-game-card simple-card" onclick="launchHomeGame('mode', 'streak')">
+            <span class="home-card-icon">🔥</span>
+            <strong>Streak Challenge</strong>
+            <small>Keep a streak across core bridge skills</small>
+          </button>
+
+          <button class="home-game-card simple-card" onclick="launchHomeGame('mode', 'daily')">
+            <span class="home-card-icon">📅</span>
+            <strong>Daily Challenge</strong>
+            <small>Today's special problem!</small>
+          </button>
+
+          <button class="home-game-card simple-card" onclick="launchHomeGame('mode', 'levelup')">
+            <span class="home-card-icon">📈</span>
+            <strong>Level Up</strong>
+            <small>Start with 5th grade, climb to 6th grade</small>
+          </button>
+
+          <button class="home-game-card simple-card quiz-card" onclick="launchHomeGame('picker', 'quiz')">
+            <span class="home-card-icon">📚</span>
+            <strong>Practice Quiz</strong>
+            <small>Topic decks for 5th repair and 6th prep</small>
+          </button>
+
+          <button class="home-game-card simple-card concept-card" onclick="launchHomeGame('picker', 'concepts')">
+            <span class="home-card-icon">💡</span>
+            <strong>Learn Concepts</strong>
+            <small>Mini lessons for 5th and 6th grade skills</small>
+          </button>
         </div>
       </section>
     </main>
       </div>
 
   <script src="static-api.js?v=4"></script>
-  <script src="app.js?v=10"></script>
+  <script src="app.js?v=11"></script>
   <script src="game.js?v=7"></script>
 </body>
 </html>

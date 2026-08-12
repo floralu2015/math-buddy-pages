@@ -59,6 +59,10 @@ window.launchHomeGame = function launchHomeGame(kind, value) {
       GameModule.startQuiz(value);
     } else if (kind === 'mode') {
       GameModule.startGame(value);
+    } else if (kind === 'picker' && value === 'quiz') {
+      GameModule.showQuizPicker();
+    } else if (kind === 'picker' && value === 'concepts') {
+      GameModule.showConceptPicker();
     }
   });
 };
