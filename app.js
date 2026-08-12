@@ -26,10 +26,42 @@ const mascot = document.getElementById('mascot');
 const audioControlRow = document.getElementById('audio-control-row');
 const audioBtn = document.getElementById('audio-btn');
 const voiceToggle = document.getElementById('voice-toggle');
+const homeTabs = document.querySelectorAll('[data-home-tab]');
+const homePanels = document.querySelectorAll('[data-home-panel]');
 
 let pendingImages = { textbook: [], work: [] };
 let audioUnlocked = false;
 let warmAudio = null; // "Blessed" audio element for iOS
+
+function switchHomeTab(tabName) {
+  homeTabs.forEach(tab => {
+    const isActive = tab.dataset.homeTab === tabName;
+    tab.classList.toggle('active', isActive);
+    tab.setAttribute('aria-selected', String(isActive));
+  });
+
+  homePanels.forEach(panel => {
+    const isActive = panel.dataset.homePanel === tabName;
+    panel.classList.toggle('active', isActive);
+    panel.hidden = !isActive;
+  });
+}
+
+homeTabs.forEach(tab => {
+  tab.addEventListener('click', () => switchHomeTab(tab.dataset.homeTab));
+});
+
+window.launchHomeGame = function launchHomeGame(kind, value) {
+  if (typeof GameModule === 'undefined') return;
+  GameModule.show();
+  requestAnimationFrame(() => {
+    if (kind === 'quiz') {
+      GameModule.startQuiz(value);
+    } else if (kind === 'mode') {
+      GameModule.startGame(value);
+    }
+  });
+};
 
 // Voice toggle functionality
 voiceToggle.addEventListener('click', () => {

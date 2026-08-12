@@ -187,6 +187,301 @@ header h1 {
   font-weight: 600;
 }
 
+.home-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+  padding: 6px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.22);
+  border: 2px solid rgba(255, 255, 255, 0.26);
+  box-shadow: 0 10px 24px rgba(38, 24, 94, 0.18);
+  backdrop-filter: blur(8px);
+}
+
+.home-tab {
+  min-height: 58px;
+  border: 0;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.86);
+  background: transparent;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.home-tab .tab-icon {
+  font-size: 1.45rem;
+}
+
+.home-tab.active {
+  color: #2e265f;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 12px 22px rgba(31, 18, 81, 0.18);
+}
+
+.home-tab.play-tab.active {
+  color: white;
+  background: linear-gradient(135deg, #ff8c42 0%, #ff4d6d 52%, #7357ff 100%);
+}
+
+.home-tab:active {
+  transform: scale(0.98);
+}
+
+.home-panels {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.home-panel {
+  display: none;
+}
+
+.home-panel.active {
+  display: flex;
+  flex-direction: column;
+  animation: home-panel-in 0.28s ease-out;
+}
+
+@keyframes home-panel-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.games-home {
+  gap: 12px;
+}
+
+.games-home-stage {
+  position: relative;
+  overflow: hidden;
+  border-radius: 26px;
+  padding: 22px;
+  color: white;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.28), transparent 28%),
+    radial-gradient(circle at 88% 20%, rgba(255, 209, 102, 0.55), transparent 22%),
+    linear-gradient(135deg, #163c88 0%, #7a3ffc 48%, #ff4d6d 100%);
+  box-shadow: 0 16px 34px rgba(34, 16, 89, 0.28);
+}
+
+.games-home-stage::after {
+  content: "6 × 7 = ?";
+  position: absolute;
+  right: -8px;
+  bottom: -18px;
+  font-size: 4.4rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.13);
+  transform: rotate(-8deg);
+}
+
+.games-stage-copy {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 18px;
+}
+
+.games-kicker {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff4b8;
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.games-stage-copy h2 {
+  margin-top: 10px;
+  font-size: clamp(1.85rem, 6vw, 3rem);
+  line-height: 0.98;
+  letter-spacing: 0;
+  text-shadow: 0 4px 12px rgba(30, 12, 84, 0.24);
+}
+
+.games-stage-copy p {
+  margin-top: 12px;
+  max-width: 560px;
+  font-size: 1.02rem;
+  line-height: 1.42;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.games-home-stage .play-games-btn {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  min-height: 68px;
+  border: 3px solid rgba(255, 255, 255, 0.55);
+  background: linear-gradient(135deg, #ffd166 0%, #ff8c42 46%, #ef476f 100%);
+  box-shadow: 0 14px 28px rgba(30, 12, 84, 0.28);
+  animation: arena-pulse 2.8s ease-in-out infinite;
+}
+
+.game-teaser-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.game-teaser-card {
+  min-height: 148px;
+  border: 0;
+  border-radius: 20px;
+  padding: 16px;
+  color: white;
+  text-align: left;
+  font-family: 'Nunito', sans-serif;
+  cursor: pointer;
+  box-shadow: 0 12px 24px rgba(39, 23, 91, 0.2);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.game-teaser-card strong,
+.game-teaser-card small {
+  display: block;
+}
+
+.game-teaser-card strong {
+  margin-top: 10px;
+  font-size: 1.12rem;
+  line-height: 1.1;
+}
+
+.game-teaser-card small {
+  margin-top: 8px;
+  font-size: 0.84rem;
+  line-height: 1.28;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 700;
+}
+
+.game-teaser-card:hover {
+  transform: translateY(-3px) rotate(-0.5deg);
+  box-shadow: 0 16px 30px rgba(39, 23, 91, 0.26);
+}
+
+.game-teaser-card:active {
+  transform: scale(0.98);
+}
+
+.teaser-badge {
+  display: inline-grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.22);
+  font-size: 1.55rem;
+}
+
+.fact-teaser {
+  background: linear-gradient(135deg, #102a83 0%, #2f80ed 100%);
+}
+
+.repair-teaser {
+  background: linear-gradient(135deg, #0e8f7a 0%, #35d07f 100%);
+}
+
+.bridge-teaser {
+  background: linear-gradient(135deg, #7f2ccb 0%, #ff5c8a 100%);
+}
+
+.lightning-teaser {
+  background: linear-gradient(135deg, #f77f00 0%, #ef233c 100%);
+}
+
+.game-rally-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.game-rally-strip span {
+  min-height: 46px;
+  display: grid;
+  place-items: center;
+  padding: 8px 6px;
+  border-radius: 16px;
+  color: white;
+  font-weight: 900;
+  background: rgba(255, 255, 255, 0.18);
+  border: 2px solid rgba(255, 255, 255, 0.24);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+@keyframes arena-pulse {
+  0%, 100% { box-shadow: 0 14px 28px rgba(30, 12, 84, 0.28); }
+  50% { box-shadow: 0 14px 34px rgba(255, 209, 102, 0.46); }
+}
+
+@media (max-width: 500px) {
+  .home-tabs {
+    gap: 6px;
+    padding: 5px;
+    border-radius: 20px;
+  }
+
+  .home-tab {
+    min-height: 52px;
+    border-radius: 15px;
+    font-size: 0.86rem;
+  }
+
+  .home-tab .tab-icon {
+    font-size: 1.24rem;
+  }
+
+  .games-home-stage {
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  .games-home-stage::after {
+    font-size: 3rem;
+    bottom: -10px;
+  }
+
+  .games-stage-copy h2 {
+    font-size: 2rem;
+  }
+
+  .games-stage-copy p {
+    font-size: 0.94rem;
+  }
+
+  .games-home-stage .play-games-btn {
+    min-height: 62px;
+    font-size: 1rem;
+  }
+
+  .game-teaser-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .game-teaser-card {
+    min-height: 124px;
+  }
+
+  .game-rally-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 /* Upload section */
 .upload-section {
   background: white;
@@ -2069,6 +2364,8 @@ header h1 {
 @media (prefers-reduced-motion: reduce) {
   .problem-container,
   .problem-container::after,
+  .home-panel.active,
+  .games-home-stage .play-games-btn,
   .feedback-display,
   .encouragement-pop,
   .encouragement-pop.leaving,
