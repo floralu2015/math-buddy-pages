@@ -131,6 +131,7 @@ const GameModule = (() => {
   let hintCountInRound = 0;
   let stuckTimer = null;
   let lastPopupAt = 0;
+  let lobbyFitRequest = 0;
 
   // DOM elements (will be set after DOM loads)
   let gameContainer, gameSelection, gamePlay, gameResults, customPractice, quizPicker, conceptPicker, conceptDisplay;
@@ -304,7 +305,8 @@ const GameModule = (() => {
     gameContainer.className = 'game-container hidden';
     gameContainer.innerHTML = `
       <!-- Game Selection Screen -->
-      <div id="game-selection" class="game-screen">
+      <div id="game-selection" class="game-selection-shell">
+        <div class="game-selection-inner game-screen">
         <button class="back-to-tutor" onclick="GameModule.hide()">← Back to Tutor</button>
         <div class="game-hero">
           <span class="game-hero-kicker">6th grade launch pad</span>
@@ -406,6 +408,7 @@ const GameModule = (() => {
           <div id="badges-list" class="badges-list">
             <span class="no-badges">Play games to earn badges!</span>
           </div>
+        </div>
         </div>
       </div>
 
@@ -619,6 +622,42 @@ const GameModule = (() => {
         }
       }
     });
+
+    window.addEventListener('resize', fitSelectionToViewport);
+  }
+
+  function fitSelectionToViewport() {
+    if (!gameSelection || gameSelection.classList.contains('hidden')) return;
+
+    const requestId = ++lobbyFitRequest;
+    const inner = gameSelection.querySelector('.game-selection-inner');
+    if (!inner) return;
+
+    gameSelection.style.height = 'auto';
+    gameSelection.style.setProperty('--lobby-scale', '1');
+
+    requestAnimationFrame(() => {
+      if (requestId !== lobbyFitRequest) return;
+      if (!gameSelection || gameSelection.classList.contains('hidden')) return;
+
+      const shellRect = gameSelection.getBoundingClientRect();
+      const availableHeight = Math.max(520, window.innerHeight - shellRect.top - 12);
+      const naturalHeight = inner.scrollHeight;
+      if (!naturalHeight) return;
+
+      const widthLimitedScale = (window.innerWidth - 24) / Math.max(1, inner.offsetWidth);
+      const maxScale = window.innerWidth < 700 ? 1 : Math.min(1.52, widthLimitedScale);
+      const scale = Math.min(maxScale, Math.max(0.65, availableHeight / naturalHeight));
+      gameSelection.style.setProperty('--lobby-scale', scale.toFixed(3));
+
+      requestAnimationFrame(() => {
+        if (requestId !== lobbyFitRequest) return;
+        const scaledHeight = inner.getBoundingClientRect().height;
+        if (scaledHeight) {
+          gameSelection.style.height = `${Math.ceil(scaledHeight)}px`;
+        }
+      });
+    });
   }
 
   // Load player progress
@@ -674,6 +713,8 @@ const GameModule = (() => {
         badgesList.innerHTML = '<span class="no-badges">Play games to earn badges!</span>';
       }
     }
+
+    fitSelectionToViewport();
   }
 
   // Check daily challenge status
@@ -692,6 +733,7 @@ const GameModule = (() => {
         if (dailyStatus) dailyStatus.textContent = "Today's special problem!";
         if (dailyBtn) dailyBtn.classList.remove('completed');
       }
+      fitSelectionToViewport();
     } catch (error) {
       console.error('Error checking daily status:', error);
     }
@@ -991,6 +1033,7 @@ const GameModule = (() => {
     if (conceptDisplay) conceptDisplay.classList.add('hidden');
     stopTimer();
     loadProgress(); // Refresh progress when returning to menu
+    fitSelectionToViewport();
   }
 
   // Start a game
