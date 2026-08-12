@@ -34,6 +34,13 @@ let audioUnlocked = false;
 let warmAudio = null; // "Blessed" audio element for iOS
 
 function switchHomeTab(tabName) {
+  if (tabName === 'games') {
+    if (typeof GameModule !== 'undefined') {
+      GameModule.show();
+    }
+    return;
+  }
+
   homeTabs.forEach(tab => {
     const isActive = tab.dataset.homeTab === tabName;
     tab.classList.toggle('active', isActive);
@@ -50,22 +57,6 @@ function switchHomeTab(tabName) {
 homeTabs.forEach(tab => {
   tab.addEventListener('click', () => switchHomeTab(tab.dataset.homeTab));
 });
-
-window.launchHomeGame = function launchHomeGame(kind, value) {
-  if (typeof GameModule === 'undefined') return;
-  GameModule.show();
-  requestAnimationFrame(() => {
-    if (kind === 'quiz') {
-      GameModule.startQuiz(value);
-    } else if (kind === 'mode') {
-      GameModule.startGame(value);
-    } else if (kind === 'picker' && value === 'quiz') {
-      GameModule.showQuizPicker();
-    } else if (kind === 'picker' && value === 'concepts') {
-      GameModule.showConceptPicker();
-    }
-  });
-};
 
 // Voice toggle functionality
 voiceToggle.addEventListener('click', () => {

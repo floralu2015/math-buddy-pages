@@ -6,7 +6,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Math Buddy! 🦉</title>
-  <link rel="stylesheet" href="style.css?v=13">
+  <link rel="stylesheet" href="style.css?v=14">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -66,7 +66,7 @@
         <span class="tab-icon">📸</span>
         <span>Check Homework</span>
       </button>
-      <button id="games-tab" class="home-tab play-tab" type="button" role="tab" aria-selected="false" aria-controls="games-panel" data-home-tab="games">
+      <button id="games-tab" class="home-tab play-tab" type="button" role="tab" aria-selected="false" aria-controls="game-container" data-home-tab="games">
         <span class="tab-icon">🎮</span>
         <span>Play Games</span>
       </button>
@@ -122,72 +122,11 @@
 
         <button id="new-session-btn" class="new-session-btn">🔄 New Problem</button>
       </section>
-
-      <section id="games-panel" class="home-panel games-home" role="tabpanel" aria-labelledby="games-tab" data-home-panel="games" hidden>
-        <div class="play-game-grid" aria-label="Play Games">
-          <button class="home-game-card feature-card arena-card" onclick="launchHomeGame('quiz', 'multiplicationTables')">
-            <span class="home-card-icon">⚔️</span>
-            <strong>Times Table Arena</strong>
-            <small>36 facts: multiply, divide, missing factors</small>
-            <span class="home-card-rail"></span>
-          </button>
-
-          <button class="home-game-card feature-card tune-card" onclick="launchHomeGame('quiz', 'fifthGradeTuneUp')">
-            <span class="home-card-icon">🛠️</span>
-            <strong>5th Grade Tune-Up</strong>
-            <small>Fractions, decimals, division, word thinking</small>
-            <span class="home-card-rail"></span>
-          </button>
-
-          <button class="home-game-card feature-card bridge-card" onclick="launchHomeGame('quiz', 'grade6Bridge')">
-            <span class="home-card-icon">🌉</span>
-            <strong>6th Grade Bridge</strong>
-            <small>Equations, ratios, data, geometry</small>
-            <span class="home-card-rail"></span>
-          </button>
-
-          <button class="home-game-card simple-card" onclick="launchHomeGame('mode', 'speed')">
-            <span class="home-card-icon">⚡</span>
-            <strong>Speed Challenge</strong>
-            <small>10 fast 5th/6th grade facts and equations</small>
-          </button>
-
-          <button class="home-game-card simple-card" onclick="launchHomeGame('mode', 'streak')">
-            <span class="home-card-icon">🔥</span>
-            <strong>Streak Challenge</strong>
-            <small>Keep a streak across core bridge skills</small>
-          </button>
-
-          <button class="home-game-card simple-card" onclick="launchHomeGame('mode', 'daily')">
-            <span class="home-card-icon">📅</span>
-            <strong>Daily Challenge</strong>
-            <small>Today's special problem!</small>
-          </button>
-
-          <button class="home-game-card simple-card" onclick="launchHomeGame('mode', 'levelup')">
-            <span class="home-card-icon">📈</span>
-            <strong>Level Up</strong>
-            <small>Start with 5th grade, climb to 6th grade</small>
-          </button>
-
-          <button class="home-game-card simple-card quiz-card" onclick="launchHomeGame('picker', 'quiz')">
-            <span class="home-card-icon">📚</span>
-            <strong>Practice Quiz</strong>
-            <small>Topic decks for 5th repair and 6th prep</small>
-          </button>
-
-          <button class="home-game-card simple-card concept-card" onclick="launchHomeGame('picker', 'concepts')">
-            <span class="home-card-icon">💡</span>
-            <strong>Learn Concepts</strong>
-            <small>Mini lessons for 5th and 6th grade skills</small>
-          </button>
-        </div>
-      </section>
     </main>
       </div>
 
   <script src="static-api.js?v=4"></script>
-  <script src="app.js?v=11"></script>
+  <script src="app.js?v=12"></script>
   <script src="game.js?v=7"></script>
 </body>
 </html>
