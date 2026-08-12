@@ -2666,6 +2666,343 @@ header h1 {
   }
 }
 
+/* Compact original Play Games lobby layout */
+#game-selection {
+  display: block;
+}
+
+.game-container {
+  max-width: min(1060px, calc(100vw - 24px));
+  padding: 8px;
+}
+
+.game-screen {
+  padding: 12px;
+}
+
+#game-selection .back-to-tutor {
+  display: inline-flex;
+  margin-bottom: 8px;
+}
+
+#game-selection .game-hero {
+  margin-bottom: 10px;
+  padding: clamp(14px, 1.6vw, 18px) clamp(16px, 1.8vw, 22px);
+  border-radius: 20px;
+}
+
+#game-selection .game-hero h2 {
+  font-size: clamp(1.7rem, 3vw, 2.35rem);
+  margin: 5px 0;
+}
+
+#game-selection .game-hero p {
+  font-size: clamp(0.78rem, 1vw, 0.92rem);
+  line-height: 1.28;
+}
+
+.game-progress-bar {
+  padding: 11px 14px;
+  margin-bottom: 10px;
+  border-radius: 16px;
+}
+
+.level-display {
+  margin-bottom: 5px;
+  font-size: 0.95rem;
+}
+
+.xp-bar-container {
+  height: 10px;
+  margin-bottom: 4px;
+}
+
+.practice-lanes {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0 0 10px;
+}
+
+.practice-lane {
+  min-height: 0;
+  padding: 10px 12px 10px 15px;
+  border-radius: 14px;
+}
+
+.lane-label {
+  margin-bottom: 2px;
+  font-size: 0.58rem;
+}
+
+.practice-lane strong {
+  font-size: clamp(0.72rem, 1vw, 0.86rem);
+}
+
+.practice-builder-entry {
+  width: 100%;
+  min-height: 0;
+  margin: 0 0 12px;
+  padding: 11px 14px;
+  border-radius: 16px;
+}
+
+.builder-entry-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  font-size: 1.55rem;
+}
+
+.builder-entry-copy strong {
+  font-size: 1rem;
+}
+
+.builder-entry-copy small {
+  font-size: 0.72rem;
+  line-height: 1.2;
+}
+
+.game-modes {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0 0 8px;
+}
+
+#game-selection .game-mode-btn,
+#game-selection .game-mode-btn.featured {
+  display: block;
+  min-height: 118px;
+  padding: 11px 12px 18px;
+  text-align: center;
+  border-radius: 18px;
+}
+
+.game-mode-btn::before {
+  top: 8px;
+  left: 10px;
+  padding: 3px 7px;
+  font-size: 0.5rem;
+}
+
+.game-mode-btn::after {
+  left: 12px;
+  right: 12px;
+  bottom: 9px;
+  height: 5px;
+}
+
+#game-selection .mode-icon {
+  width: 36px;
+  height: 36px;
+  margin: 20px auto 6px;
+  border-radius: 13px;
+  font-size: 1.45rem;
+}
+
+.mode-title {
+  font-size: clamp(0.8rem, 1.05vw, 0.96rem);
+  margin-bottom: 3px;
+}
+
+.mode-desc {
+  display: block;
+  font-size: clamp(0.58rem, 0.78vw, 0.72rem);
+  line-height: 1.15;
+}
+
+.badges-display {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 8px;
+}
+
+.badges-display h3 {
+  margin-bottom: 0;
+}
+
+@media (max-height: 950px) and (min-width: 700px) {
+  .game-container {
+    padding: 4px;
+  }
+
+  .game-screen {
+    padding: 8px 10px;
+  }
+
+  #game-selection {
+    gap: 7px;
+  }
+
+  #game-selection .back-to-tutor {
+    margin-bottom: 4px;
+    font-size: 0.82rem;
+  }
+
+  #game-selection .game-hero {
+    padding: 10px 14px;
+    margin-bottom: 7px;
+  }
+
+  #game-selection .game-hero h2 {
+    font-size: clamp(1.35rem, 2.3vw, 1.85rem);
+    margin: 3px 0;
+  }
+
+  #game-selection .game-hero p,
+  .builder-entry-copy small {
+    display: none;
+  }
+
+  .game-hero-kicker {
+    padding: 4px 9px;
+    font-size: 0.62rem;
+  }
+
+  .game-progress-bar {
+    padding: 8px 12px;
+    margin-bottom: 7px;
+  }
+
+  .level-display {
+    margin-bottom: 4px;
+    font-size: 0.82rem;
+  }
+
+  .xp-bar-container {
+    height: 8px;
+  }
+
+  .practice-lanes {
+    margin-bottom: 7px;
+  }
+
+  .practice-lane {
+    padding: 7px 9px 7px 13px;
+  }
+
+  .lane-label {
+    font-size: 0.48rem;
+  }
+
+  .practice-lane strong {
+    font-size: 0.68rem;
+  }
+
+  .practice-builder-entry {
+    padding: 8px 12px;
+    margin-bottom: 8px;
+  }
+
+  .builder-entry-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 11px;
+    font-size: 1.25rem;
+  }
+
+  .builder-entry-copy strong {
+    font-size: 0.86rem;
+  }
+
+  #game-selection .game-mode-btn,
+  #game-selection .game-mode-btn.featured {
+    min-height: 76px;
+    padding: 8px 10px 13px;
+  }
+
+  #game-selection .mode-icon {
+    width: 24px;
+    height: 24px;
+    margin-top: 15px;
+    margin-bottom: 3px;
+    border-radius: 9px;
+    font-size: 1rem;
+  }
+
+  .mode-title {
+    font-size: 0.72rem;
+    margin-bottom: 0;
+  }
+
+  .mode-desc {
+    display: none;
+  }
+
+  .badges-display {
+    padding-top: 5px;
+  }
+
+  .badges-display h3,
+  .no-badges {
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .game-container {
+    max-width: min(100%, calc(100vw - 20px));
+    padding: 6px;
+  }
+
+  .game-screen {
+    padding: 10px;
+  }
+
+  .practice-lanes,
+  .game-modes {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 7px;
+  }
+
+  .practice-lane {
+    padding: 9px 7px 9px 11px;
+  }
+
+  .lane-label {
+    font-size: 0.5rem;
+  }
+
+  .practice-lane strong {
+    font-size: 0.64rem;
+  }
+
+  #game-selection .game-mode-btn,
+  #game-selection .game-mode-btn.featured {
+    min-height: 88px;
+    padding: 9px 6px 14px;
+    border-width: 2px;
+    border-radius: 14px;
+  }
+
+  .game-mode-btn::before {
+    top: 6px;
+    left: 6px;
+    max-width: calc(100% - 12px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.43rem;
+  }
+
+  #game-selection .mode-icon {
+    width: 28px;
+    height: 28px;
+    margin: 17px auto 5px;
+    border-radius: 10px;
+    font-size: 1.15rem;
+  }
+
+  .mode-title {
+    font-size: 0.64rem;
+    line-height: 1.05;
+  }
+
+  .mode-desc {
+    display: none;
+  }
+}
+
 /* Quiz Picker Styles */
 .quiz-subtitle {
   color: #666;
