@@ -88,7 +88,7 @@ body {
 
 .container {
   width: 100%;
-  max-width: 800px;
+  max-width: 940px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -239,6 +239,7 @@ header h1 {
 .home-panels {
   display: flex;
   flex-direction: column;
+  flex: 1;
   min-height: 0;
 }
 
@@ -273,14 +274,18 @@ header h1 {
   .home-tab .tab-icon {
     font-size: 1.24rem;
   }
+
+  .chat-container {
+    min-height: clamp(300px, 42dvh, 430px);
+  }
 }
 
 /* Upload section */
 .upload-section {
   background: white;
   border-radius: 25px;
-  padding: 12px;
-  margin-bottom: 12px;
+  padding: 10px;
+  margin-bottom: 10px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
@@ -309,7 +314,9 @@ header h1 {
   animation: wiggle 2s infinite;
 }
 
-#homework-upload {
+#homework-upload,
+#textbook-upload,
+#work-upload {
   display: none;
 }
 
@@ -343,7 +350,7 @@ header h1 {
 
 .upload-buttons .upload-btn {
   flex: 1;
-  padding: 14px 12px;
+  padding: 12px;
   font-size: 1rem;
 }
 
@@ -454,12 +461,12 @@ header h1 {
 
 /* Chat container */
 .chat-container {
-  flex: 1;
-  min-height: 0; /* Important for flex children to shrink */
+  flex: 1 1 auto;
+  min-height: clamp(340px, 48dvh, 620px);
   background: white;
   border-radius: 25px;
   padding: 15px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   overflow: hidden;
   display: flex;
@@ -543,8 +550,8 @@ header h1 {
 .input-section {
   background: white;
   border-radius: 25px;
-  padding: 12px;
-  margin-bottom: 12px;
+  padding: 10px;
+  margin-bottom: 10px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
@@ -557,13 +564,13 @@ header h1 {
   background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
   color: white;
   border: none;
-  padding: 20px;
+  padding: 16px;
   border-radius: 20px;
   font-size: 1.3rem;
   font-weight: 700;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   box-shadow: 0 4px 15px rgba(56, 239, 125, 0.4);
   font-family: 'Nunito', sans-serif;
 }
@@ -692,7 +699,7 @@ header h1 {
   background: rgba(255, 255, 255, 0.25);
   color: white;
   border: 3px solid rgba(255, 255, 255, 0.5);
-  padding: 14px;
+  padding: 12px;
   border-radius: 20px;
   font-size: 1rem;
   font-weight: 700;
@@ -818,17 +825,17 @@ header h1 {
 /* Larger screens - expand to fill more space */
 @media (min-width: 800px) {
   .container {
-    max-width: 900px;
+    max-width: 1080px;
   }
 
   .message-content {
-    max-width: 70%;
+    max-width: 76%;
   }
 }
 
 @media (min-width: 1200px) {
   .container {
-    max-width: 1000px;
+    max-width: 1180px;
   }
 }
 
