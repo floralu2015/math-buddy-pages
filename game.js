@@ -48,7 +48,9 @@ const GameModule = (() => {
     { id: 'geometry', name: 'Geometry, Angles & Volume', icon: '📐', topics: ['angle relationships', 'surface area and volume', 'scale factor'] },
     { id: 'exponentsRoots', name: 'Exponents, Roots & Scientific Notation', icon: '√', topics: ['scientific notation', 'integer operations'] },
     { id: 'linear', name: 'Slope & Linear Relationships', icon: '📈', topics: ['slope', 'slope-intercept form'] },
-    { id: 'rightTriangles', name: 'Right Triangles & Pythagorean', icon: '△', topics: ['pythagorean theorem', 'scale factor'] }
+    { id: 'rightTriangles', name: 'Right Triangles & Pythagorean', icon: '△', topics: ['pythagorean theorem', 'scale factor'] },
+    { id: 'angleRelationships', name: 'Angle Relationships', icon: '∠', topics: ['angle relationships'] },
+    { id: 'measurementVolume', name: 'Area, Volume & Measurement', icon: '📦', topics: ['surface area and volume', 'scale factor'] }
   ];
 
   const CELEBRATION_LINES = [

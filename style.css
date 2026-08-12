@@ -3676,6 +3676,22 @@ header h1 {
   --tile-selected-muted: rgba(255, 255, 255, 0.84);
 }
 
+#custom-practice .custom-subject-choice:nth-child(14) {
+  --tile-bg: linear-gradient(135deg, #fef9c3 0%, #f0f9ff 100%);
+  --tile-selected-bg: linear-gradient(135deg, #fde68a 0%, #f59e0b 48%, #d97706 100%);
+  --tile-border: #f59e0b;
+  --tile-accent: #d97706;
+}
+
+#custom-practice .custom-subject-choice:nth-child(15) {
+  --tile-bg: linear-gradient(135deg, #dcfce7 0%, #eff6ff 100%);
+  --tile-selected-bg: linear-gradient(135deg, #bbf7d0 0%, #22c55e 45%, #15803d 100%);
+  --tile-border: #22c55e;
+  --tile-accent: #15803d;
+  --tile-selected-ink: #ffffff;
+  --tile-selected-muted: rgba(255, 255, 255, 0.84);
+}
+
 #custom-practice .custom-choice:hover,
 #custom-practice .custom-subject-choice:hover {
   transform: translateY(-4px);
