@@ -3439,8 +3439,11 @@ header h1 {
 #custom-practice .custom-choice,
 #custom-practice .custom-subject-choice {
   --tile-bg: linear-gradient(135deg, #ffffff 0%, #f3fbff 100%);
+  --tile-selected-bg: linear-gradient(135deg, #ffe9a8 0%, #ffd166 100%);
   --tile-border: #dce6eb;
   --tile-accent: #7c8a95;
+  --tile-selected-ink: #1f3140;
+  --tile-selected-muted: rgba(31, 49, 64, 0.78);
   position: relative;
   overflow: hidden;
   min-height: 86px;
@@ -3449,6 +3452,16 @@ header h1 {
   background: var(--tile-bg);
   cursor: pointer;
   box-shadow: 0 9px 18px rgba(34, 56, 67, 0.08), inset 0 -4px 0 rgba(34, 56, 67, 0.05);
+}
+
+#custom-practice .custom-choice:not(.selected),
+#custom-practice .custom-subject-choice:not(.selected) {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(247, 252, 255, 0.82) 100%),
+    var(--tile-bg);
+  border-color: rgba(34, 56, 67, 0.18);
+  box-shadow: 0 7px 14px rgba(34, 56, 67, 0.06), inset 0 -3px 0 rgba(34, 56, 67, 0.04);
+  filter: saturate(0.68);
 }
 
 #custom-practice .choice-check {
@@ -3506,26 +3519,34 @@ header h1 {
 
 #custom-practice .custom-choice:nth-child(1) {
   --tile-bg: linear-gradient(135deg, #fff8df 0%, #e7fbff 100%);
+  --tile-selected-bg: linear-gradient(135deg, #ffe9a8 0%, #ffd166 48%, #ffab3d 100%);
   --tile-border: #f7c948;
   --tile-accent: #f59e0b;
 }
 
 #custom-practice .custom-choice:nth-child(2) {
   --tile-bg: linear-gradient(135deg, #dbfff4 0%, #ffffff 100%);
+  --tile-selected-bg: linear-gradient(135deg, #a7f3df 0%, #45d3bd 50%, #249f91 100%);
   --tile-border: #2d9c8b;
   --tile-accent: #2d9c8b;
 }
 
 #custom-practice .custom-choice:nth-child(3) {
   --tile-bg: linear-gradient(135deg, #ecebff 0%, #f7fbff 100%);
+  --tile-selected-bg: linear-gradient(135deg, #d7ddff 0%, #8898f4 48%, #5868dc 100%);
   --tile-border: #6475e8;
   --tile-accent: #5868dc;
+  --tile-selected-ink: #ffffff;
+  --tile-selected-muted: rgba(255, 255, 255, 0.84);
 }
 
 #custom-practice .custom-choice:nth-child(4) {
   --tile-bg: linear-gradient(135deg, #fff0f5 0%, #fff9e8 100%);
+  --tile-selected-bg: linear-gradient(135deg, #ffd6e4 0%, #fb7185 52%, #ec4899 100%);
   --tile-border: #fb7185;
   --tile-accent: #ec4899;
+  --tile-selected-ink: #ffffff;
+  --tile-selected-muted: rgba(255, 255, 255, 0.84);
 }
 
 #custom-practice .custom-subject-choice {
@@ -3554,80 +3575,105 @@ header h1 {
 
 #custom-practice .custom-subject-choice:nth-child(1) {
   --tile-bg: linear-gradient(135deg, #fff2a8 0%, #ffb86b 100%);
+  --tile-selected-bg: linear-gradient(135deg, #ffe078 0%, #ffb13d 48%, #f59e0b 100%);
   --tile-border: #f59e0b;
   --tile-accent: #f59e0b;
 }
 
 #custom-practice .custom-subject-choice:nth-child(2) {
   --tile-bg: linear-gradient(135deg, #ffe7f1 0%, #eaf7ff 100%);
+  --tile-selected-bg: linear-gradient(135deg, #ffc7dc 0%, #fb7185 52%, #db2777 100%);
   --tile-border: #fb7185;
   --tile-accent: #ec4899;
+  --tile-selected-ink: #ffffff;
+  --tile-selected-muted: rgba(255, 255, 255, 0.84);
 }
 
 #custom-practice .custom-subject-choice:nth-child(3) {
   --tile-bg: linear-gradient(135deg, #fff6d7 0%, #fff0f5 100%);
+  --tile-selected-bg: linear-gradient(135deg, #ffe2a8 0%, #ff9f58 54%, #f97316 100%);
   --tile-border: #f97316;
   --tile-accent: #ff8c42;
 }
 
 #custom-practice .custom-subject-choice:nth-child(4) {
   --tile-bg: linear-gradient(135deg, #e0f7ff 0%, #f2fff9 100%);
+  --tile-selected-bg: linear-gradient(135deg, #b8efff 0%, #38bdf8 52%, #0ea5e9 100%);
   --tile-border: #38bdf8;
   --tile-accent: #0ea5e9;
 }
 
 #custom-practice .custom-subject-choice:nth-child(5) {
   --tile-bg: linear-gradient(135deg, #eef2ff 0%, #f8f1ff 100%);
+  --tile-selected-bg: linear-gradient(135deg, #dbe4ff 0%, #818cf8 48%, #6366f1 100%);
   --tile-border: #818cf8;
   --tile-accent: #6366f1;
+  --tile-selected-ink: #ffffff;
+  --tile-selected-muted: rgba(255, 255, 255, 0.84);
 }
 
 #custom-practice .custom-subject-choice:nth-child(6) {
   --tile-bg: linear-gradient(135deg, #ecfff5 0%, #f7ffdf 100%);
+  --tile-selected-bg: linear-gradient(135deg, #bbf7d0 0%, #34d399 48%, #10b981 100%);
   --tile-border: #34d399;
   --tile-accent: #10b981;
 }
 
 #custom-practice .custom-subject-choice:nth-child(7) {
   --tile-bg: linear-gradient(135deg, #f7f0ff 0%, #fff5f8 100%);
+  --tile-selected-bg: linear-gradient(135deg, #ead6ff 0%, #c084fc 48%, #a855f7 100%);
   --tile-border: #c084fc;
   --tile-accent: #a855f7;
+  --tile-selected-ink: #ffffff;
+  --tile-selected-muted: rgba(255, 255, 255, 0.84);
 }
 
 #custom-practice .custom-subject-choice:nth-child(8) {
   --tile-bg: linear-gradient(135deg, #dffbf5 0%, #fffdf2 100%);
+  --tile-selected-bg: linear-gradient(135deg, #a7f3df 0%, #2dd4bf 48%, #14b8a6 100%);
   --tile-border: #2dd4bf;
   --tile-accent: #14b8a6;
 }
 
 #custom-practice .custom-subject-choice:nth-child(9) {
   --tile-bg: linear-gradient(135deg, #eefaff 0%, #fff8df 100%);
+  --tile-selected-bg: linear-gradient(135deg, #dcfce7 0%, #86efac 45%, #22c55e 100%);
   --tile-border: #22c55e;
   --tile-accent: #84cc16;
 }
 
 #custom-practice .custom-subject-choice:nth-child(10) {
   --tile-bg: linear-gradient(135deg, #f0f9ff 0%, #eef2ff 100%);
+  --tile-selected-bg: linear-gradient(135deg, #dbeafe 0%, #60a5fa 48%, #3b82f6 100%);
   --tile-border: #60a5fa;
   --tile-accent: #3b82f6;
+  --tile-selected-ink: #ffffff;
+  --tile-selected-muted: rgba(255, 255, 255, 0.84);
 }
 
 #custom-practice .custom-subject-choice:nth-child(11) {
   --tile-bg: linear-gradient(135deg, #fef3c7 0%, #ecfeff 100%);
+  --tile-selected-bg: linear-gradient(135deg, #fef08a 0%, #facc15 48%, #f59e0b 100%);
   --tile-border: #f59e0b;
   --tile-accent: #facc15;
 }
 
 #custom-practice .custom-subject-choice:nth-child(12) {
   --tile-bg: linear-gradient(135deg, #ffe4e6 0%, #f5f3ff 100%);
+  --tile-selected-bg: linear-gradient(135deg, #fecdd3 0%, #fb7185 48%, #e11d48 100%);
   --tile-border: #f43f5e;
   --tile-accent: #e11d48;
+  --tile-selected-ink: #ffffff;
+  --tile-selected-muted: rgba(255, 255, 255, 0.84);
 }
 
 #custom-practice .custom-subject-choice:nth-child(13) {
   --tile-bg: linear-gradient(135deg, #e7fffb 0%, #f8fafc 100%);
+  --tile-selected-bg: linear-gradient(135deg, #bfeee8 0%, #2d5f73 100%);
   --tile-border: #2d5f73;
   --tile-accent: #223843;
+  --tile-selected-ink: #ffffff;
+  --tile-selected-muted: rgba(255, 255, 255, 0.84);
 }
 
 #custom-practice .custom-choice:hover,
@@ -3640,8 +3686,26 @@ header h1 {
 #custom-practice .custom-choice.selected,
 #custom-practice .custom-subject-choice.selected {
   border-color: var(--tile-accent);
-  background: var(--tile-bg);
-  box-shadow: 0 0 0 5px rgba(255, 209, 102, 0.56), 0 16px 28px rgba(34, 56, 67, 0.14), inset 0 -5px 0 rgba(34, 56, 67, 0.06);
+  background: var(--tile-selected-bg);
+  filter: none;
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 5px rgba(255, 209, 102, 0.62), 0 18px 30px rgba(34, 56, 67, 0.18), inset 0 -6px 0 rgba(34, 56, 67, 0.1);
+}
+
+#custom-practice .custom-choice.selected .choice-title,
+#custom-practice .custom-choice.selected .choice-desc,
+#custom-practice .custom-subject-choice.selected .subject-name {
+  color: var(--tile-selected-ink);
+}
+
+#custom-practice .custom-choice.selected .choice-desc {
+  color: var(--tile-selected-muted);
+}
+
+#custom-practice .custom-choice.selected::after,
+#custom-practice .custom-subject-choice.selected::after {
+  background: rgba(255, 255, 255, 0.78);
+  opacity: 1;
 }
 
 #custom-practice .custom-choice.selected .choice-check,
