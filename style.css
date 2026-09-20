@@ -16,9 +16,9 @@ html, body {
 body {
   font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
   background:
-    linear-gradient(145deg, rgba(255, 79, 123, 0.7) -35%, transparent 32%),
-    linear-gradient(225deg, rgba(34, 211, 197, 0.52) -20%, transparent 38%),
-    linear-gradient(130deg, #071a2b 0%, #103b50 40%, #322461 72%, #7a315f 115%);
+    radial-gradient(circle at 7% 18%, rgba(255, 222, 145, 0.72) 0%, rgba(194, 170, 203, 0.42) 17%, transparent 35%),
+    radial-gradient(circle at 93% 80%, rgba(255, 166, 184, 0.5) 0%, rgba(255, 218, 151, 0.2) 19%, transparent 38%),
+    linear-gradient(120deg, #7168bd 0%, #2f72d6 28%, #169dcc 58%, #28c8ba 100%);
   min-height: 100vh;
   min-height: 100dvh;
   padding: 15px;
@@ -492,8 +492,8 @@ header h1 {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #22d3c5;
-  box-shadow: 0 0 12px #22d3c5;
+  background: #58e2cc;
+  box-shadow: 0 0 12px #58e2cc;
   animation: signal-pulse 1.8s ease-in-out infinite;
 }
 
@@ -504,7 +504,7 @@ header h1 {
   justify-content: center;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.28);
-  background: rgba(7, 26, 43, 0.38);
+  background: rgba(18, 38, 79, 0.28);
   backdrop-filter: blur(12px);
 }
 
@@ -527,12 +527,13 @@ header h1 {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(390px, 0.95fr);
   align-items: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.24);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.24);
+  border-top: 1px solid rgba(255, 255, 255, 0.72);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.72);
   background:
-    linear-gradient(90deg, rgba(7, 26, 43, 0.98) 0%, rgba(7, 26, 43, 0.9) 47%, rgba(20, 43, 71, 0.55) 100%),
-    repeating-linear-gradient(90deg, transparent 0 58px, rgba(255, 255, 255, 0.035) 59px 60px),
-    repeating-linear-gradient(0deg, transparent 0 58px, rgba(255, 255, 255, 0.035) 59px 60px);
+    linear-gradient(90deg, rgba(234, 248, 238, 0.98) 0%, rgba(234, 248, 238, 0.96) 49%, rgba(234, 248, 238, 0.08) 61%),
+    radial-gradient(circle at 72% 18%, #ff627a 0%, rgba(255, 98, 122, 0.9) 17%, transparent 42%),
+    radial-gradient(circle at 84% 84%, #43d5a4 0%, rgba(67, 213, 164, 0.88) 20%, transparent 48%),
+    linear-gradient(135deg, #765ad2 0%, #ff657b 38%, #ffe073 61%, #2ccbb7 80%, #528df3 100%);
 }
 
 .club-hero::before {
@@ -541,8 +542,8 @@ header h1 {
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(118deg, transparent 58%, rgba(34, 211, 197, 0.2) 58.2% 58.6%, transparent 58.8%),
-    linear-gradient(62deg, transparent 72%, rgba(255, 79, 123, 0.22) 72.2% 72.7%, transparent 72.9%);
+    linear-gradient(118deg, transparent 58%, rgba(255, 255, 255, 0.42) 58.2% 58.6%, transparent 58.8%),
+    linear-gradient(62deg, transparent 72%, rgba(40, 19, 111, 0.18) 72.2% 72.7%, transparent 72.9%);
   pointer-events: none;
 }
 
@@ -553,19 +554,19 @@ header h1 {
   z-index: -1;
   width: 68%;
   aspect-ratio: 1;
-  border: 1px solid rgba(255, 209, 102, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.46);
   border-radius: 50%;
   box-shadow:
-    0 0 0 52px rgba(139, 124, 255, 0.05),
-    0 0 0 104px rgba(34, 211, 197, 0.04),
-    0 0 110px rgba(255, 79, 123, 0.28);
+    0 0 0 52px rgba(255, 255, 255, 0.08),
+    0 0 0 104px rgba(40, 19, 111, 0.06),
+    0 0 110px rgba(255, 92, 114, 0.34);
 }
 
 .club-copy {
   z-index: 2;
   padding: clamp(36px, 6vw, 72px);
   padding-right: 18px;
-  color: #f7fbff;
+  color: #28136f;
   animation: club-launch-copy 0.75s cubic-bezier(0.2, 0.75, 0.25, 1) both;
 }
 
@@ -574,7 +575,7 @@ header h1 {
   align-items: center;
   width: fit-content;
   margin-bottom: 16px;
-  border: 1px solid rgba(255, 209, 102, 0.55);
+  border: 1px solid rgba(40, 19, 111, 0.24);
   border-radius: 6px;
   overflow: hidden;
   font-family: 'Space Grotesk', sans-serif;
@@ -584,31 +585,31 @@ header h1 {
 
 .mission-signal span {
   padding: 7px 9px;
-  background: #ffd166;
-  color: #352400;
+  background: #ffe36d;
+  color: #3b2a00;
 }
 
 .mission-signal b {
   padding: 7px 10px;
-  color: #fff0b7;
+  color: #4c3b7f;
   font-weight: 600;
 }
 
 .club-copy h1 {
   max-width: 660px;
   margin: 0 0 20px;
-  color: #f7fbff;
+  color: #28136f;
   font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(3.15rem, 7.4vw, 6.7rem);
   font-weight: 700;
   line-height: 0.88;
   letter-spacing: 0;
-  text-shadow: 0 8px 36px rgba(7, 26, 43, 0.5);
+  text-shadow: 0 8px 36px rgba(88, 72, 154, 0.16);
 }
 
 .club-copy > p:not(.club-promise) {
   max-width: 610px;
-  color: rgba(247, 251, 255, 0.82);
+  color: rgba(40, 19, 111, 0.82);
   font-size: clamp(1rem, 1.45vw, 1.18rem);
   font-weight: 700;
   line-height: 1.55;
@@ -630,15 +631,15 @@ header h1 {
 }
 
 .club-start-btn {
-  background: #ffd166;
-  color: #17223b;
-  box-shadow: 0 12px 34px rgba(255, 209, 102, 0.2);
+  background: linear-gradient(135deg, #ff5c72 0%, #ff8a5f 100%);
+  color: #28136f;
+  box-shadow: 0 12px 34px rgba(255, 92, 114, 0.3);
 }
 
 .club-secondary-btn {
-  border: 1px solid rgba(247, 251, 255, 0.42);
-  background: rgba(247, 251, 255, 0.08);
-  color: #f7fbff;
+  border: 1px solid #12264f;
+  background: #12264f;
+  color: white;
   box-shadow: none;
   backdrop-filter: blur(8px);
 }
@@ -649,21 +650,21 @@ header h1 {
 }
 
 .club-secondary-btn:hover {
-  border-color: #22d3c5;
-  box-shadow: 0 0 0 3px rgba(34, 211, 197, 0.12);
+  border-color: #2f72d6;
+  box-shadow: 0 0 0 3px rgba(47, 114, 214, 0.16);
 }
 
 .club-promise {
   display: flex;
   gap: 8px;
   margin-top: 18px;
-  color: rgba(247, 251, 255, 0.62);
+  color: rgba(40, 19, 111, 0.64);
   font-size: 0.78rem;
   font-weight: 800;
 }
 
 .club-promise span {
-  color: #ff4f7b;
+  color: #ff5c72;
 }
 
 .math-reactor {
@@ -682,7 +683,7 @@ header h1 {
   position: absolute;
   inset: 7%;
   border-radius: 50%;
-  background: conic-gradient(from 0deg, transparent 0 74%, rgba(34, 211, 197, 0.18) 80%, transparent 86% 100%);
+  background: conic-gradient(from 0deg, transparent 0 74%, rgba(255, 255, 255, 0.44) 80%, transparent 86% 100%);
   animation: reactor-scan 5s linear infinite;
 }
 
@@ -698,7 +699,7 @@ header h1 {
 .reactor-ring-outer {
   width: 88%;
   aspect-ratio: 1;
-  border: 2px dashed rgba(247, 251, 255, 0.46);
+  border: 2px dashed rgba(255, 255, 255, 0.78);
   animation: reactor-orbit 24s linear infinite;
 }
 
@@ -707,14 +708,14 @@ header h1 {
   position: absolute;
   inset: 9%;
   border-radius: 50%;
-  border: 1px solid rgba(139, 124, 255, 0.34);
+  border: 1px solid rgba(40, 19, 111, 0.32);
 }
 
 .reactor-ring-inner {
   width: 58%;
   aspect-ratio: 1;
-  border: 2px solid rgba(34, 211, 197, 0.52);
-  box-shadow: 0 0 24px rgba(34, 211, 197, 0.14), inset 0 0 24px rgba(34, 211, 197, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.72);
+  box-shadow: 0 0 24px rgba(40, 19, 111, 0.12), inset 0 0 24px rgba(255, 255, 255, 0.14);
   animation: reactor-orbit-reverse 17s linear infinite;
 }
 
@@ -729,9 +730,9 @@ header h1 {
   gap: 0;
   border: 1px solid rgba(247, 251, 255, 0.7);
   border-radius: 8px;
-  background: #f7fbff;
-  color: #161947;
-  box-shadow: 0 16px 34px rgba(7, 26, 43, 0.42), 0 0 22px rgba(255, 255, 255, 0.13);
+  background: #f9fbff;
+  color: #28136f;
+  box-shadow: 0 16px 34px rgba(40, 19, 111, 0.24), 0 0 22px rgba(255, 255, 255, 0.24);
 }
 
 .reactor-node b {
@@ -767,10 +768,10 @@ header h1 {
   transform: translateX(-50%);
 }
 
-.node-facts { border-bottom: 5px solid #ff4f7b; }
-.node-roots { border-bottom: 5px solid #ffd166; }
-.node-ratios { border-bottom: 5px solid #22d3c5; }
-.node-algebra { border-bottom: 5px solid #8b7cff; }
+.node-facts { border-bottom: 5px solid #ff5c72; }
+.node-roots { border-bottom: 5px solid #ffe36d; }
+.node-ratios { border-bottom: 5px solid #28c8ba; }
+.node-algebra { border-bottom: 5px solid #765ad2; }
 
 .reactor-core {
   position: absolute;
@@ -783,13 +784,13 @@ header h1 {
   align-content: center;
   border: 2px solid rgba(255, 255, 255, 0.82);
   border-radius: 50%;
-  background: conic-gradient(from 30deg, #ff4f7b, #ffd166, #22d3c5, #8b7cff, #ff4f7b);
-  color: #071a2b;
+  background: conic-gradient(from 30deg, #ff5c72, #ffe36d, #28c8ba, #765ad2, #ff5c72);
+  color: #28136f;
   transform: translate(-50%, -50%) translateZ(34px);
   box-shadow:
     0 0 0 14px rgba(247, 251, 255, 0.1),
-    0 0 60px rgba(34, 211, 197, 0.5),
-    0 0 100px rgba(255, 79, 123, 0.3);
+    0 0 60px rgba(40, 200, 186, 0.5),
+    0 0 100px rgba(255, 92, 114, 0.34);
   animation: reactor-heartbeat 2.8s ease-in-out infinite;
 }
 
@@ -819,7 +820,7 @@ header h1 {
 }
 
 .reactor-core strong {
-  color: #101438;
+  color: #28136f;
   font-size: clamp(2.3rem, 5vw, 4rem);
   line-height: 0.85;
 }
@@ -832,16 +833,16 @@ header h1 {
   place-items: center;
   border: 1px solid rgba(255, 255, 255, 0.32);
   border-radius: 50%;
-  background: rgba(7, 26, 43, 0.7);
-  color: #f7fbff;
+  background: rgba(255, 255, 255, 0.76);
+  color: #28136f;
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
   box-shadow: 0 0 18px rgba(139, 124, 255, 0.24);
 }
 
 .spark-one { left: 6%; top: 42%; }
-.spark-two { right: 4%; top: 31%; color: #ffd166; }
-.spark-three { right: 12%; bottom: 15%; color: #22d3c5; }
+.spark-two { right: 4%; top: 31%; color: #28136f; }
+.spark-three { right: 12%; bottom: 15%; color: #127f78; }
 
 .reactor-readout {
   position: absolute;
@@ -853,8 +854,8 @@ header h1 {
   padding: 7px 10px;
   border: 1px solid rgba(255, 255, 255, 0.28);
   border-radius: 6px;
-  background: rgba(7, 26, 43, 0.72);
-  color: rgba(247, 251, 255, 0.76);
+  background: rgba(18, 38, 79, 0.84);
+  color: rgba(255, 255, 255, 0.86);
   font-size: 0.68rem;
   font-weight: 800;
 }
@@ -863,16 +864,16 @@ header h1 {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #22d3c5;
-  box-shadow: 0 0 10px #22d3c5;
+  background: #58e2cc;
+  box-shadow: 0 0 10px #58e2cc;
 }
 
 .club-telemetry {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  border-bottom: 1px solid rgba(255, 255, 255, 0.24);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.72);
   background: #f7fbff;
-  color: #071a2b;
+  color: #28136f;
 }
 
 .club-telemetry > div {
@@ -899,7 +900,7 @@ header h1 {
 .club-telemetry strong {
   display: inline-block;
   margin: 2px 6px 0 0;
-  color: #101438;
+  color: #28136f;
   font-family: 'Space Grotesk', sans-serif;
   font-size: 1.65rem;
   line-height: 1;
@@ -929,7 +930,7 @@ header h1 {
 
 .mission-intro p {
   flex: none;
-  color: #ffd166;
+  color: #ffe36d;
   font-family: 'Space Grotesk', sans-serif;
   font-size: 0.82rem;
   font-weight: 700;
@@ -958,7 +959,7 @@ header h1 {
   cursor: pointer;
   text-align: left;
   font-family: 'Nunito', sans-serif;
-  box-shadow: 0 18px 36px rgba(7, 26, 43, 0.24);
+  box-shadow: 0 18px 36px rgba(18, 38, 79, 0.22);
   transition: transform 0.22s ease, box-shadow 0.22s ease;
 }
 
@@ -978,7 +979,7 @@ header h1 {
 .club-track-card:hover,
 .club-track-card:focus-visible {
   transform: translateY(-6px);
-  box-shadow: 0 25px 48px rgba(7, 26, 43, 0.35);
+  box-shadow: 0 25px 48px rgba(18, 38, 79, 0.32);
 }
 
 .club-track-card:focus-visible {
@@ -986,9 +987,9 @@ header h1 {
   outline-offset: 3px;
 }
 
-.fact-track { background: #ff758f; color: #361122; }
-.bridge-track { background: #64d8cb; color: #063f44; }
-.explorer-track { background: #ffd166; color: #3f2a00; }
+.fact-track { background: #fff1f4; color: #28136f; }
+.bridge-track { background: #eef6ff; color: #28136f; }
+.explorer-track { background: #eefbf5; color: #28136f; }
 
 .track-code {
   position: relative;
@@ -1012,6 +1013,10 @@ header h1 {
   color: currentColor;
   backdrop-filter: blur(8px);
 }
+
+.fact-track .track-mark { background: #ff5c72; color: white; }
+.bridge-track .track-mark { background: #2f72d6; color: white; }
+.explorer-track .track-mark { background: #1ca886; color: white; }
 
 .club-track-card h3,
 .club-track-card p,
@@ -1155,6 +1160,11 @@ header h1 {
     min-height: 720px;
     grid-template-columns: 1fr;
     align-content: start;
+    background:
+      linear-gradient(180deg, rgba(234, 248, 238, 0.98) 0%, rgba(234, 248, 238, 0.96) 43%, rgba(234, 248, 238, 0.08) 56%),
+      radial-gradient(circle at 28% 72%, #ff627a 0%, rgba(255, 98, 122, 0.88) 17%, transparent 42%),
+      radial-gradient(circle at 78% 84%, #43d5a4 0%, rgba(67, 213, 164, 0.88) 20%, transparent 48%),
+      linear-gradient(145deg, #765ad2 0%, #ff657b 38%, #ffe073 61%, #2ccbb7 80%, #528df3 100%);
   }
 
   .club-copy {
