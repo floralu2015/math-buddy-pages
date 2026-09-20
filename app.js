@@ -28,6 +28,8 @@ const audioBtn = document.getElementById('audio-btn');
 const voiceToggle = document.getElementById('voice-toggle');
 const clubStartBtn = document.getElementById('club-start-btn');
 const clubQuizBtn = document.getElementById('club-quiz-btn');
+const clubMissionButtons = document.querySelectorAll('[data-club-mission]');
+const clubHero = document.querySelector('.club-hero');
 const homeTabs = document.querySelectorAll('[data-home-tab]');
 const homePanels = document.querySelectorAll('[data-home-panel]');
 
@@ -76,6 +78,64 @@ if (clubQuizBtn) {
     }
   });
 }
+
+clubMissionButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    if (typeof GameModule === 'undefined') return;
+    GameModule.show();
+    GameModule.startQuiz(button.dataset.clubMission);
+  });
+});
+
+function getClubUserIdentifier() {
+  let identifier = localStorage.getItem('mathBuddyUserId');
+  if (identifier) return identifier;
+
+  identifier = typeof crypto !== 'undefined' && crypto.randomUUID
+    ? crypto.randomUUID()
+    : `club-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+  localStorage.setItem('mathBuddyUserId', identifier);
+  return identifier;
+}
+
+async function loadClubSnapshot() {
+  try {
+    const identifier = getClubUserIdentifier();
+    const response = await fetch(`/api/game/progress?userIdentifier=${encodeURIComponent(identifier)}`);
+    const data = await response.json();
+    const progress = data.progress || data;
+    if (!progress || progress.error) return;
+
+    const level = document.getElementById('club-level');
+    const levelName = document.getElementById('club-level-name');
+    const accuracy = document.getElementById('club-accuracy');
+    const solved = document.getElementById('club-solved');
+
+    if (level) level.textContent = progress.level || 1;
+    if (levelName) levelName.textContent = progress.levelName || 'Math Rookie';
+    if (accuracy) accuracy.textContent = `${progress.accuracy || 0}%`;
+    if (solved) solved.textContent = Number(progress.totalProblemsSolved || 0).toLocaleString();
+  } catch (error) {
+    console.log('Math Club snapshot is not available yet:', error.message);
+  }
+}
+
+if (clubHero && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  clubHero.addEventListener('pointermove', event => {
+    const rect = clubHero.getBoundingClientRect();
+    const horizontal = ((event.clientX - rect.left) / rect.width - 0.5) * 10;
+    const vertical = ((event.clientY - rect.top) / rect.height - 0.5) * -8;
+    clubHero.style.setProperty('--tilt-x', `${vertical.toFixed(2)}deg`);
+    clubHero.style.setProperty('--tilt-y', `${horizontal.toFixed(2)}deg`);
+  });
+
+  clubHero.addEventListener('pointerleave', () => {
+    clubHero.style.setProperty('--tilt-x', '0deg');
+    clubHero.style.setProperty('--tilt-y', '0deg');
+  });
+}
+
+loadClubSnapshot();
 
 // Voice toggle functionality
 voiceToggle.addEventListener('click', () => {

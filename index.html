@@ -6,10 +6,10 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Sarah's Math Club</title>
-  <link rel="stylesheet" href="style.css?v=26">
+  <link rel="stylesheet" href="style.css?v=27">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <!-- MathJax for rendering math equations -->
   <script>
     MathJax = {
@@ -51,10 +51,14 @@
   </div>
 
   <div class="container">
-    <header>
-      <div id="mascot" class="mascot">🦉</div>
-      <h1>Sarah's Math Club</h1>
-      <p class="subtitle">A bold place to train, play, and grow into 6th grade math.</p>
+    <header class="club-topbar">
+      <div class="club-brand-lockup">
+        <div id="mascot" class="mascot" aria-hidden="true">🦉</div>
+        <div>
+          <strong>Sarah's Math Club</strong>
+          <span><i></i> Mission control online</span>
+        </div>
+      </div>
       <button id="voice-toggle" class="voice-toggle" title="Toggle voice on/off">
         <span class="voice-icon">🔊</span>
         <span class="voice-label">Voice On</span>
@@ -62,53 +66,86 @@
     </header>
 
     <main class="club-front">
-      <section class="club-card club-hero-card" aria-labelledby="club-title">
-        <div class="club-orbit" aria-hidden="true">
-          <span>6</span>
-          <span>7</span>
-          <span>×</span>
-          <span>√</span>
-        </div>
+      <section class="club-hero" aria-labelledby="club-title">
+        <div class="club-energy-field" aria-hidden="true"></div>
         <div class="club-copy">
-          <p class="club-kicker">Members only: courage, practice, progress</p>
-          <h2 id="club-title">Welcome to the Math Clubhouse</h2>
+          <div class="mission-signal"><span>Mission 06</span><b>6th-grade launch sequence</b></div>
+          <h1 id="club-title">Sarah's<br>Math Club</h1>
           <p>
-            Sarah, this is your training room for powerful 6th grade math:
-            fast facts, sharp thinking, ratios, equations, geometry, data, and
-            puzzles that make your brain stronger.
+            Power up facts. Decode ratios and equations. Explore geometry, data,
+            and Saxon Course 3. Every round strengthens your 6th-grade brain.
           </p>
           <div class="club-actions">
             <button id="club-start-btn" class="club-start-btn" type="button">
-              Enter Play Games
+              <span aria-hidden="true">⚡</span> Start today's mission
             </button>
             <button id="club-quiz-btn" class="club-secondary-btn" type="button">
-              Pick a quiz deck
+              Explore 50 quiz decks
             </button>
           </div>
+          <p class="club-promise"><span aria-hidden="true">✦</span> Brave steps count. Misses teach. Strong minds keep going.</p>
+        </div>
+
+        <div id="math-reactor" class="math-reactor" aria-hidden="true">
+          <div class="reactor-scan"></div>
+          <div class="reactor-ring reactor-ring-outer">
+            <span class="reactor-node node-facts"><b>×</b><small>facts</small></span>
+            <span class="reactor-node node-roots"><b>√</b><small>roots</small></span>
+          </div>
+          <div class="reactor-ring reactor-ring-inner">
+            <span class="reactor-node node-ratios"><b>:</b><small>ratios</small></span>
+            <span class="reactor-node node-algebra"><b>x</b><small>algebra</small></span>
+          </div>
+          <div class="reactor-core">
+            <span>Level</span>
+            <strong>6</strong>
+            <em>ready</em>
+          </div>
+          <span class="reactor-spark spark-one">7</span>
+          <span class="reactor-spark spark-two">%</span>
+          <span class="reactor-spark spark-three">π</span>
+          <div class="reactor-readout"><span></span> Math reactor stable</div>
         </div>
       </section>
 
-      <section class="club-grid" aria-label="Math Club tracks">
-        <article class="club-track-card fact-track">
-          <span class="track-mark">×</span>
-          <h3>Fact power</h3>
-          <p>Times tables, division facts, and missing factors until they feel automatic.</p>
-        </article>
-        <article class="club-track-card bridge-track">
-          <span class="track-mark">↔</span>
-          <h3>6th grade bridge</h3>
-          <p>Integers, ratios, rates, percents, equations, inequalities, and coordinate planes.</p>
-        </article>
-        <article class="club-track-card explorer-track">
-          <span class="track-mark">△</span>
-          <h3>Math explorer</h3>
-          <p>Angles, polygons, circles, volume, probability, statistics, and Pythagorean thinking.</p>
-        </article>
+      <section class="club-telemetry" aria-label="Sarah's Math Club progress">
+        <div><span>Club level</span><strong id="club-level">1</strong><small id="club-level-name">Math Rookie</small></div>
+        <div><span>Accuracy</span><strong id="club-accuracy">0%</strong><small>all-time answers</small></div>
+        <div><span>Problems solved</span><strong id="club-solved">0</strong><small>and counting</small></div>
+        <div><span>Mission library</span><strong>50</strong><small>mixed-level decks</small></div>
       </section>
 
-      <section class="club-manifesto" aria-label="Math Club promise">
-        <strong>Club promise</strong>
-        <span>Try one brave step. Use hints. Learn from misses. Come back stronger.</span>
+      <section class="club-missions" aria-labelledby="mission-title">
+        <div class="mission-intro">
+          <p>Choose your power path</p>
+          <h2 id="mission-title">Three ways to get stronger today</h2>
+        </div>
+        <div class="club-grid">
+          <button class="club-track-card fact-track" type="button" data-club-mission="multiplicationTables">
+            <span class="track-code">Power core</span>
+            <span class="track-mark" aria-hidden="true">×</span>
+            <h3>Fact power</h3>
+            <p>Lock in multiplication, division, and missing factors until recall feels automatic.</p>
+            <span class="track-topics">2–12 tables <i></i> inverse facts <i></i> speed</span>
+            <strong>Launch arena <span aria-hidden="true">›</span></strong>
+          </button>
+          <button class="club-track-card bridge-track" type="button" data-club-mission="grade6Bridge">
+            <span class="track-code">Launchpad</span>
+            <span class="track-mark" aria-hidden="true">↔</span>
+            <h3>6th grade bridge</h3>
+            <p>Connect integers, ratios, rates, percents, equations, data, and coordinate planes.</p>
+            <span class="track-topics">core skills <i></i> mixed levels <i></i> 24 rounds</span>
+            <strong>Cross the bridge <span aria-hidden="true">›</span></strong>
+          </button>
+          <button class="club-track-card explorer-track" type="button" data-club-mission="course3CumulativeChallenge">
+            <span class="track-code">Deep space</span>
+            <span class="track-mark" aria-hidden="true">△</span>
+            <h3>Saxon stretch</h3>
+            <p>Take on geometry, functions, probability, powers, transformations, and cumulative review.</p>
+            <span class="track-topics">Course 3 <i></i> challenge mix <i></i> detailed help</span>
+            <strong>Enter deep space <span aria-hidden="true">›</span></strong>
+          </button>
+        </div>
       </section>
     </main>
 
@@ -139,7 +176,7 @@
   </div>
 
   <script src="static-api.js?v=6"></script>
-  <script src="app.js?v=13"></script>
+  <script src="app.js?v=14"></script>
   <script src="game.js?v=9"></script>
 </body>
 </html>
