@@ -6,7 +6,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Sarah's Math Club</title>
-  <link rel="stylesheet" href="style.css?v=30">
+  <link rel="stylesheet" href="style.css?v=31">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -60,10 +60,16 @@
           <span><i></i> Mission control online</span>
         </div>
       </div>
-      <button id="voice-toggle" class="voice-toggle" title="Toggle voice on/off">
-        <span class="voice-icon">🔊</span>
-        <span class="voice-label">Voice On</span>
-      </button>
+      <div class="club-topbar-actions">
+        <button id="club-homework-btn" class="club-homework-btn" type="button" title="Open Sarah's homework" aria-controls="homework-adventure" aria-pressed="false">
+          <span aria-hidden="true">📚</span>
+          <span class="club-homework-label">Homework</span>
+        </button>
+        <button id="voice-toggle" class="voice-toggle" title="Toggle voice on/off">
+          <span class="voice-icon">🔊</span>
+          <span class="voice-label">Voice On</span>
+        </button>
+      </div>
     </header>
 
     <main class="club-front">
@@ -150,6 +156,20 @@
       </section>
     </main>
 
+    <section id="homework-adventure" class="homework-adventure hidden" aria-labelledby="homework-adventure-title" aria-hidden="true">
+      <div class="homework-adventure-bar">
+        <div>
+          <span>Sarah's homework</span>
+          <strong id="homework-adventure-title">Math Homework Adventure</strong>
+        </div>
+        <button id="homework-adventure-close" type="button">
+          <span aria-hidden="true">←</span> Back to Math Club
+        </button>
+      </div>
+      <iframe id="homework-adventure-frame" class="homework-adventure-frame" data-src="homework/index.html" title="Sarah's Math Homework Adventure" loading="lazy"></iframe>
+      <noscript><a href="homework/index.html">Open Sarah's Math Homework Adventure</a></noscript>
+    </section>
+
     <section id="homework-panel" class="home-panel hidden legacy-homework-tools" aria-hidden="true">
       <input type="file" id="textbook-upload" accept="image/*" capture="environment">
       <input type="file" id="work-upload" accept="image/*" capture="environment">
@@ -177,7 +197,7 @@
   </div>
 
   <script src="static-api.js?v=6"></script>
-  <script src="app.js?v=14"></script>
+  <script src="app.js?v=15"></script>
   <script src="game.js?v=9"></script>
 </body>
 </html>

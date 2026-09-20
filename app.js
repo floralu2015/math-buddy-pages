@@ -28,6 +28,11 @@ const audioBtn = document.getElementById('audio-btn');
 const voiceToggle = document.getElementById('voice-toggle');
 const clubStartBtn = document.getElementById('club-start-btn');
 const clubQuizBtn = document.getElementById('club-quiz-btn');
+const clubHomeworkBtn = document.getElementById('club-homework-btn');
+const homeworkAdventure = document.getElementById('homework-adventure');
+const homeworkAdventureClose = document.getElementById('homework-adventure-close');
+const homeworkAdventureFrame = document.getElementById('homework-adventure-frame');
+const clubFront = document.querySelector('.club-front');
 const clubMissionButtons = document.querySelectorAll('[data-club-mission]');
 const clubHero = document.querySelector('.club-hero');
 const homeTabs = document.querySelectorAll('[data-home-tab]');
@@ -78,6 +83,52 @@ if (clubQuizBtn) {
     }
   });
 }
+
+function openHomeworkAdventure() {
+  if (!homeworkAdventure || !clubFront) return;
+
+  if (homeworkAdventureFrame && !homeworkAdventureFrame.hasAttribute('src')) {
+    homeworkAdventureFrame.setAttribute('src', homeworkAdventureFrame.dataset.src);
+  }
+
+  clubFront.classList.add('hidden');
+  clubFront.setAttribute('aria-hidden', 'true');
+  homeworkAdventure.classList.remove('hidden');
+  homeworkAdventure.setAttribute('aria-hidden', 'false');
+  clubHomeworkBtn?.classList.add('active');
+  clubHomeworkBtn?.setAttribute('aria-pressed', 'true');
+  window.scrollTo({ top: 0, behavior: 'auto' });
+  homeworkAdventureClose?.focus();
+}
+
+function closeHomeworkAdventure() {
+  if (!homeworkAdventure || !clubFront) return;
+
+  homeworkAdventure.classList.add('hidden');
+  homeworkAdventure.setAttribute('aria-hidden', 'true');
+  clubFront.classList.remove('hidden');
+  clubFront.setAttribute('aria-hidden', 'false');
+  clubHomeworkBtn?.classList.remove('active');
+  clubHomeworkBtn?.setAttribute('aria-pressed', 'false');
+  window.scrollTo({ top: 0, behavior: 'auto' });
+  clubHomeworkBtn?.focus();
+}
+
+clubHomeworkBtn?.addEventListener('click', () => {
+  if (homeworkAdventure?.classList.contains('hidden')) {
+    openHomeworkAdventure();
+  } else {
+    closeHomeworkAdventure();
+  }
+});
+
+homeworkAdventureClose?.addEventListener('click', closeHomeworkAdventure);
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && homeworkAdventure && !homeworkAdventure.classList.contains('hidden')) {
+    closeHomeworkAdventure();
+  }
+});
 
 clubMissionButtons.forEach(button => {
   button.addEventListener('click', () => {

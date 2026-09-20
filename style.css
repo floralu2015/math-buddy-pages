@@ -497,6 +497,48 @@ header h1 {
   animation: signal-pulse 1.8s ease-in-out infinite;
 }
 
+.club-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.club-homework-btn {
+  min-width: 118px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.14);
+  color: white;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 800;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+
+.club-homework-btn:hover,
+.club-homework-btn:focus-visible,
+.club-homework-btn.active {
+  border-color: rgba(255, 255, 255, 0.78);
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.club-homework-btn:hover {
+  transform: translateY(-2px);
+}
+
+.club-homework-btn:focus-visible {
+  outline: 3px solid #ffe36d;
+  outline-offset: 3px;
+}
+
 .club-topbar .voice-toggle {
   position: static;
   min-width: 118px;
@@ -510,6 +552,76 @@ header h1 {
 
 .club-topbar .voice-toggle.voice-off {
   opacity: 0.68;
+}
+
+.homework-adventure {
+  width: 100%;
+  min-height: 0;
+  flex: 1;
+  padding-bottom: 10px;
+}
+
+.homework-adventure-bar {
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  color: white;
+}
+
+.homework-adventure-bar span,
+.homework-adventure-bar strong {
+  display: block;
+}
+
+.homework-adventure-bar div > span {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.homework-adventure-bar strong {
+  margin-top: 2px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.05rem;
+}
+
+.homework-adventure-bar button {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.44);
+  border-radius: 8px;
+  background: #12264f;
+  color: white;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.homework-adventure-bar button:hover,
+.homework-adventure-bar button:focus-visible {
+  border-color: white;
+  background: #1a3975;
+}
+
+.homework-adventure-bar button:focus-visible {
+  outline: 3px solid #ffe36d;
+  outline-offset: 3px;
+}
+
+.homework-adventure-frame {
+  width: 100%;
+  height: calc(100dvh - 120px);
+  min-height: 620px;
+  display: block;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 18px 48px rgba(18, 38, 79, 0.28);
 }
 
 .club-front {
@@ -1146,14 +1258,38 @@ header h1 {
     display: none;
   }
 
-  .club-topbar .voice-toggle {
+  .club-topbar .voice-toggle,
+  .club-homework-btn {
     min-width: 44px;
     width: 44px;
     padding: 0;
   }
 
-  .club-topbar .voice-label {
+  .club-topbar .voice-label,
+  .club-homework-label {
     display: none;
+  }
+
+  .homework-adventure-bar {
+    min-height: 58px;
+  }
+
+  .homework-adventure-bar div > span {
+    display: none;
+  }
+
+  .homework-adventure-bar strong {
+    font-size: 0.92rem;
+  }
+
+  .homework-adventure-bar button {
+    padding: 0 10px;
+    font-size: 0.78rem;
+  }
+
+  .homework-adventure-frame {
+    height: calc(100dvh - 105px);
+    min-height: 560px;
   }
 
   .club-hero {
