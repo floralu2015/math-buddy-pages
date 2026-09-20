@@ -29,6 +29,8 @@ const voiceToggle = document.getElementById('voice-toggle');
 const clubStartBtn = document.getElementById('club-start-btn');
 const clubQuizBtn = document.getElementById('club-quiz-btn');
 const clubHomeworkBtn = document.getElementById('club-homework-btn');
+const clubThemeToggle = document.getElementById('club-theme-toggle');
+const clubThemeIcon = clubThemeToggle?.querySelector('.club-theme-icon');
 const homeworkAdventure = document.getElementById('homework-adventure');
 const homeworkAdventureClose = document.getElementById('homework-adventure-close');
 const homeworkAdventureFrame = document.getElementById('homework-adventure-frame');
@@ -41,6 +43,35 @@ const homePanels = document.querySelectorAll('[data-home-panel]');
 let pendingImages = { textbook: [], work: [] };
 let audioUnlocked = false;
 let warmAudio = null; // "Blessed" audio element for iOS
+
+function applyClubTheme(theme, persist = true) {
+  const useDarkTheme = theme === 'dark';
+  document.documentElement.classList.toggle('theme-dark', useDarkTheme);
+
+  if (clubThemeToggle) {
+    const nextThemeLabel = useDarkTheme ? 'Switch to colorful theme' : 'Switch to dark theme';
+    clubThemeToggle.setAttribute('aria-label', nextThemeLabel);
+    clubThemeToggle.setAttribute('aria-pressed', String(useDarkTheme));
+    clubThemeToggle.title = nextThemeLabel;
+  }
+
+  if (clubThemeIcon) {
+    clubThemeIcon.textContent = useDarkTheme ? '☀️' : '🌙';
+  }
+
+  if (persist) {
+    try {
+      localStorage.setItem('sarahMathClubTheme', useDarkTheme ? 'dark' : 'colorful');
+    } catch (error) {}
+  }
+}
+
+applyClubTheme(document.documentElement.classList.contains('theme-dark') ? 'dark' : 'colorful', false);
+
+clubThemeToggle?.addEventListener('click', () => {
+  const nextTheme = document.documentElement.classList.contains('theme-dark') ? 'colorful' : 'dark';
+  applyClubTheme(nextTheme);
+});
 
 function switchHomeTab(tabName) {
   if (tabName === 'games') {
