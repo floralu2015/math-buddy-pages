@@ -329,7 +329,7 @@ const GameModule = (() => {
         <div class="game-selection-inner game-screen">
         <button class="back-to-tutor" onclick="GameModule.hide()">← Back to Math Club</button>
         <div class="game-hero">
-          <span class="game-hero-kicker">Saxon Course 3 training floor</span>
+          <span class="game-hero-kicker">6th grade launch pad + Saxon stretch</span>
           <h2>Math Club Game Room</h2>
           <p>Short rounds, bright feedback, and lots of practice on the facts and 6th grade bridge skills Sarah needs next.</p>
         </div>
@@ -413,7 +413,7 @@ const GameModule = (() => {
           <button class="game-mode-btn quiz-btn" onclick="GameModule.showQuizPicker()">
             <span class="mode-icon">📚</span>
             <span class="mode-title">Practice Quiz</span>
-            <span class="mode-desc">Saxon Course 3 decks plus foundation repair</span>
+            <span class="mode-desc">6th grade prep first, then Saxon Course 3 stretch</span>
           </button>
 
           <button class="game-mode-btn concept-btn" onclick="GameModule.showConceptPicker()">
@@ -836,7 +836,7 @@ const GameModule = (() => {
     const container = document.getElementById('quiz-topics');
     if (!container || quizTopics.length === 0) return;
 
-    const categoryOrder = ['Fluency', 'Foundations', 'Saxon Course 3', '6th Grade Prep', 'Core Practice'];
+    const categoryOrder = ['Fluency', 'Foundations', '6th Grade Prep', 'Saxon Course 3 Stretch', 'Core Practice'];
     const grouped = quizTopics.reduce((groups, topic) => {
       const category = topic.category || 'Core Practice';
       if (!groups[category]) groups[category] = [];
