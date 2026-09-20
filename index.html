@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>Math Buddy! 🦉</title>
-  <link rel="stylesheet" href="style.css?v=24">
+  <title>Sarah's Math Club</title>
+  <link rel="stylesheet" href="style.css?v=25">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -53,80 +53,93 @@
   <div class="container">
     <header>
       <div id="mascot" class="mascot">🦉</div>
-      <h1>Math Buddy</h1>
-      <p class="subtitle">Your super smart owl friend! 🌟</p>
+      <h1>Sarah's Math Club</h1>
+      <p class="subtitle">A bold place to train, play, and grow into 6th grade math.</p>
       <button id="voice-toggle" class="voice-toggle" title="Toggle voice on/off">
         <span class="voice-icon">🔊</span>
         <span class="voice-label">Voice On</span>
       </button>
     </header>
 
-    <nav class="home-tabs" role="tablist" aria-label="Math Buddy modes">
-      <button id="homework-tab" class="home-tab active" type="button" role="tab" aria-selected="true" aria-controls="homework-panel" data-home-tab="homework">
-        <span class="tab-icon">📸</span>
-        <span>Check Homework</span>
-      </button>
-      <button id="games-tab" class="home-tab play-tab" type="button" role="tab" aria-selected="false" aria-controls="game-container" data-home-tab="games">
-        <span class="tab-icon">🎮</span>
-        <span>Play Games</span>
-      </button>
-    </nav>
-
-    <main class="home-panels">
-      <section id="homework-panel" class="home-panel active" role="tabpanel" aria-labelledby="homework-tab" data-home-panel="homework">
-        <div class="upload-section">
-          <div class="upload-buttons">
-            <label for="textbook-upload" class="upload-btn textbook-btn">
-              <span class="upload-icon">📸</span>
-              <span>Snap Textbook</span>
-            </label>
-            <label for="work-upload" class="upload-btn work-btn">
-              <span class="upload-icon">📸</span>
-              <span>Snap My Work</span>
-            </label>
-          </div>
-          <!-- Camera inputs - capture="environment" uses rear camera -->
-          <input type="file" id="textbook-upload" accept="image/*" capture="environment">
-          <input type="file" id="work-upload" accept="image/*" capture="environment">
-          <div id="image-preview" class="image-preview"></div>
-          <div id="pending-images-info" class="pending-images-info"></div>
-          <button id="analyze-btn" class="analyze-btn hidden">🔍 Analyze All Images</button>
+    <main class="club-front">
+      <section class="club-card club-hero-card" aria-labelledby="club-title">
+        <div class="club-orbit" aria-hidden="true">
+          <span>6</span>
+          <span>7</span>
+          <span>×</span>
+          <span>√</span>
         </div>
-
-        <div id="chat-container" class="chat-container">
-          <div id="messages" class="messages">
-            <div class="message assistant">
-              <div class="message-content">
-                🎉 Hey there! I'm Ollie the Math Owl! Take a picture of your homework and let's solve it together. You've got this!
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="input-section">
-          <div class="audio-control-row" id="audio-control-row" style="display: none;">
-            <button id="audio-btn" class="audio-btn playing">
-              <span class="audio-icon">⏸️</span>
-              <span class="audio-text">Tap to Pause</span>
+        <div class="club-copy">
+          <p class="club-kicker">Members only: courage, practice, progress</p>
+          <h2 id="club-title">Welcome to the Math Clubhouse</h2>
+          <p>
+            Sarah, this is your training room for powerful 6th grade math:
+            fast facts, sharp thinking, ratios, equations, geometry, data, and
+            puzzles that make your brain stronger.
+          </p>
+          <div class="club-actions">
+            <button id="club-start-btn" class="club-start-btn" type="button">
+              Enter Play Games
+            </button>
+            <button id="club-quiz-btn" class="club-secondary-btn" type="button">
+              Pick a quiz deck
             </button>
           </div>
-          <button id="mic-btn" class="mic-btn">
-            <span class="mic-icon">🎤</span>
-            <span class="mic-text">Tap to Talk</span>
-          </button>
-          <div class="text-input-row">
-            <input type="text" id="text-input" placeholder="Type here...">
-            <button id="send-btn" class="send-btn">Send 🚀</button>
-          </div>
         </div>
+      </section>
 
-        <button id="new-session-btn" class="new-session-btn">🔄 New Problem</button>
+      <section class="club-grid" aria-label="Math Club tracks">
+        <article class="club-track-card fact-track">
+          <span class="track-mark">×</span>
+          <h3>Fact power</h3>
+          <p>Times tables, division facts, and missing factors until they feel automatic.</p>
+        </article>
+        <article class="club-track-card bridge-track">
+          <span class="track-mark">↔</span>
+          <h3>6th grade bridge</h3>
+          <p>Integers, ratios, rates, percents, equations, inequalities, and coordinate planes.</p>
+        </article>
+        <article class="club-track-card explorer-track">
+          <span class="track-mark">△</span>
+          <h3>Math explorer</h3>
+          <p>Angles, polygons, circles, volume, probability, statistics, and Pythagorean thinking.</p>
+        </article>
+      </section>
+
+      <section class="club-manifesto" aria-label="Math Club promise">
+        <strong>Club promise</strong>
+        <span>Try one brave step. Use hints. Learn from misses. Come back stronger.</span>
       </section>
     </main>
-      </div>
 
-  <script src="static-api.js?v=4"></script>
-  <script src="app.js?v=12"></script>
-  <script src="game.js?v=7"></script>
+    <section id="homework-panel" class="home-panel hidden legacy-homework-tools" aria-hidden="true">
+      <input type="file" id="textbook-upload" accept="image/*" capture="environment">
+      <input type="file" id="work-upload" accept="image/*" capture="environment">
+      <div id="image-preview" class="image-preview"></div>
+      <div id="pending-images-info" class="pending-images-info"></div>
+      <button id="analyze-btn" class="analyze-btn hidden">Analyze All Images</button>
+      <div id="chat-container" class="chat-container">
+        <div id="messages" class="messages">
+          <div class="message assistant">
+            <div class="message-content">Welcome to Sarah's Math Club.</div>
+          </div>
+        </div>
+      </div>
+      <div id="audio-control-row" class="audio-control-row hidden">
+        <button id="audio-btn" class="audio-btn playing">
+          <span class="audio-icon">⏸️</span>
+          <span class="audio-text">Tap to Pause</span>
+        </button>
+      </div>
+      <button id="mic-btn" class="mic-btn"><span class="mic-text">Tap to Talk</span></button>
+      <input type="text" id="text-input" placeholder="Type here...">
+      <button id="send-btn" class="send-btn">Send</button>
+      <button id="new-session-btn" class="new-session-btn">New Problem</button>
+    </section>
+  </div>
+
+  <script src="static-api.js?v=5"></script>
+  <script src="app.js?v=13"></script>
+  <script src="game.js?v=8"></script>
 </body>
 </html>

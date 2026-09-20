@@ -14,9 +14,9 @@
 
   const TOPICS = {
     easy: ['addition', 'subtraction', 'simple multiplication', 'counting'],
-    medium: ['multiplication facts', 'division facts', 'missing factors', 'basic fractions', 'decimals'],
-    hard: ['foundation review', 'fraction operations', 'mixed numbers', 'percentages', 'percent change', 'multi-step problems', 'integer operations', 'scientific notation', 'data and statistics', 'multi-digit multiplication'],
-    challenge: ['grade 6 bridge', 'ratios', 'two-step equations', 'inequalities', 'distributive property', 'combine like terms', 'gcf factoring', 'slope', 'slope-intercept form', 'scale factor', 'angle relationships', 'surface area and volume', 'pythagorean theorem']
+    medium: ['multiplication facts', 'division facts', 'missing factors', 'basic fractions', 'decimals', 'integer number lines', 'measurement conversions'],
+    hard: ['foundation review', 'fraction operations', 'mixed numbers', 'percentages', 'percent change', 'multi-step problems', 'integer operations', 'scientific notation', 'data and statistics', 'multi-digit multiplication', 'rates and averages', 'probability', 'perimeter and area', 'powers and roots'],
+    challenge: ['grade 6 bridge', 'ratios', 'proportions', 'two-step equations', 'properties of equality', 'inequalities', 'distributive property', 'combine like terms', 'gcf factoring', 'functions', 'coordinate plane', 'lines and angles', 'polygons', 'circles', 'laws of exponents', 'transformations', 'slope', 'slope-intercept form', 'scale factor', 'angle relationships', 'surface area and volume', 'pythagorean theorem']
   };
   const LEGACY_MODE_CONFIGS = {
     speed: {
@@ -31,7 +31,7 @@
     daily: {
       difficulty: 'challenge',
       maxProblems: 1,
-      topics: ['grade 6 bridge', 'two-step equations', 'inequalities', 'ratios', 'data and statistics', 'scale factor', 'angle relationships']
+      topics: ['grade 6 bridge', 'two-step equations', 'inequalities', 'ratios', 'data and statistics', 'scale factor', 'angle relationships', 'coordinate plane']
     },
     levelup: {
       difficulty: 'medium',
@@ -45,7 +45,7 @@
     multiplication: { name: 'Multiplication', icon: '✖️', description: 'Build speed with multiplication facts', difficulty: 'medium', problems: 14, topics: ['multiplication facts', 'missing factors'] },
     multiplicationTables: { name: 'Times Table Arena', icon: '⚔️', description: '36 fast facts from 2x2 through 12x12', difficulty: 'medium', problems: 36, topics: ['multiplication facts', 'division facts', 'missing factors', 'multi-digit multiplication'], category: 'Fluency' },
     fifthGradeTuneUp: { name: '5th Grade Tune-Up', icon: '🛠️', description: 'Repair weak spots before 6th grade', difficulty: 'hard', problems: 22, topics: ['foundation review', 'division facts', 'fraction operations', 'decimals', 'multi-step problems'], category: 'Foundations' },
-    grade6Bridge: { name: '6th Grade Bridge', icon: '🌉', description: 'Equations, ratios, data, geometry, and thinking problems', difficulty: 'challenge', problems: 24, topics: ['grade 6 bridge', 'two-step equations', 'inequalities', 'ratios', 'data and statistics', 'scale factor', 'angle relationships'], category: '6th Grade Prep' },
+    grade6Bridge: { name: '6th Grade Bridge', icon: '🌉', description: 'Integers, equations, ratios, data, geometry, and thinking problems', difficulty: 'challenge', problems: 24, topics: ['grade 6 bridge', 'integer number lines', 'two-step equations', 'inequalities', 'ratios', 'data and statistics', 'scale factor', 'angle relationships', 'coordinate plane'], category: '6th Grade Prep' },
     division: { name: 'Division', icon: '➗', description: 'Practice dividing numbers', difficulty: 'medium', problems: 8, topics: ['division facts'] },
     fractions: { name: 'Fractions', icon: '🍕', description: 'Add, subtract & compare fractions', difficulty: 'hard', problems: 8, topics: ['fraction operations', 'basic fractions', 'mixed numbers'] },
     decimals: { name: 'Decimals', icon: '🔢', description: 'Work with decimal numbers', difficulty: 'medium', problems: 6, topics: ['decimals'] },
@@ -58,7 +58,14 @@
     geometryMeasurement: { name: 'Geometry & Measurement', icon: '📐', description: 'Scale, area, volume, and right triangles', difficulty: 'challenge', problems: 8, topics: ['scale factor', 'surface area and volume', 'pythagorean theorem'], category: '6th Grade Prep' },
     statistics: { name: 'Data & Statistics', icon: '📊', description: 'Mean, median, mode, and range', difficulty: 'hard', problems: 6, topics: ['data and statistics'], category: '6th Grade Prep' },
     angles: { name: 'Angle Relationships', icon: '📏', description: 'Parallel lines, transversals, and angle sums', difficulty: 'challenge', problems: 6, topics: ['angle relationships'], category: '6th Grade Prep' },
-    exponentsRoots: { name: 'Exponents & Roots', icon: '√', description: 'Perfect squares, roots, and scientific notation', difficulty: 'hard', problems: 7, topics: ['scientific notation', 'integer operations'], category: '6th Grade Prep' },
+    exponentsRoots: { name: 'Exponents & Roots', icon: '√', description: 'Powers, roots, exponent laws, and scientific notation', difficulty: 'hard', problems: 7, topics: ['powers and roots', 'laws of exponents', 'scientific notation'], category: '6th Grade Prep' },
+    course3NumberSense: { name: 'Course 3 Number Sense', icon: '↔️', description: 'Integer lines, measures, rates, averages, and rational numbers', difficulty: 'hard', problems: 10, topics: ['integer number lines', 'measurement conversions', 'rates and averages', 'basic fractions'], category: 'Saxon Course 3' },
+    course3FractionsDecimals: { name: 'Fractions, Decimals & Percents', icon: '🍕', description: 'Operations with fractions, mixed numbers, decimals, and percents', difficulty: 'hard', problems: 12, topics: ['fraction operations', 'mixed numbers', 'decimals', 'percentages', 'percent change'], category: 'Saxon Course 3' },
+    course3Algebra: { name: 'Algebra Lab', icon: '🧩', description: 'Distribute, combine terms, solve equations, and use functions', difficulty: 'challenge', problems: 12, topics: ['distributive property', 'combine like terms', 'properties of equality', 'two-step equations', 'functions'], category: 'Saxon Course 3' },
+    course3Geometry: { name: 'Geometry Studio', icon: '📐', description: 'Lines, angles, polygons, circles, solids, and transformations', difficulty: 'challenge', problems: 12, topics: ['lines and angles', 'polygons', 'circles', 'surface area and volume', 'coordinate plane', 'transformations'], category: 'Saxon Course 3' },
+    probabilityFunctions: { name: 'Probability & Functions', icon: '🎲', description: 'Experimental probability, statistics, and input-output rules', difficulty: 'hard', problems: 10, topics: ['probability', 'data and statistics', 'functions'], category: 'Saxon Course 3' },
+    proportionsRates: { name: 'Ratios, Rates & Proportions', icon: '📏', description: 'Use ratio tables, cross products, rates, and scale factors', difficulty: 'challenge', problems: 10, topics: ['ratios', 'proportions', 'rates and averages', 'scale factor'], category: 'Saxon Course 3' },
+    coordinateTransformations: { name: 'Coordinate Plane & Transformations', icon: '🧭', description: 'Ordered pairs, translations, reflections, and rotations', difficulty: 'challenge', problems: 9, topics: ['coordinate plane', 'transformations'], category: '6th Grade Prep' },
     mixedReview: { name: 'Mixed Review', icon: '🎲', description: 'Random mix of all topics', difficulty: 'medium', problems: 10, topics: null }
   };
 
@@ -71,7 +78,10 @@
     { id: 'decimals', name: 'Decimals', icon: '🔢', description: 'Numbers with decimal points', relatedQuiz: 'decimals' },
     { id: 'equationsInequalities', name: 'Equations & Inequalities', icon: '⚖️', description: 'Balance equations and compare inequalities', relatedQuiz: 'equationsInequalities' },
     { id: 'geometryMeasurement', name: 'Geometry & Measurement', icon: '📐', description: 'Scale, area, volume, and angles', relatedQuiz: 'geometryMeasurement' },
-    { id: 'statistics', name: 'Data & Statistics', icon: '📊', description: 'Mean, median, mode, and range', relatedQuiz: 'statistics' }
+    { id: 'statistics', name: 'Data & Statistics', icon: '📊', description: 'Mean, median, mode, and range', relatedQuiz: 'statistics' },
+    { id: 'course3NumberSense', name: 'Course 3 Number Sense', icon: '↔️', description: 'Integer lines, measures, rates, and averages', relatedQuiz: 'course3NumberSense' },
+    { id: 'coordinateTransformations', name: 'Coordinate Plane & Transformations', icon: '🧭', description: 'Plot, translate, and reflect points', relatedQuiz: 'coordinateTransformations' },
+    { id: 'probabilityFunctions', name: 'Probability & Functions', icon: '🎲', description: 'Outcomes, data, and input-output rules', relatedQuiz: 'probabilityFunctions' }
   ];
 
   const CONCEPT_EXPLANATIONS = {
@@ -431,6 +441,162 @@ Answer: \\(9\\)`
     return problem(`A right triangle has legs ${a} and ${b}. What is the hypotenuse?`, `${a}^2 + ${b}^2 = c^2`, c, 'Use a^2 + b^2 = c^2.', `${a}^2 + ${b}^2 = ${a * a + b * b}, so c = ${c}.`);
   }
 
+  function integerNumberLine() {
+    const a = randomInt(-12, 8);
+    const b = randomInt(a + 1, 14);
+    if (Math.random() < 0.5) return problem(`Which integer is greater: ${a} or ${b}?`, `${a}\\ ?\\ ${b}`, b, 'Farther right on the number line is greater.', `${b} is to the right of ${a}, so ${b} is greater.`);
+    return problem(`What is the distance between ${a} and ${b} on a number line?`, `|${b} - (${a})|`, Math.abs(b - a), 'Distance is positive space between the numbers.', `${b} - (${a}) = ${Math.abs(b - a)}.`);
+  }
+
+  function measurementConversion() {
+    const conversions = [
+      { from: 'feet', to: 'inches', factor: 12 },
+      { from: 'yards', to: 'feet', factor: 3 },
+      { from: 'hours', to: 'minutes', factor: 60 },
+      { from: 'weeks', to: 'days', factor: 7 }
+    ];
+    const item = choice(conversions);
+    const amount = randomInt(2, 9);
+    return problem(`Convert ${amount} ${item.from} to ${item.to}.`, `${amount} \\times ${item.factor}`, amount * item.factor, `1 ${item.from.slice(0, -1)} = ${item.factor} ${item.to}.`, `${amount} × ${item.factor} = ${amount * item.factor}.`);
+  }
+
+  function ratesAverages() {
+    if (Math.random() < 0.5) {
+      const miles = randomInt(60, 240);
+      const hours = choice([2, 3, 4, 5, 6]);
+      return problem(`A club rides ${miles} miles in ${hours} hours. What is the average rate?`, `${miles} \\div ${hours}`, miles / hours, 'Rate is distance divided by time.', `${miles} ÷ ${hours} = ${miles / hours} miles per hour.`);
+    }
+    const values = [randomInt(7, 15), randomInt(7, 15), randomInt(7, 15), randomInt(7, 15)];
+    const total = values.reduce((sum, value) => sum + value, 0);
+    return problem(`Find the average of ${values.join(', ')}.`, `\\frac{${values.join(' + ')}}{4}`, total / 4, 'Add all values, then divide by 4.', `${values.join(' + ')} = ${total}; ${total} ÷ 4 = ${total / 4}.`);
+  }
+
+  function proportionProblem() {
+    const a = randomInt(2, 7);
+    const b = randomInt(a + 1, 10);
+    const scale = randomInt(3, 9);
+    return algebraProblem(`Solve the proportion: ${a}/${b} = x/${b * scale}.`, `\\frac{${a}}{${b}} = \\frac{x}{${b * scale}}`, a * scale, `${b} was multiplied by ${scale}.`, `x = ${a} × ${scale} = ${a * scale}.`);
+  }
+
+  function propertiesEquality() {
+    const x = randomInt(4, 14);
+    const add = randomInt(3, 12);
+    return algebraProblem(`Solve: x + ${add} = ${x + add}`, `x + ${add} = ${x + add}`, x, `Subtract ${add} from both sides.`, `x = ${x + add} - ${add} = ${x}.`);
+  }
+
+  function functionRule() {
+    const multiplier = randomInt(2, 5);
+    const add = randomInt(1, 9);
+    const input = randomInt(2, 12);
+    const output = multiplier * input + add;
+    return problem(`A function rule is y = ${multiplier}x + ${add}. What is y when x = ${input}?`, `y = ${multiplier}(${input}) + ${add}`, output, `Substitute ${input} for x.`, `${multiplier} × ${input} + ${add} = ${output}.`);
+  }
+
+  function coordinatePlane() {
+    const x = randomInt(-5, 5);
+    const y = randomInt(-5, 5);
+    const dx = randomInt(-4, 4) || 2;
+    const dy = randomInt(-4, 4) || -2;
+    return {
+      problem: `Point A is at (${x}, ${y}). It moves ${Math.abs(dx)} ${dx >= 0 ? 'right' : 'left'} and ${Math.abs(dy)} ${dy >= 0 ? 'up' : 'down'}. What is the new ordered pair?`,
+      problemLatex: `(${x} ${dx >= 0 ? '+' : '-'} ${Math.abs(dx)}, ${y} ${dy >= 0 ? '+' : '-'} ${Math.abs(dy)})`,
+      answer: `(${x + dx}, ${y + dy})`,
+      acceptableAnswers: [`(${x + dx}, ${y + dy})`, `${x + dx},${y + dy}`, `${x + dx}, ${y + dy}`],
+      hint: 'Change x for left/right and y for up/down.',
+      explanation: `The new point is (${x + dx}, ${y + dy}).`
+    };
+  }
+
+  function probabilityProblem() {
+    const red = randomInt(2, 8);
+    const blue = randomInt(2, 8);
+    const total = red + blue;
+    return {
+      problem: `A bag has ${red} red tiles and ${blue} blue tiles. What is the probability of picking red?`,
+      problemLatex: `\\frac{${red}}{${total}}`,
+      answer: `${red}/${total}`,
+      acceptableAnswers: [`${red}/${total}`, String(red / total)],
+      hint: 'Probability is favorable outcomes over total outcomes.',
+      explanation: `${red} red out of ${total} total gives ${red}/${total}.`
+    };
+  }
+
+  function linesAngles() {
+    const angle = choice([35, 42, 58, 63, 74, 115, 128, 146]);
+    return problem(`Two angles form a straight line. One angle is ${angle}°. What is the other?`, `${angle}^\\circ + x = 180^\\circ`, 180 - angle, 'Straight-line angles add to 180°.', `180 - ${angle} = ${180 - angle}.`);
+  }
+
+  function polygonProblem() {
+    const [name, sides] = choice([['triangle', 3], ['quadrilateral', 4], ['pentagon', 5], ['hexagon', 6], ['octagon', 8]]);
+    return problem(`How many sides does a ${name} have?`, name, sides, 'Use the polygon name.', `A ${name} has ${sides} sides.`);
+  }
+
+  function perimeterArea() {
+    const length = randomInt(5, 18);
+    const width = randomInt(3, 12);
+    if (Math.random() < 0.5) return problem(`A rectangle is ${length} units by ${width} units. What is its area?`, `${length} \\times ${width}`, length * width, 'Area is length times width.', `Area = ${length} × ${width} = ${length * width}.`);
+    return problem(`A rectangle is ${length} units by ${width} units. What is its perimeter?`, `2(${length} + ${width})`, 2 * (length + width), 'Perimeter goes around all sides.', `2(${length} + ${width}) = ${2 * (length + width)}.`);
+  }
+
+  function circleProblem() {
+    const radius = choice([3, 4, 5, 6, 7, 8, 10]);
+    if (Math.random() < 0.5) {
+      const circumference = Number((2 * 3.14 * radius).toFixed(2));
+      return problem(`Use 3.14 for pi. What is the circumference of a circle with radius ${radius}?`, `2 \\times 3.14 \\times ${radius}`, circumference, 'Circumference is 2πr.', `C = 2 × 3.14 × ${radius} = ${circumference}.`);
+    }
+    const area = Number((3.14 * radius * radius).toFixed(2));
+    return problem(`Use 3.14 for pi. What is the area of a circle with radius ${radius}?`, `3.14 \\times ${radius}^2`, area, 'Area is πr².', `A = 3.14 × ${radius}² = ${area}.`);
+  }
+
+  function powersRoots() {
+    if (Math.random() < 0.5) {
+      const base = randomInt(2, 9);
+      const exponent = choice([2, 3]);
+      return problem(`Evaluate ${base}^${exponent}.`, `${base}^{${exponent}}`, base ** exponent, `Use ${base} as a factor ${exponent} times.`, exponent === 2 ? `${base}² = ${base * base}.` : `${base}³ = ${base ** 3}.`);
+    }
+    const root = randomInt(4, 15);
+    return problem(`What is the square root of ${root * root}?`, `\\sqrt{${root * root}}`, root, `Find the number that times itself equals ${root * root}.`, `${root} × ${root} = ${root * root}.`);
+  }
+
+  function exponentLaw() {
+    const base = choice(['x', 'm', 'a']);
+    const first = randomInt(2, 5);
+    const second = randomInt(2, 5);
+    return {
+      problem: `Simplify: ${base}^${first} × ${base}^${second}`,
+      problemLatex: `${base}^{${first}} \\times ${base}^{${second}}`,
+      answer: `${base}^${first + second}`,
+      acceptableAnswers: [`${base}^${first + second}`, `${base}${first + second}`],
+      hint: 'When multiplying same bases, add exponents.',
+      explanation: `${base}^${first} × ${base}^${second} = ${base}^${first + second}.`
+    };
+  }
+
+  function transformationProblem() {
+    const x = randomInt(-5, 5) || 3;
+    const y = randomInt(-5, 5) || -2;
+    if (Math.random() < 0.5) {
+      return {
+        problem: `Reflect (${x}, ${y}) across the y-axis. What is the image point?`,
+        problemLatex: `(${x}, ${y}) \\rightarrow (?, ?)`,
+        answer: `(${-x}, ${y})`,
+        acceptableAnswers: [`(${-x}, ${y})`, `${-x},${y}`, `${-x}, ${y}`],
+        hint: 'Across the y-axis changes x and keeps y.',
+        explanation: `The image point is (${-x}, ${y}).`
+      };
+    }
+    const dx = randomInt(-4, 4) || 2;
+    const dy = randomInt(-4, 4) || 3;
+    return {
+      problem: `Translate (${x}, ${y}) by (${dx}, ${dy}). What is the image point?`,
+      problemLatex: `(${x} + ${dx}, ${y} + ${dy})`,
+      answer: `(${x + dx}, ${y + dy})`,
+      acceptableAnswers: [`(${x + dx}, ${y + dy})`, `${x + dx},${y + dy}`, `${x + dx}, ${y + dy}`],
+      hint: 'Add the translation to x and y.',
+      explanation: `(${x} + ${dx}, ${y} + ${dy}) = (${x + dx}, ${y + dy}).`
+    };
+  }
+
   function grade6Bridge(topic) {
     const kind = topic && topic !== 'grade 6 bridge' ? topic : choice(['two-step equations', 'inequalities', 'ratios', 'data and statistics', 'scale factor', 'angle relationships', 'slope']);
     if (kind === 'two-step equations' || kind === 'algebra basics') {
@@ -460,6 +626,21 @@ Answer: \\(9\\)`
       const scale = randomInt(3, 7);
       return problem(`The ratio is ${a}:${b}. If the second amount is ${b * scale}, what is the first amount?`, `\\frac{${a}}{${b}} = \\frac{x}{${b * scale}}`, a * scale, `The second amount was multiplied by ${scale}.`, `${a} × ${scale} = ${a * scale}.`);
     }
+    if (kind === 'proportions') return proportionProblem();
+    if (kind === 'integer number lines') return integerNumberLine();
+    if (kind === 'measurement conversions') return measurementConversion();
+    if (kind === 'rates and averages') return ratesAverages();
+    if (kind === 'properties of equality') return propertiesEquality();
+    if (kind === 'functions') return functionRule();
+    if (kind === 'coordinate plane') return coordinatePlane();
+    if (kind === 'probability') return probabilityProblem();
+    if (kind === 'lines and angles') return linesAngles();
+    if (kind === 'polygons') return polygonProblem();
+    if (kind === 'perimeter and area') return perimeterArea();
+    if (kind === 'circles') return circleProblem();
+    if (kind === 'powers and roots') return powersRoots();
+    if (kind === 'laws of exponents') return exponentLaw();
+    if (kind === 'transformations') return transformationProblem();
     if (kind === 'data and statistics') {
       const mean = randomInt(8, 15);
       const values = [mean - 2, mean, mean + 3];
@@ -527,6 +708,9 @@ Answer: \\(9\\)`
       'missing factors': missingFactor,
       'multi-digit multiplication': multiDigitMultiplication,
       'foundation review': foundationReview,
+      'integer number lines': integerNumberLine,
+      'measurement conversions': measurementConversion,
+      'rates and averages': ratesAverages,
       'basic fractions': () => fractionPractice('basic fractions'),
       'fraction operations': () => fractionPractice('fraction operations'),
       'mixed numbers': () => fractionPractice('mixed numbers'),
@@ -538,12 +722,24 @@ Answer: \\(9\\)`
       'scientific notation': scientificNotation,
       'data and statistics': () => grade6Bridge('data and statistics'),
       ratios: () => grade6Bridge('ratios'),
+      proportions: proportionProblem,
       'two-step equations': () => grade6Bridge('two-step equations'),
+      'properties of equality': propertiesEquality,
       inequalities: () => grade6Bridge('inequalities'),
       'algebra basics': () => grade6Bridge('two-step equations'),
       'distributive property': distributiveProperty,
       'combine like terms': combineLikeTerms,
       'gcf factoring': gcfFactoring,
+      functions: functionRule,
+      'coordinate plane': coordinatePlane,
+      probability: probabilityProblem,
+      'lines and angles': linesAngles,
+      polygons: polygonProblem,
+      'perimeter and area': perimeterArea,
+      circles: circleProblem,
+      'powers and roots': powersRoots,
+      'laws of exponents': exponentLaw,
+      transformations: transformationProblem,
       slope: slopeProblem,
       'slope-intercept form': slopeInterceptForm,
       'scale factor': () => grade6Bridge('scale factor'),
@@ -774,16 +970,16 @@ Answer: \\(9\\)`
 
     if (path === '/api/tts-check') return json({ available: false });
     if (path === '/api/reset') return json({ success: true });
-    if (path === '/api/transcribe') return json({ error: 'Voice input needs the full Math Buddy server. Use typing on this GitHub version.' }, { status: 200 });
+    if (path === '/api/transcribe') return json({ error: 'Voice input needs the full Math Club server. Use typing on this GitHub version.' }, { status: 200 });
     if (path === '/api/tts') return textResponse('', { status: 404 });
     if (path === '/api/chat') {
       return json({
-        response: 'This GitHub version is for games and practice. The AI tutor, photo help, and voice features need the full Math Buddy server.',
+        response: 'This GitHub version is for Math Club games and practice. The live AI coach and voice features need the full Math Club server.',
         sessionId: body.sessionId || `static-${Date.now()}`
       });
     }
     if (path === '/api/analyze-homework') {
-      return json({ error: 'Photo homework help needs the full Math Buddy server. The games work here.' });
+      return json({ error: 'Photo help is not part of this Math Club page. The games work here.' });
     }
     if (path === '/api/game/progress') return json({ success: true, progress: progressResponse() });
     if (path === '/api/game/daily') return json({ alreadyCompleted: false });
@@ -821,6 +1017,6 @@ Answer: \\(9\\)`
       return json({ success: true });
     }
 
-    return json({ error: 'This feature needs the full Math Buddy server.' }, { status: 404 });
+    return json({ error: 'This feature needs the full Math Club server.' }, { status: 404 });
   };
 })();

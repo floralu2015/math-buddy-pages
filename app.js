@@ -26,6 +26,8 @@ const mascot = document.getElementById('mascot');
 const audioControlRow = document.getElementById('audio-control-row');
 const audioBtn = document.getElementById('audio-btn');
 const voiceToggle = document.getElementById('voice-toggle');
+const clubStartBtn = document.getElementById('club-start-btn');
+const clubQuizBtn = document.getElementById('club-quiz-btn');
 const homeTabs = document.querySelectorAll('[data-home-tab]');
 const homePanels = document.querySelectorAll('[data-home-panel]');
 
@@ -57,6 +59,23 @@ function switchHomeTab(tabName) {
 homeTabs.forEach(tab => {
   tab.addEventListener('click', () => switchHomeTab(tab.dataset.homeTab));
 });
+
+if (clubStartBtn) {
+  clubStartBtn.addEventListener('click', () => {
+    if (typeof GameModule !== 'undefined') {
+      GameModule.show();
+    }
+  });
+}
+
+if (clubQuizBtn) {
+  clubQuizBtn.addEventListener('click', () => {
+    if (typeof GameModule !== 'undefined') {
+      GameModule.show();
+      GameModule.showQuizPicker();
+    }
+  });
+}
 
 // Voice toggle functionality
 voiceToggle.addEventListener('click', () => {

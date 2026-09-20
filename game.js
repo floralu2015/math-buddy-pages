@@ -1,4 +1,4 @@
-// Math Buddy Game Module
+// Sarah's Math Club Game Module
 const GameModule = (() => {
   const CUSTOM_LEVELS = [
     {
@@ -37,20 +37,22 @@ const GameModule = (() => {
 
   const CUSTOM_SUBJECTS = [
     { id: 'factMix', name: 'Times Tables & Division', icon: '⚔️', topics: ['multiplication facts', 'division facts', 'missing factors'] },
-    { id: 'wholeNumberWords', name: 'Word Problems & Whole Numbers', icon: '🧠', topics: ['foundation review', 'multi-step problems', 'multi-digit multiplication'] },
+    { id: 'wholeNumberWords', name: 'Word Problems & Operations', icon: '🧠', topics: ['foundation review', 'multi-step problems', 'multi-digit multiplication'] },
     { id: 'fractions', name: 'Fractions & Mixed Numbers', icon: '🍕', topics: ['fraction operations', 'basic fractions', 'mixed numbers'] },
     { id: 'decimalsPercents', name: 'Decimals, Percents & Money', icon: '%', topics: ['decimals', 'percentages', 'percent change'] },
-    { id: 'integers', name: 'Integers & Number Lines', icon: '↔️', topics: ['integer operations'] },
-    { id: 'ratios', name: 'Ratios, Rates & Scale', icon: '📏', topics: ['ratios', 'scale factor'] },
-    { id: 'equations', name: 'Equations & Inequalities', icon: '⚖️', topics: ['two-step equations', 'inequalities'] },
+    { id: 'integers', name: 'Integers & Number Lines', icon: '↔️', topics: ['integer operations', 'integer number lines'] },
+    { id: 'measuresRates', name: 'Measures, Rates & Averages', icon: '⏱️', topics: ['rates and averages', 'measurement conversions', 'data and statistics'] },
+    { id: 'ratios', name: 'Ratios, Proportions & Scale', icon: '📏', topics: ['ratios', 'proportions', 'scale factor'] },
+    { id: 'equations', name: 'Equations & Inequalities', icon: '⚖️', topics: ['two-step equations', 'properties of equality', 'inequalities'] },
     { id: 'algebraEssentials', name: 'Distribute, Combine & Factor', icon: '🧩', topics: ['distributive property', 'combine like terms', 'gcf factoring'] },
-    { id: 'data', name: 'Data & Statistics', icon: '📊', topics: ['data and statistics'] },
-    { id: 'geometry', name: 'Geometry, Angles & Volume', icon: '📐', topics: ['angle relationships', 'surface area and volume', 'scale factor'] },
-    { id: 'exponentsRoots', name: 'Exponents, Roots & Scientific Notation', icon: '√', topics: ['scientific notation', 'integer operations'] },
+    { id: 'functions', name: 'Functions & Patterns', icon: '🔁', topics: ['functions', 'coordinate plane'] },
+    { id: 'data', name: 'Data, Statistics & Probability', icon: '📊', topics: ['data and statistics', 'probability'] },
+    { id: 'geometry', name: 'Lines, Angles & Polygons', icon: '📐', topics: ['lines and angles', 'polygons', 'angle relationships'] },
+    { id: 'measurementVolume', name: 'Area, Circles, Volume & Surface Area', icon: '📦', topics: ['perimeter and area', 'circles', 'surface area and volume'] },
+    { id: 'exponentsRoots', name: 'Powers, Roots & Scientific Notation', icon: '√', topics: ['powers and roots', 'scientific notation', 'laws of exponents'] },
     { id: 'linear', name: 'Slope & Linear Relationships', icon: '📈', topics: ['slope', 'slope-intercept form'] },
     { id: 'rightTriangles', name: 'Right Triangles & Pythagorean', icon: '△', topics: ['pythagorean theorem', 'scale factor'] },
-    { id: 'angleRelationships', name: 'Angle Relationships', icon: '∠', topics: ['angle relationships'] },
-    { id: 'measurementVolume', name: 'Area, Volume & Measurement', icon: '📦', topics: ['surface area and volume', 'scale factor'] }
+    { id: 'transformations', name: 'Coordinate Plane & Transformations', icon: '🧭', topics: ['coordinate plane', 'transformations'] }
   ];
 
   const CELEBRATION_LINES = [
@@ -99,20 +101,35 @@ const GameModule = (() => {
     percentages: 'Convert the percent to a friendly fraction or decimal.',
     'percent change': 'Find the change first, then divide by the original amount.',
     'integer operations': 'Picture the number line and track direction.',
+    'integer number lines': 'Compare positions on the number line. Farther right means greater.',
+    'measurement conversions': 'Write the conversion fact first, then multiply or divide.',
+    'rates and averages': 'A rate compares two units. An average is total divided by count.',
     ratios: 'Look for the scale factor between matching parts.',
+    proportions: 'Set equal ratios, then use cross products or the scale factor.',
     'two-step equations': 'Undo operations in reverse order: add/subtract first, then multiply/divide.',
+    'properties of equality': 'Whatever you do to one side, do to the other side.',
     inequalities: 'Solve like an equation, and flip the sign if you multiply or divide by a negative.',
     'distributive property': 'Multiply the outside number by every term inside the parentheses.',
     'combine like terms': 'Group matching variable terms, then group plain numbers.',
     'gcf factoring': 'Find the largest shared factor and pull it outside the parentheses.',
+    functions: 'A function rule turns every input into exactly one output.',
+    'coordinate plane': 'Move on x first, then y. Across before up or down.',
     'data and statistics': 'Write the total you need, then compare it with the total you already have.',
+    probability: 'Probability is favorable outcomes divided by total possible outcomes.',
     'scale factor': 'Corresponding sides use the same multiplier.',
+    'lines and angles': 'Look for straight lines, right angles, and matching angle relationships.',
+    polygons: 'Classify by sides, angles, and whether the sides match.',
     'angle relationships': 'Straight lines add to 180 degrees; full turns add to 360 degrees.',
+    'perimeter and area': 'Perimeter goes around. Area covers the inside.',
+    circles: 'Circumference uses 2πr or πd. Area uses πr².',
     'surface area and volume': 'Volume fills space, so multiply length, width, and height for a rectangular prism.',
+    'powers and roots': 'A power repeats multiplication. A root asks what factor was repeated.',
+    'laws of exponents': 'When multiplying same bases, add exponents. When dividing, subtract exponents.',
     'scientific notation': 'Move the decimal until the front number is between 1 and 10.',
     slope: 'Slope is change in y divided by change in x.',
     'slope-intercept form': 'Use y = mx + b. m is slope, b is the y-intercept.',
-    'pythagorean theorem': 'For right triangles, square both legs and add them to find the hypotenuse squared.'
+    'pythagorean theorem': 'For right triangles, square both legs and add them to find the hypotenuse squared.',
+    transformations: 'Translations slide, reflections flip, and rotations turn.'
   };
 
   // Game state
@@ -310,11 +327,11 @@ const GameModule = (() => {
       <!-- Game Selection Screen -->
       <div id="game-selection" class="game-selection-shell">
         <div class="game-selection-inner game-screen">
-        <button class="back-to-tutor" onclick="GameModule.hide()">← Back to Tutor</button>
+        <button class="back-to-tutor" onclick="GameModule.hide()">← Back to Math Club</button>
         <div class="game-hero">
-          <span class="game-hero-kicker">6th grade launch pad</span>
-          <h2>Train Your Math Brain</h2>
-          <p>Short rounds. Real thinking. Lots of reps on the facts and skills Sarah needs next.</p>
+          <span class="game-hero-kicker">Saxon Course 3 training floor</span>
+          <h2>Math Club Game Room</h2>
+          <p>Short rounds, bright feedback, and lots of practice on the facts and 6th grade bridge skills Sarah needs next.</p>
         </div>
 
         <div class="game-progress-bar">
@@ -331,11 +348,11 @@ const GameModule = (() => {
             <strong>Know facts cold</strong>
           </div>
           <div class="practice-lane">
-            <span class="lane-label">Foundation repair</span>
+            <span class="lane-label">Course 3 bridge</span>
             <strong>Fix shaky 5th grade skills</strong>
           </div>
           <div class="practice-lane">
-            <span class="lane-label">Bridge work</span>
+            <span class="lane-label">Club challenge</span>
             <strong>Think like a 6th grader</strong>
           </div>
         </div>
@@ -345,7 +362,7 @@ const GameModule = (() => {
           <span class="builder-entry-copy">
             <span class="builder-entry-kicker">Choose practice</span>
             <strong>Pick level + subject</strong>
-            <small>Make a custom round for exactly what Sarah needs today.</small>
+            <small>Make a custom Saxon-aligned round for exactly what Sarah needs today.</small>
           </span>
           <span class="builder-entry-arrow">→</span>
         </button>
@@ -366,7 +383,7 @@ const GameModule = (() => {
           <button class="game-mode-btn featured bridge" onclick="GameModule.startQuiz('grade6Bridge')">
             <span class="mode-icon">🌉</span>
             <span class="mode-title">6th Grade Bridge</span>
-            <span class="mode-desc">Equations, ratios, data, geometry</span>
+            <span class="mode-desc">Integers, ratios, data, geometry, equations</span>
           </button>
 
           <button class="game-mode-btn" onclick="GameModule.startGame('speed')">
@@ -396,13 +413,13 @@ const GameModule = (() => {
           <button class="game-mode-btn quiz-btn" onclick="GameModule.showQuizPicker()">
             <span class="mode-icon">📚</span>
             <span class="mode-title">Practice Quiz</span>
-            <span class="mode-desc">Topic decks for 5th repair and 6th prep</span>
+            <span class="mode-desc">Saxon Course 3 decks plus foundation repair</span>
           </button>
 
           <button class="game-mode-btn concept-btn" onclick="GameModule.showConceptPicker()">
             <span class="mode-icon">💡</span>
             <span class="mode-title">Learn Concepts</span>
-            <span class="mode-desc">Mini lessons for 5th and 6th grade skills</span>
+            <span class="mode-desc">Mini lessons for Course 3 skills</span>
           </button>
         </div>
 
@@ -819,7 +836,7 @@ const GameModule = (() => {
     const container = document.getElementById('quiz-topics');
     if (!container || quizTopics.length === 0) return;
 
-    const categoryOrder = ['Fluency', 'Foundations', '6th Grade Prep', 'Core Practice'];
+    const categoryOrder = ['Fluency', 'Foundations', 'Saxon Course 3', '6th Grade Prep', 'Core Practice'];
     const grouped = quizTopics.reduce((groups, topic) => {
       const category = topic.category || 'Core Practice';
       if (!groups[category]) groups[category] = [];
