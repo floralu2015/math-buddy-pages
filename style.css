@@ -16,9 +16,9 @@ html, body {
 body {
   font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
   background:
-    linear-gradient(145deg, rgba(255, 79, 123, 0.7) -35%, transparent 32%),
-    linear-gradient(225deg, rgba(34, 211, 197, 0.52) -20%, transparent 38%),
-    linear-gradient(130deg, #071a2b 0%, #103b50 40%, #322461 72%, #7a315f 115%);
+    linear-gradient(145deg, rgba(255, 92, 138, 0.52) -24%, transparent 42%),
+    linear-gradient(225deg, rgba(53, 205, 184, 0.5) -18%, transparent 46%),
+    linear-gradient(135deg, #dff7ff 0%, #eee8ff 46%, #ffe5f0 74%, #fff5cf 100%);
   min-height: 100vh;
   min-height: 100dvh;
   padding: 15px;
@@ -48,15 +48,15 @@ body {
 .shape {
   position: absolute;
   font-size: 3rem;
-  opacity: 0.15;
-  color: white;
+  opacity: 0.12;
+  color: #6957c7;
   animation: float 15s infinite ease-in-out;
 }
 
 .shape-soft {
   font-size: 2.45rem;
-  opacity: 0.1;
-  text-shadow: 0 6px 18px rgba(74, 33, 135, 0.16);
+  opacity: 0.09;
+  text-shadow: 0 6px 18px rgba(105, 87, 199, 0.14);
   filter: saturate(0.9);
 }
 
@@ -472,7 +472,7 @@ header h1 {
 .club-brand-lockup strong {
   display: block;
   font-family: 'Space Grotesk', sans-serif;
-  color: #f7fbff;
+  color: #29204f;
   font-size: 1.08rem;
   letter-spacing: 0;
 }
@@ -482,7 +482,7 @@ header h1 {
   align-items: center;
   gap: 6px;
   margin-top: 2px;
-  color: rgba(247, 251, 255, 0.7);
+  color: rgba(41, 32, 79, 0.68);
   font-size: 0.7rem;
   font-weight: 800;
 }
@@ -491,8 +491,8 @@ header h1 {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #22d3c5;
-  box-shadow: 0 0 12px #22d3c5;
+  background: #35cdb8;
+  box-shadow: 0 0 12px #35cdb8;
   animation: signal-pulse 1.8s ease-in-out infinite;
 }
 
@@ -502,8 +502,9 @@ header h1 {
   min-height: 40px;
   justify-content: center;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  background: rgba(7, 26, 43, 0.38);
+  border: 1px solid rgba(121, 103, 232, 0.32);
+  background: rgba(255, 255, 255, 0.66);
+  color: #392f75;
   backdrop-filter: blur(12px);
 }
 
@@ -526,12 +527,12 @@ header h1 {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(390px, 0.95fr);
   align-items: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.24);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.24);
+  border-top: 1px solid rgba(121, 103, 232, 0.28);
+  border-bottom: 1px solid rgba(121, 103, 232, 0.28);
   background:
-    linear-gradient(90deg, rgba(7, 26, 43, 0.98) 0%, rgba(7, 26, 43, 0.9) 47%, rgba(20, 43, 71, 0.55) 100%),
-    repeating-linear-gradient(90deg, transparent 0 58px, rgba(255, 255, 255, 0.035) 59px 60px),
-    repeating-linear-gradient(0deg, transparent 0 58px, rgba(255, 255, 255, 0.035) 59px 60px);
+    linear-gradient(90deg, rgba(255, 255, 255, 0.93) 0%, rgba(248, 250, 255, 0.88) 48%, rgba(238, 232, 255, 0.78) 100%),
+    repeating-linear-gradient(90deg, transparent 0 58px, rgba(121, 103, 232, 0.06) 59px 60px),
+    repeating-linear-gradient(0deg, transparent 0 58px, rgba(121, 103, 232, 0.06) 59px 60px);
 }
 
 .club-hero::before {
@@ -540,8 +541,8 @@ header h1 {
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(118deg, transparent 58%, rgba(34, 211, 197, 0.2) 58.2% 58.6%, transparent 58.8%),
-    linear-gradient(62deg, transparent 72%, rgba(255, 79, 123, 0.22) 72.2% 72.7%, transparent 72.9%);
+    linear-gradient(118deg, transparent 58%, rgba(53, 205, 184, 0.3) 58.2% 58.6%, transparent 58.8%),
+    linear-gradient(62deg, transparent 72%, rgba(255, 92, 138, 0.3) 72.2% 72.7%, transparent 72.9%);
   pointer-events: none;
 }
 
@@ -552,19 +553,19 @@ header h1 {
   z-index: -1;
   width: 68%;
   aspect-ratio: 1;
-  border: 1px solid rgba(255, 209, 102, 0.2);
+  border: 1px solid rgba(255, 215, 94, 0.55);
   border-radius: 50%;
   box-shadow:
-    0 0 0 52px rgba(139, 124, 255, 0.05),
-    0 0 0 104px rgba(34, 211, 197, 0.04),
-    0 0 110px rgba(255, 79, 123, 0.28);
+    0 0 0 52px rgba(121, 103, 232, 0.08),
+    0 0 0 104px rgba(53, 205, 184, 0.07),
+    0 0 110px rgba(255, 92, 138, 0.24);
 }
 
 .club-copy {
   z-index: 2;
   padding: clamp(36px, 6vw, 72px);
   padding-right: 18px;
-  color: #f7fbff;
+  color: #29204f;
   animation: club-launch-copy 0.75s cubic-bezier(0.2, 0.75, 0.25, 1) both;
 }
 
@@ -573,7 +574,8 @@ header h1 {
   align-items: center;
   width: fit-content;
   margin-bottom: 16px;
-  border: 1px solid rgba(255, 209, 102, 0.55);
+  border: 1px solid rgba(121, 103, 232, 0.38);
+  background: rgba(255, 255, 255, 0.58);
   border-radius: 6px;
   overflow: hidden;
   font-family: 'Space Grotesk', sans-serif;
@@ -583,31 +585,31 @@ header h1 {
 
 .mission-signal span {
   padding: 7px 9px;
-  background: #ffd166;
+  background: #ffd75e;
   color: #352400;
 }
 
 .mission-signal b {
   padding: 7px 10px;
-  color: #fff0b7;
+  color: #655999;
   font-weight: 600;
 }
 
 .club-copy h1 {
   max-width: 660px;
   margin: 0 0 20px;
-  color: #f7fbff;
+  color: #392f75;
   font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(3.15rem, 7.4vw, 6.7rem);
   font-weight: 700;
   line-height: 0.88;
   letter-spacing: 0;
-  text-shadow: 0 8px 36px rgba(7, 26, 43, 0.5);
+  text-shadow: 0 8px 34px rgba(121, 103, 232, 0.15);
 }
 
 .club-copy > p:not(.club-promise) {
   max-width: 610px;
-  color: rgba(247, 251, 255, 0.82);
+  color: rgba(41, 32, 79, 0.78);
   font-size: clamp(1rem, 1.45vw, 1.18rem);
   font-weight: 700;
   line-height: 1.55;
@@ -629,15 +631,15 @@ header h1 {
 }
 
 .club-start-btn {
-  background: #ffd166;
-  color: #17223b;
-  box-shadow: 0 12px 34px rgba(255, 209, 102, 0.2);
+  background: #ff5c8a;
+  color: white;
+  box-shadow: 0 12px 34px rgba(255, 92, 138, 0.28);
 }
 
 .club-secondary-btn {
-  border: 1px solid rgba(247, 251, 255, 0.42);
-  background: rgba(247, 251, 255, 0.08);
-  color: #f7fbff;
+  border: 1px solid rgba(121, 103, 232, 0.4);
+  background: rgba(255, 255, 255, 0.68);
+  color: #392f75;
   box-shadow: none;
   backdrop-filter: blur(8px);
 }
@@ -648,21 +650,21 @@ header h1 {
 }
 
 .club-secondary-btn:hover {
-  border-color: #22d3c5;
-  box-shadow: 0 0 0 3px rgba(34, 211, 197, 0.12);
+  border-color: #35cdb8;
+  box-shadow: 0 0 0 3px rgba(53, 205, 184, 0.16);
 }
 
 .club-promise {
   display: flex;
   gap: 8px;
   margin-top: 18px;
-  color: rgba(247, 251, 255, 0.62);
+  color: rgba(41, 32, 79, 0.62);
   font-size: 0.78rem;
   font-weight: 800;
 }
 
 .club-promise span {
-  color: #ff4f7b;
+  color: #ff5c8a;
 }
 
 .math-reactor {
@@ -681,7 +683,7 @@ header h1 {
   position: absolute;
   inset: 7%;
   border-radius: 50%;
-  background: conic-gradient(from 0deg, transparent 0 74%, rgba(34, 211, 197, 0.18) 80%, transparent 86% 100%);
+  background: conic-gradient(from 0deg, transparent 0 74%, rgba(53, 205, 184, 0.32) 80%, transparent 86% 100%);
   animation: reactor-scan 5s linear infinite;
 }
 
@@ -697,7 +699,7 @@ header h1 {
 .reactor-ring-outer {
   width: 88%;
   aspect-ratio: 1;
-  border: 2px dashed rgba(247, 251, 255, 0.46);
+  border: 2px dashed rgba(121, 103, 232, 0.52);
   animation: reactor-orbit 24s linear infinite;
 }
 
@@ -706,14 +708,14 @@ header h1 {
   position: absolute;
   inset: 9%;
   border-radius: 50%;
-  border: 1px solid rgba(139, 124, 255, 0.34);
+  border: 1px solid rgba(255, 92, 138, 0.34);
 }
 
 .reactor-ring-inner {
   width: 58%;
   aspect-ratio: 1;
-  border: 2px solid rgba(34, 211, 197, 0.52);
-  box-shadow: 0 0 24px rgba(34, 211, 197, 0.14), inset 0 0 24px rgba(34, 211, 197, 0.08);
+  border: 2px solid rgba(53, 205, 184, 0.66);
+  box-shadow: 0 0 24px rgba(53, 205, 184, 0.24), inset 0 0 24px rgba(53, 205, 184, 0.12);
   animation: reactor-orbit-reverse 17s linear infinite;
 }
 
@@ -726,11 +728,11 @@ header h1 {
   place-items: center;
   align-content: center;
   gap: 0;
-  border: 1px solid rgba(247, 251, 255, 0.7);
+  border: 1px solid rgba(121, 103, 232, 0.22);
   border-radius: 8px;
   background: #f7fbff;
   color: #161947;
-  box-shadow: 0 16px 34px rgba(7, 26, 43, 0.42), 0 0 22px rgba(255, 255, 255, 0.13);
+  box-shadow: 0 16px 34px rgba(105, 87, 199, 0.2), 0 0 22px rgba(255, 255, 255, 0.62);
 }
 
 .reactor-node b {
@@ -766,10 +768,10 @@ header h1 {
   transform: translateX(-50%);
 }
 
-.node-facts { border-bottom: 5px solid #ff4f7b; }
-.node-roots { border-bottom: 5px solid #ffd166; }
-.node-ratios { border-bottom: 5px solid #22d3c5; }
-.node-algebra { border-bottom: 5px solid #8b7cff; }
+.node-facts { border-bottom: 5px solid #ff5c8a; }
+.node-roots { border-bottom: 5px solid #ffd75e; }
+.node-ratios { border-bottom: 5px solid #35cdb8; }
+.node-algebra { border-bottom: 5px solid #7967e8; }
 
 .reactor-core {
   position: absolute;
@@ -782,13 +784,13 @@ header h1 {
   align-content: center;
   border: 2px solid rgba(255, 255, 255, 0.82);
   border-radius: 50%;
-  background: conic-gradient(from 30deg, #ff4f7b, #ffd166, #22d3c5, #8b7cff, #ff4f7b);
-  color: #071a2b;
+  background: conic-gradient(from 30deg, #ff5c8a, #ffd75e, #35cdb8, #7967e8, #ff5c8a);
+  color: #29204f;
   transform: translate(-50%, -50%) translateZ(34px);
   box-shadow:
-    0 0 0 14px rgba(247, 251, 255, 0.1),
-    0 0 60px rgba(34, 211, 197, 0.5),
-    0 0 100px rgba(255, 79, 123, 0.3);
+    0 0 0 14px rgba(255, 255, 255, 0.38),
+    0 0 60px rgba(53, 205, 184, 0.44),
+    0 0 100px rgba(255, 92, 138, 0.3);
   animation: reactor-heartbeat 2.8s ease-in-out infinite;
 }
 
@@ -812,13 +814,13 @@ header h1 {
 
 .reactor-core span,
 .reactor-core em {
-  color: #45516b;
+  color: #655999;
   font-size: clamp(0.52rem, 1vw, 0.68rem);
   font-weight: 700;
 }
 
 .reactor-core strong {
-  color: #101438;
+  color: #392f75;
   font-size: clamp(2.3rem, 5vw, 4rem);
   line-height: 0.85;
 }
@@ -829,18 +831,18 @@ header h1 {
   width: 38px;
   aspect-ratio: 1;
   place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.32);
+  border: 1px solid rgba(121, 103, 232, 0.32);
   border-radius: 50%;
-  background: rgba(7, 26, 43, 0.7);
-  color: #f7fbff;
+  background: rgba(255, 255, 255, 0.82);
+  color: #392f75;
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
   box-shadow: 0 0 18px rgba(139, 124, 255, 0.24);
 }
 
 .spark-one { left: 6%; top: 42%; }
-.spark-two { right: 4%; top: 31%; color: #ffd166; }
-.spark-three { right: 12%; bottom: 15%; color: #22d3c5; }
+.spark-two { right: 4%; top: 31%; color: #d99e00; }
+.spark-three { right: 12%; bottom: 15%; color: #149f8c; }
 
 .reactor-readout {
   position: absolute;
@@ -850,10 +852,10 @@ header h1 {
   align-items: center;
   gap: 7px;
   padding: 7px 10px;
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  border: 1px solid rgba(121, 103, 232, 0.28);
   border-radius: 6px;
-  background: rgba(7, 26, 43, 0.72);
-  color: rgba(247, 251, 255, 0.76);
+  background: rgba(255, 255, 255, 0.84);
+  color: rgba(41, 32, 79, 0.76);
   font-size: 0.68rem;
   font-weight: 800;
 }
@@ -862,23 +864,28 @@ header h1 {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #22d3c5;
-  box-shadow: 0 0 10px #22d3c5;
+  background: #35cdb8;
+  box-shadow: 0 0 10px #35cdb8;
 }
 
 .club-telemetry {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  border-bottom: 1px solid rgba(255, 255, 255, 0.24);
+  border-bottom: 1px solid rgba(121, 103, 232, 0.24);
   background: #f7fbff;
-  color: #071a2b;
+  color: #29204f;
 }
 
 .club-telemetry > div {
   min-width: 0;
   padding: 16px 20px;
-  border-right: 1px solid #cbdbe4;
+  border-right: 1px solid rgba(121, 103, 232, 0.18);
 }
+
+.club-telemetry > div:nth-child(1) { background: #eee8ff; }
+.club-telemetry > div:nth-child(2) { background: #dff9f5; }
+.club-telemetry > div:nth-child(3) { background: #ffe5ef; }
+.club-telemetry > div:nth-child(4) { background: #fff4c9; }
 
 .club-telemetry > div:last-child {
   border-right: 0;
@@ -898,7 +905,7 @@ header h1 {
 .club-telemetry strong {
   display: inline-block;
   margin: 2px 6px 0 0;
-  color: #101438;
+  color: #392f75;
   font-family: 'Space Grotesk', sans-serif;
   font-size: 1.65rem;
   line-height: 1;
@@ -923,12 +930,12 @@ header h1 {
   justify-content: space-between;
   gap: 24px;
   margin-bottom: 18px;
-  color: #f7fbff;
+  color: #29204f;
 }
 
 .mission-intro p {
   flex: none;
-  color: #ffd166;
+  color: #d92f68;
   font-family: 'Space Grotesk', sans-serif;
   font-size: 0.82rem;
   font-weight: 700;
@@ -957,7 +964,7 @@ header h1 {
   cursor: pointer;
   text-align: left;
   font-family: 'Nunito', sans-serif;
-  box-shadow: 0 18px 36px rgba(7, 26, 43, 0.24);
+  box-shadow: 0 18px 36px rgba(105, 87, 199, 0.18);
   transition: transform 0.22s ease, box-shadow 0.22s ease;
 }
 
@@ -977,7 +984,7 @@ header h1 {
 .club-track-card:hover,
 .club-track-card:focus-visible {
   transform: translateY(-6px);
-  box-shadow: 0 25px 48px rgba(7, 26, 43, 0.35);
+  box-shadow: 0 25px 48px rgba(105, 87, 199, 0.26);
 }
 
 .club-track-card:focus-visible {
@@ -985,9 +992,9 @@ header h1 {
   outline-offset: 3px;
 }
 
-.fact-track { background: #ff758f; color: #361122; }
-.bridge-track { background: #64d8cb; color: #063f44; }
-.explorer-track { background: #ffd166; color: #3f2a00; }
+.fact-track { background: #ff85a5; color: #4d1730; }
+.bridge-track { background: #73dfcf; color: #084b4b; }
+.explorer-track { background: #ffdc70; color: #493300; }
 
 .track-code {
   position: relative;
@@ -1178,7 +1185,7 @@ header h1 {
   }
 
   .club-telemetry > div:nth-child(-n + 2) {
-    border-bottom: 1px solid #cbdbe4;
+    border-bottom: 1px solid rgba(121, 103, 232, 0.18);
   }
 
   .mission-intro {
