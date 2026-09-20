@@ -44,7 +44,25 @@
     subtraction: { name: 'Subtraction', icon: '➖', description: 'Practice subtracting numbers', difficulty: 'easy', problems: 5, topics: ['subtraction'] },
     multiplication: { name: 'Multiplication', icon: '✖️', description: 'Build speed with multiplication facts', difficulty: 'medium', problems: 14, topics: ['multiplication facts', 'missing factors'] },
     multiplicationTables: { name: 'Times Table Arena', icon: '⚔️', description: '36 fast facts from 2x2 through 12x12', difficulty: 'medium', problems: 36, topics: ['multiplication facts', 'division facts', 'missing factors', 'multi-digit multiplication'], category: 'Fluency' },
+    multiplicationSprint: { name: 'Multiplication Sprint', icon: '⚡', description: 'Facts, missing factors, and smart fact strategies', difficulty: 'medium', problems: 16, topics: ['multiplication facts', 'missing factors'], category: 'Fluency' },
+    divisionDash: { name: 'Division Dash', icon: '➗', description: 'Build instant recall with related division facts', difficulty: 'medium', problems: 14, topics: ['division facts', 'missing factors'], category: 'Fluency' },
+    addSubtractRelay: { name: 'Add & Subtract Relay', icon: '🏃', description: 'Place-value accuracy with quick mental checks', difficulty: 'easy', problems: 14, topics: ['addition', 'subtraction'], category: 'Fluency' },
+    multiDigitPower: { name: 'Multi-Digit Power', icon: '💥', description: 'Partial products and larger multiplication', difficulty: 'hard', problems: 12, topics: ['multi-digit multiplication', 'multiplication facts'], category: 'Fluency' },
+    fractionFluency: { name: 'Fraction Fluency', icon: '🍕', description: 'Equivalent fractions, operations, and mixed numbers', difficulty: 'hard', problems: 12, topics: ['basic fractions', 'fraction operations', 'mixed numbers'], category: 'Fluency' },
+    decimalFluency: { name: 'Decimal Fluency', icon: '🔢', description: 'Fast, accurate decimal operations and place value', difficulty: 'medium', problems: 12, topics: ['decimals', 'percentages'], category: 'Fluency' },
+    integerFluency: { name: 'Integer Fluency', icon: '↔️', description: 'Signed numbers, comparisons, and number-line moves', difficulty: 'hard', problems: 12, topics: ['integer number lines', 'integer operations'], category: 'Fluency' },
+    operationMix: { name: 'Operation Mix-Up', icon: '🎛️', description: 'Choose the right operation under pressure', difficulty: 'hard', problems: 14, topics: ['foundation review', 'multi-step problems', 'division facts', 'multi-digit multiplication'], category: 'Fluency' },
+    mentalMathLab: { name: 'Mental Math Lab', icon: '🧠', description: 'Flexible strategies across whole numbers, fractions, and decimals', difficulty: 'hard', problems: 14, topics: ['addition', 'subtraction', 'multiplication facts', 'division facts', 'basic fractions', 'decimals'], category: 'Fluency' },
     fifthGradeTuneUp: { name: '5th Grade Tune-Up', icon: '🛠️', description: 'Repair weak spots before 6th grade', difficulty: 'hard', problems: 22, topics: ['foundation review', 'division facts', 'fraction operations', 'decimals', 'multi-step problems'], category: 'Foundations' },
+    placeValueFoundation: { name: 'Place Value Workshop', icon: '🔟', description: 'Whole-number and decimal place-value reasoning', difficulty: 'medium', problems: 12, topics: ['addition', 'subtraction', 'decimals', 'scientific notation'], category: 'Foundations' },
+    fourOperationsFoundation: { name: 'Four Operations', icon: '➕', description: 'Add, subtract, multiply, and divide with confidence', difficulty: 'medium', problems: 14, topics: ['addition', 'subtraction', 'multi-digit multiplication', 'division facts'], category: 'Foundations' },
+    fractionFoundation: { name: 'Fraction Foundations', icon: '🍰', description: 'Parts, equivalence, operations, and mixed numbers', difficulty: 'hard', problems: 14, topics: ['basic fractions', 'fraction operations', 'mixed numbers'], category: 'Foundations' },
+    decimalPercentFoundation: { name: 'Decimals & Percents', icon: '%', description: 'Connect place value, decimals, and percent benchmarks', difficulty: 'hard', problems: 12, topics: ['decimals', 'percentages', 'percent change'], category: 'Foundations' },
+    measurementFoundation: { name: 'Measurement Builder', icon: '📏', description: 'Convert units and reason about measured quantities', difficulty: 'medium', problems: 12, topics: ['measurement conversions', 'perimeter and area'], category: 'Foundations' },
+    geometryFoundation: { name: 'Geometry Foundations', icon: '📐', description: 'Perimeter, area, polygons, and angle basics', difficulty: 'hard', problems: 12, topics: ['perimeter and area', 'polygons', 'lines and angles'], category: 'Foundations' },
+    dataFoundation: { name: 'Data Detective', icon: '📊', description: 'Read data and understand averages and probability', difficulty: 'hard', problems: 12, topics: ['data and statistics', 'rates and averages', 'probability'], category: 'Foundations' },
+    orderOperationsFoundation: { name: 'Order of Operations', icon: '🧮', description: 'Solve multi-step expressions in the right order', difficulty: 'hard', problems: 12, topics: ['multi-step problems', 'foundation review', 'distributive property'], category: 'Foundations' },
+    problemSolvingFoundation: { name: 'Problem-Solving Toolkit', icon: '🧰', description: 'Translate words, choose operations, and check answers', difficulty: 'hard', problems: 14, topics: ['word problems', 'multi-step problems', 'rates and averages', 'perimeter and area'], category: 'Foundations' },
     grade6Bridge: { name: '6th Grade Bridge', icon: '🌉', description: 'Integers, equations, ratios, data, geometry, and thinking problems', difficulty: 'challenge', problems: 24, topics: ['grade 6 bridge', 'integer number lines', 'two-step equations', 'inequalities', 'ratios', 'data and statistics', 'scale factor', 'angle relationships', 'coordinate plane'], category: '6th Grade Prep' },
     division: { name: 'Division', icon: '➗', description: 'Practice dividing numbers', difficulty: 'medium', problems: 8, topics: ['division facts'] },
     fractions: { name: 'Fractions', icon: '🍕', description: 'Add, subtract & compare fractions', difficulty: 'hard', problems: 8, topics: ['fraction operations', 'basic fractions', 'mixed numbers'] },
@@ -69,8 +87,20 @@
     course3InequalityGraphing: { name: 'Inequality Graphing', icon: '≤', description: 'Number-line inequalities, integer comparisons, and coordinate-plane moves', difficulty: 'challenge', problems: 10, topics: ['inequalities', 'integer number lines', 'coordinate plane', 'transformations'], category: 'Saxon Course 3 Stretch' },
     course3CumulativeChallenge: { name: 'Course 3 Cumulative Challenge', icon: '🏁', description: 'A mixed Saxon-style review across algebra, ratios, geometry, data, and number sense', difficulty: 'challenge', problems: 16, topics: ['integer number lines', 'rates and averages', 'proportions', 'functions', 'circles', 'probability', 'powers and roots', 'transformations', 'two-step equations', 'surface area and volume'], category: 'Saxon Course 3 Stretch' },
     coordinateTransformations: { name: 'Coordinate Plane & Transformations', icon: '🧭', description: 'Ordered pairs, translations, reflections, and rotations', difficulty: 'challenge', problems: 9, topics: ['coordinate plane', 'transformations'], category: '6th Grade Prep' },
+    ratiosPercentsPrep: { name: 'Ratios, Rates & Percents', icon: '⚖️', description: 'Equivalent ratios, unit rates, proportions, and percent reasoning', difficulty: 'hard', problems: 12, topics: ['ratios', 'rates and averages', 'proportions', 'percentages', 'scale factor'], category: '6th Grade Prep' },
+    course3IntegerOperations: { name: 'Integers & Rational Numbers', icon: '➖', description: 'Signed operations, rational values, and number-line reasoning', difficulty: 'hard', problems: 12, topics: ['integer number lines', 'integer operations', 'basic fractions', 'decimals'], category: 'Saxon Course 3 Stretch' },
     mixedReview: { name: 'Mixed Review', icon: '🎲', description: 'Random mix of all topics', difficulty: 'medium', problems: 10, topics: null }
   };
+
+  function getQuizDifficultyMix(config) {
+    const mixes = {
+      easy: ['easy', 'medium', 'easy', 'hard'],
+      medium: ['easy', 'medium', 'medium', 'hard', 'challenge'],
+      hard: ['medium', 'hard', 'hard', 'challenge'],
+      challenge: ['medium', 'hard', 'challenge', 'challenge']
+    };
+    return config.difficultyMix || mixes[config.difficulty] || mixes.medium;
+  }
 
   const CONCEPTS = [
     { id: 'addition', name: 'Addition', icon: '➕', description: 'Combining numbers together', relatedQuiz: 'addition' },
@@ -130,6 +160,99 @@ Answer: \\(9\\)`
 
   function choice(items) {
     return items[Math.floor(Math.random() * items.length)];
+  }
+
+  const SOLUTION_GUIDE_GROUPS = [
+    {
+      topics: ['addition', 'subtraction', 'counting', 'foundation review', 'multi-step problems'],
+      method: 'Work by place value and complete one operation at a time in the correct order.',
+      metric: 'Each digit has a place value, and the final quantity must match the operation and the problem context.',
+      check: 'Estimate first, then use an inverse operation to verify the exact result.'
+    },
+    {
+      topics: ['multiplication', 'simple multiplication', 'multiplication facts', 'division', 'division facts', 'missing factors', 'multi-digit multiplication'],
+      method: 'Use equal groups and related facts; for larger products, split a factor into place-value parts.',
+      metric: 'Factors describe equal groups, the product is the total, and the quotient describes group size or group count.',
+      check: 'Use the related inverse fact: multiplication checks division, and division checks multiplication.'
+    },
+    {
+      topics: ['basic fractions', 'fraction operations', 'mixed numbers', 'complex fractions'],
+      method: 'Interpret the denominator first, then use equivalent fractions or convert forms before operating.',
+      metric: 'The denominator names equal-size parts; the numerator counts the selected parts.',
+      check: 'Estimate with 0, 1/2, and 1, or convert to a decimal to test reasonableness.'
+    },
+    {
+      topics: ['decimals', 'percentages', 'percent change', 'scientific notation'],
+      method: 'Use base-ten place value; line up decimal points and rewrite percents as decimals or fractions over 100.',
+      metric: 'Decimals show tenths and smaller base-ten units; percent means parts per 100; exponents track powers of ten.',
+      check: 'Compare with a whole-number or benchmark-percent estimate, then reverse the conversion.'
+    },
+    {
+      topics: ['integer number lines', 'integer operations'],
+      method: 'Use direction for the sign and distance from zero for the absolute value.',
+      metric: 'Signed numbers encode direction relative to zero; absolute value measures distance from zero.',
+      check: 'Picture the movement on a number line and confirm the sign and approximate size.'
+    },
+    {
+      topics: ['measurement conversions', 'rates and averages', 'ratios', 'proportions', 'scale factor'],
+      method: 'Write the units and the multiplicative relationship, then use a unit rate, scale factor, or equal ratios.',
+      metric: 'Units describe what is measured; rates compare unlike units; ratios and scale factors compare multiplicatively.',
+      check: 'Multiply back, convert back, or test a second pair of equivalent quantities.'
+    },
+    {
+      topics: ['algebra basics', 'two-step equations', 'properties of equality', 'inequalities', 'distributive property', 'combine like terms', 'gcf factoring', 'functions'],
+      method: 'Preserve equality while simplifying: distribute, combine like terms, then undo operations in reverse order.',
+      metric: 'A variable represents a value; an equation has equal sides; an inequality represents a range; a function maps inputs to outputs.',
+      check: 'Substitute the answer into the original statement and verify that it is true.'
+    },
+    {
+      topics: ['coordinate plane', 'transformations', 'slope', 'slope-intercept form'],
+      method: 'Track horizontal x before vertical y; use coordinate rules and change in y divided by change in x.',
+      metric: 'Coordinates measure position, while slope measures vertical change per one unit of horizontal change.',
+      check: 'Plot or substitute the result, then apply the inverse move when possible.'
+    },
+    {
+      topics: ['data and statistics', 'probability'],
+      method: 'Organize all outcomes or data values before computing the requested statistic or fraction.',
+      metric: 'Statistics describe center, frequency, or spread; probability is favorable outcomes divided by total outcomes.',
+      check: 'Recount the data and confirm probabilities stay between 0 and 1.'
+    },
+    {
+      topics: ['lines and angles', 'angle relationships', 'polygons', 'perimeter and area', 'circles', 'surface area and volume', 'pythagorean theorem'],
+      method: 'Identify the geometric property and formula before substituting measurements.',
+      metric: 'Angles use degrees, perimeter uses linear units, area and surface area use square units, and volume uses cubic units.',
+      check: 'Confirm the formula, dimensions, unit type, and whether the size is reasonable.'
+    },
+    {
+      topics: ['powers and roots', 'laws of exponents'],
+      method: 'Interpret powers as repeated multiplication and roots as the inverse question.',
+      metric: 'The base is the repeated factor and the exponent counts how many factors are used.',
+      check: 'Expand a small power or raise the root to its matching power.'
+    },
+    {
+      topics: ['word problems', 'grade 6 bridge'],
+      method: 'Name the unknown, translate each relationship into math, solve, then return to the story.',
+      metric: 'The answer represents a real quantity, so its units and size must fit the context.',
+      check: 'Substitute the result into the story and ask whether it answers the exact question.'
+    }
+  ];
+
+  function createSolutionGuide(problemData, difficulty, topic) {
+    const group = SOLUTION_GUIDE_GROUPS.find(item => item.topics.includes(topic)) || SOLUTION_GUIDE_GROUPS[0];
+    const worked = String(problemData.explanation || `The correct answer is ${problemData.answer}.`).replace(/\s+/g, ' ').trim();
+    return {
+      concept: String(topic || 'mixed math').replace(/\b\w/g, letter => letter.toUpperCase()),
+      difficulty,
+      method: group.method,
+      steps: [
+        `Identify the goal and the given values in this ${String(topic || 'math')} problem.`,
+        group.method,
+        worked,
+        `State the result clearly: ${problemData.answer}.`
+      ],
+      metric: group.metric,
+      check: group.check
+    };
   }
 
   function normalizeAnswer(answer) {
@@ -757,7 +880,12 @@ Answer: \\(9\\)`
       const b = randomInt(6, 80);
       generated = problem(`What is ${a} + ${b}?`, `${a} + ${b}`, a + b, 'Add ones, then tens.', `${a} + ${b} = ${a + b}.`);
     }
-    return { ...generated, difficulty, topic: selectedTopic };
+    return {
+      ...generated,
+      difficulty,
+      topic: selectedTopic,
+      solutionGuide: createSolutionGuide(generated, difficulty, selectedTopic)
+    };
   }
 
   function loadProgress() {
@@ -815,6 +943,7 @@ Answer: \\(9\\)`
     let topicPool = null;
     let topic = null;
     let quizName = null;
+    let difficultyMix = null;
 
     if (LEGACY_MODE_CONFIGS[body.gameType]) {
       const modeConfig = LEGACY_MODE_CONFIGS[body.gameType];
@@ -824,7 +953,8 @@ Answer: \\(9\\)`
     }
     if (body.gameType === 'quiz' && QUIZ_TOPICS[body.quizTopic]) {
       const quiz = QUIZ_TOPICS[body.quizTopic];
-      difficulty = quiz.difficulty;
+      difficultyMix = getQuizDifficultyMix(quiz);
+      difficulty = difficultyMix[0];
       maxProblems = quiz.problems;
       topicPool = quiz.topics;
       quizName = quiz.name;
@@ -845,6 +975,7 @@ Answer: \\(9\\)`
       maxProblems,
       topic,
       topicPool,
+      difficultyMix,
       quizName,
       currentProblem: firstProblem,
       problemNumber: 1,
@@ -883,6 +1014,7 @@ Answer: \\(9\\)`
       correct: last.correct,
       correctAnswer: last.correctAnswer,
       explanation: last.explanation,
+      solutionGuide: game.currentProblem?.solutionGuide || createSolutionGuide(game.currentProblem, game.currentProblem?.difficulty, game.currentProblem?.topic),
       xpEarned: game.score,
       score: game.score,
       streak: game.currentStreak,
@@ -932,6 +1064,10 @@ Answer: \\(9\\)`
       game.difficulty = difficulties[Math.min(currentIndex + 1, difficulties.length - 1)];
     }
 
+    if (game.gameType === 'quiz' && game.difficultyMix?.length) {
+      game.difficulty = game.difficultyMix[game.problemNumber % game.difficultyMix.length];
+    }
+
     if (game.topicPool?.length) {
       game.topic = choice(game.topicPool);
     }
@@ -944,6 +1080,7 @@ Answer: \\(9\\)`
       correct,
       correctAnswer: current.answer,
       explanation: current.explanation,
+      solutionGuide: current.solutionGuide || createSolutionGuide(current, current.difficulty, current.topic),
       xpEarned,
       score: game.score,
       streak: game.currentStreak,
@@ -995,6 +1132,7 @@ Answer: \\(9\\)`
           icon: config.icon,
           description: config.description,
           difficulty: config.difficulty,
+          difficultyMix: getQuizDifficultyMix(config),
           problemCount: config.problems,
           category: config.category || 'Core Practice'
         }))

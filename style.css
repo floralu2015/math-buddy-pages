@@ -2363,6 +2363,214 @@ header h1 {
   line-height: 1.35;
 }
 
+.solution-guide-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 10px 0;
+}
+
+.solution-guide-meta span {
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: #223843;
+  color: #fff8df;
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.solution-guide-meta span + span {
+  background: #ffe28a;
+  color: #664500;
+}
+
+.solution-method {
+  margin: 8px 0;
+  color: #223843;
+  font-size: 0.9rem;
+  font-weight: 750;
+  line-height: 1.45;
+}
+
+.solution-insights {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.solution-insights p {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #f2f7ff;
+  color: #315064;
+  font-size: 0.84rem;
+  font-weight: 750;
+  line-height: 1.4;
+}
+
+.solution-insights p + p {
+  background: #eefbea;
+  color: #315b38;
+}
+
+.answer-sheet {
+  margin: 18px 0;
+  padding: 18px;
+  border: 3px solid #223843;
+  border-radius: 16px;
+  background: #fffdf6;
+  text-align: left;
+}
+
+.answer-sheet-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.answer-sheet-kicker {
+  display: block;
+  margin-bottom: 3px;
+  color: #cf4f36;
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+.answer-sheet-heading h3 {
+  margin: 0;
+  color: #223843;
+  font-size: 1.3rem;
+}
+
+.answer-sheet-count {
+  flex: none;
+  color: #46616e;
+  font-size: 0.86rem;
+  font-weight: 900;
+}
+
+.answer-sheet-list {
+  display: grid;
+  gap: 10px;
+}
+
+.answer-sheet-item {
+  overflow: hidden;
+  border: 2px solid #d8e1e6;
+  border-radius: 11px;
+  background: white;
+}
+
+.answer-sheet-item.is-correct {
+  border-color: #9bd4a6;
+}
+
+.answer-sheet-item.is-incorrect {
+  border-color: #f0ad93;
+}
+
+.answer-sheet-item summary {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 14px;
+  cursor: pointer;
+  list-style: none;
+  color: #223843;
+}
+
+.answer-sheet-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.answer-status {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border-radius: 50%;
+  background: #daf5df;
+  color: #24743a;
+  font-weight: 1000;
+}
+
+.is-incorrect .answer-status {
+  background: #ffe2d6;
+  color: #b13e23;
+}
+
+.answer-question {
+  min-width: 0;
+  font-size: 0.9rem;
+  font-weight: 750;
+  line-height: 1.35;
+}
+
+.answer-level {
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #edf3f7;
+  color: #526875;
+  font-size: 0.7rem;
+  font-weight: 900;
+}
+
+.answer-sheet-body {
+  padding: 0 14px 14px 53px;
+}
+
+.answer-comparison {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.answer-comparison p {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin: 0;
+  padding: 9px 11px;
+  border-radius: 9px;
+  background: #f4f6f8;
+  color: #223843;
+}
+
+.answer-comparison span {
+  color: #6b7b84;
+  font-size: 0.68rem;
+  font-weight: 900;
+}
+
+@media (max-width: 600px) {
+  .solution-insights,
+  .answer-comparison {
+    grid-template-columns: 1fr;
+  }
+
+  .answer-sheet {
+    padding: 12px;
+  }
+
+  .answer-sheet-item summary {
+    grid-template-columns: 28px minmax(0, 1fr);
+  }
+
+  .answer-level {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .answer-sheet-body {
+    padding: 0 10px 12px;
+  }
+}
+
 .encouragement-pop {
   position: fixed;
   z-index: 1000;
@@ -4285,6 +4493,26 @@ header h1 {
 .quiz-topic-btn.fact-heavy {
   background: linear-gradient(135deg, #fff1b8 0%, #ffd166 100%);
   border-color: #f39c12;
+}
+
+.quiz-topic-btn[data-category="Foundations"] {
+  background: linear-gradient(135deg, #fff7df 0%, #ffedbc 100%);
+  border-color: #e7b84c;
+}
+
+.quiz-topic-btn[data-category="6th Grade Prep"] {
+  background: linear-gradient(135deg, #e7fbff 0%, #cceef6 100%);
+  border-color: #3da9bd;
+}
+
+.quiz-topic-btn[data-category="Saxon Course 3 Stretch"] {
+  background: linear-gradient(135deg, #f1ebff 0%, #ded1ff 100%);
+  border-color: #8067c8;
+}
+
+.quiz-topic-btn[data-category="Core Practice"] {
+  background: linear-gradient(135deg, #f5fff0 0%, #dcf4d2 100%);
+  border-color: #68a956;
 }
 
 .topic-icon {

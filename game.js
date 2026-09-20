@@ -293,15 +293,21 @@ const GameModule = (() => {
     const topic = currentGame?.currentTopic || '';
     const topicTip = TOPIC_TIPS[topic] || 'Write one clean step, check it, then move to the next step.';
     const explanation = data.explanation || 'Review the operation, then compare your work with the correct answer.';
+    const guide = data.solutionGuide || {
+      concept: formatTopicLabel(topic || 'mixed math'),
+      difficulty: currentGame?.currentProblem?.difficulty || 'practice',
+      method: topicTip,
+      steps: explanation.split(/(?:;\s+|\.\s+)/).map(step => step.trim()).filter(Boolean),
+      metric: 'The quantities and units show what the answer means in this problem.',
+      check: 'Estimate, then use an inverse operation or substitution to verify the answer.'
+    };
     const title = data.correct ? 'Why it works' : 'Learn from this one';
     const answerLine = data.correct
       ? `Your answer ${submittedAnswer || data.correctAnswer} fits the pattern.`
       : `Correct answer: ${data.correctAnswer}. Your try: ${submittedAnswer || 'blank'}.`;
-    const steps = explanation
-      .split(/(?:;\s+|\.\s+)/)
-      .map(step => step.trim())
-      .filter(Boolean)
-      .slice(0, 4);
+    const steps = Array.isArray(guide.steps) && guide.steps.length
+      ? guide.steps
+      : [explanation];
 
     return `
       <div class="learning-card">
@@ -310,12 +316,26 @@ const GameModule = (() => {
           <strong>${title}</strong>
         </div>
         <p class="answer-line">${escapeHtml(answerLine)}</p>
+        <div class="solution-guide-meta">
+          <span>${escapeHtml(guide.concept || formatTopicLabel(topic))}</span>
+          <span>${escapeHtml(formatDifficultyLabel(guide.difficulty))}</span>
+        </div>
+        <p class="solution-method"><strong>Method:</strong> ${escapeHtml(guide.method || topicTip)}</p>
         <ol class="explanation-steps">
           ${steps.map(step => `<li>${escapeHtml(step)}.</li>`).join('')}
         </ol>
-        <p class="topic-tip"><strong>Next time:</strong> ${escapeHtml(topicTip)}</p>
+        <div class="solution-insights">
+          <p><strong>What the numbers mean:</strong> ${escapeHtml(guide.metric)}</p>
+          <p><strong>How to check:</strong> ${escapeHtml(guide.check)}</p>
+        </div>
+        <p class="topic-tip"><strong>Remember:</strong> ${escapeHtml(topicTip)}</p>
       </div>
     `;
+  }
+
+  function formatDifficultyLabel(difficulty = '') {
+    const labels = { easy: 'Warm-up', medium: 'On-level', hard: 'Stretch', challenge: 'Challenge' };
+    return labels[difficulty] || formatTopicLabel(difficulty || 'Practice');
   }
 
   // Create game UI elements
@@ -591,6 +611,17 @@ const GameModule = (() => {
 
         <div id="practice-prescription" class="practice-prescription"></div>
 
+        <section id="answer-sheet" class="answer-sheet hidden">
+          <div class="answer-sheet-heading">
+            <div>
+              <span class="answer-sheet-kicker">Learn from every round</span>
+              <h3>Detailed answer sheet</h3>
+            </div>
+            <span id="answer-sheet-count" class="answer-sheet-count"></span>
+          </div>
+          <div id="answer-sheet-list" class="answer-sheet-list"></div>
+        </section>
+
         <div id="level-up-display" class="level-up-display hidden">
           <span class="level-up-text">🎊 LEVEL UP! 🎊</span>
           <span id="new-level-name" class="new-level-name"></span>
@@ -854,11 +885,11 @@ const GameModule = (() => {
           </div>
           <div class="topic-group-grid">
             ${grouped[category].map(topic => `
-              <button class="quiz-topic-btn ${topic.category === 'Fluency' ? 'fact-heavy' : ''}" onclick="GameModule.startQuiz('${topic.id}')">
+              <button class="quiz-topic-btn ${topic.category === 'Fluency' ? 'fact-heavy' : ''}" data-category="${escapeHtml(category)}" onclick="GameModule.startQuiz('${topic.id}')">
                 <span class="topic-icon">${topic.icon}</span>
                 <span class="topic-name">${topic.name}</span>
                 <span class="topic-desc">${topic.description}</span>
-                <span class="topic-info">${topic.problemCount} problems • ${topic.difficulty}</span>
+                <span class="topic-info">${topic.problemCount} problems • mixed levels</span>
               </button>
             `).join('')}
           </div>
@@ -1163,6 +1194,8 @@ const GameModule = (() => {
         streak: 0,
         currentHint: data.problem?.hint || null,
         currentTopic: data.problem?.topic || null,
+        currentProblem: data.problem || null,
+        answerHistory: [],
         pendingProblem: null
       };
 
@@ -1255,6 +1288,7 @@ const GameModule = (() => {
     const problemCard = document.querySelector('.problem-container');
 
     problemText.textContent = problem.text;
+    currentGame.currentProblem = problem;
     currentGame.currentHint = problem.hint || null;
     currentGame.currentTopic = problem.topic || null;
 
@@ -1348,6 +1382,15 @@ const GameModule = (() => {
         submitBtn.textContent = 'Submit ✓';
         return;
       }
+
+      currentGame.answerHistory.push({
+        problem: { ...currentGame.currentProblem },
+        submittedAnswer: answer,
+        correct: Boolean(data.correct),
+        correctAnswer: data.correctAnswer,
+        explanation: data.explanation,
+        solutionGuide: data.solutionGuide
+      });
 
       // Show feedback
       showFeedback(data, answer);
@@ -1490,7 +1533,7 @@ const GameModule = (() => {
   function showResults(data) {
     stopTimer();
     clearTimeout(stuckTimer);
-    currentGame = null;
+    const answerHistory = currentGame?.answerHistory || [];
     isSubmitting = false;
     playSound((data.stats?.accuracy || 0) >= 70 ? 'streak' : 'popup');
 
@@ -1569,8 +1612,62 @@ const GameModule = (() => {
       }
     }
 
+    renderAnswerSheet(answerHistory);
+    currentGame = null;
+
     // Refresh progress after short delay to ensure DB has updated
     setTimeout(() => loadProgress(), 500);
+  }
+
+  function renderAnswerSheet(history) {
+    const sheet = document.getElementById('answer-sheet');
+    const list = document.getElementById('answer-sheet-list');
+    const count = document.getElementById('answer-sheet-count');
+    if (!sheet || !list || !count) return;
+
+    if (!history.length) {
+      sheet.classList.add('hidden');
+      list.innerHTML = '';
+      return;
+    }
+
+    const correctCount = history.filter(item => item.correct).length;
+    count.textContent = `${correctCount} of ${history.length} correct`;
+    sheet.classList.remove('hidden');
+    list.innerHTML = history.map((item, index) => {
+      const guide = item.solutionGuide || {};
+      const steps = Array.isArray(guide.steps) && guide.steps.length
+        ? guide.steps
+        : [item.explanation || `The correct answer is ${item.correctAnswer}.`];
+      const topic = item.problem?.topic || 'mixed math';
+      return `
+        <details class="answer-sheet-item ${item.correct ? 'is-correct' : 'is-incorrect'}" ${item.correct ? '' : 'open'}>
+          <summary>
+            <span class="answer-status" aria-hidden="true">${item.correct ? '✓' : '↺'}</span>
+            <span class="answer-question"><strong>${index + 1}.</strong> ${escapeHtml(item.problem?.text || 'Practice problem')}</span>
+            <span class="answer-level">${escapeHtml(formatDifficultyLabel(item.problem?.difficulty))}</span>
+          </summary>
+          <div class="answer-sheet-body">
+            <div class="answer-comparison">
+              <p><span>Your answer</span><strong>${escapeHtml(item.submittedAnswer || 'No answer')}</strong></p>
+              <p><span>Correct answer</span><strong>${escapeHtml(item.correctAnswer)}</strong></p>
+            </div>
+            <div class="solution-guide-meta">
+              <span>${escapeHtml(guide.concept || formatTopicLabel(topic))}</span>
+              <span>${escapeHtml(formatDifficultyLabel(guide.difficulty || item.problem?.difficulty))}</span>
+            </div>
+            <p class="solution-method"><strong>Method:</strong> ${escapeHtml(guide.method || TOPIC_TIPS[topic] || 'Choose the matching operation and solve one step at a time.')}</p>
+            <ol class="explanation-steps">
+              ${steps.map(step => `<li>${escapeHtml(step)}.</li>`).join('')}
+            </ol>
+            <div class="solution-insights">
+              <p><strong>What the numbers mean:</strong> ${escapeHtml(guide.metric || 'The quantities and units describe the requested result.')}</p>
+              <p><strong>How to check:</strong> ${escapeHtml(guide.check || 'Estimate and use an inverse operation or substitution.')}</p>
+            </div>
+          </div>
+        </details>
+      `;
+    }).join('');
   }
 
   // Play again (same game type)
