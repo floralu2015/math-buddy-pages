@@ -26,6 +26,14 @@ const GameModule = (() => {
       description: 'Prepare for next semester'
     },
     {
+      id: 'saxon3',
+      name: 'Saxon Course 3',
+      shortName: 'Saxon 3',
+      difficulty: 'challenge',
+      problemCount: 16,
+      description: 'Full-course cumulative'
+    },
+    {
       id: 'stretch',
       name: 'Brain stretch',
       shortName: 'Stretch',
@@ -52,7 +60,8 @@ const GameModule = (() => {
     { id: 'exponentsRoots', name: 'Powers, Roots & Scientific Notation', icon: '√', topics: ['powers and roots', 'scientific notation', 'laws of exponents'] },
     { id: 'linear', name: 'Slope & Linear Relationships', icon: '📈', topics: ['slope', 'slope-intercept form'] },
     { id: 'rightTriangles', name: 'Right Triangles & Pythagorean', icon: '△', topics: ['pythagorean theorem', 'scale factor'] },
-    { id: 'transformations', name: 'Coordinate Plane & Transformations', icon: '🧭', topics: ['coordinate plane', 'transformations'] }
+    { id: 'transformations', name: 'Coordinate Plane & Transformations', icon: '🧭', topics: ['coordinate plane', 'transformations'] },
+    { id: 'saxonCourse3', name: 'Saxon Course 3 Mixed Review', icon: '🏁', topics: ['integer number lines', 'integer operations', 'fraction operations', 'mixed numbers', 'decimals', 'percentages', 'rates and averages', 'ratios', 'proportions', 'two-step equations', 'properties of equality', 'inequalities', 'distributive property', 'combine like terms', 'functions', 'probability', 'data and statistics', 'lines and angles', 'circles', 'surface area and volume', 'powers and roots', 'transformations'] }
   ];
 
   const CELEBRATION_LINES = [
@@ -155,7 +164,7 @@ const GameModule = (() => {
 
   // DOM elements (will be set after DOM loads)
   let gameContainer, gameSelection, gamePlay, gameResults, customPractice, quizPicker, conceptPicker, conceptDisplay;
-  let answerInput;
+  let answerInput, answerChoices;
 
   // Initialize the game module
   function init() {
@@ -222,6 +231,7 @@ const GameModule = (() => {
       correct: [[523, 0, 0.08], [659, 0.08, 0.08], [784, 0.16, 0.14]],
       streak: [[659, 0, 0.07], [784, 0.07, 0.07], [988, 0.14, 0.18]],
       wrong: [[196, 0, 0.1, 'triangle', 0.035], [164, 0.11, 0.16, 'triangle', 0.025]],
+      select: [[392, 0, 0.055], [494, 0.045, 0.075]],
       hint: [[440, 0, 0.07], [554, 0.08, 0.12]],
       popup: [[330, 0, 0.08], [494, 0.08, 0.14]]
     };
@@ -477,7 +487,7 @@ const GameModule = (() => {
             <span class="step-number">1</span>
             <div>
               <h3>Choose level</h3>
-              <p>Warm up, repair 5th grade, or push into 6th grade.</p>
+              <p>Warm up, repair foundations, prepare for 6th grade, or follow Saxon Course 3.</p>
             </div>
           </div>
           <div id="custom-level-options" class="custom-option-row"></div>
@@ -488,7 +498,7 @@ const GameModule = (() => {
             <span class="step-number">2</span>
             <div>
               <h3>Choose subject</h3>
-              <p>Fact fluency is first, but every bridge skill is available.</p>
+              <p>Choose a focused skill or a cumulative Saxon Course 3 review.</p>
             </div>
           </div>
           <div id="custom-subject-options" class="custom-subject-grid"></div>
@@ -554,6 +564,7 @@ const GameModule = (() => {
 
         <div class="answer-section">
           <input type="text" id="game-answer" class="game-answer-input" placeholder="Type your answer..." autocomplete="off">
+          <div id="answer-choices" class="answer-choices hidden" role="radiogroup" aria-label="Choose one answer"></div>
           <div class="game-buttons">
             <button id="submit-answer-btn" class="game-btn primary" onclick="GameModule.submitAnswer()">
               Submit ✓
@@ -657,6 +668,7 @@ const GameModule = (() => {
     conceptPicker = document.getElementById('concept-picker');
     conceptDisplay = document.getElementById('concept-display');
     answerInput = document.getElementById('game-answer');
+    answerChoices = document.getElementById('answer-choices');
 
     // Load quiz topics and concepts
     renderCustomPracticeControls();
@@ -674,6 +686,12 @@ const GameModule = (() => {
           submitAnswer();
         }
       }
+    });
+
+    answerChoices.addEventListener('click', event => {
+      const choiceButton = event.target.closest('.answer-choice[data-choice-index]');
+      if (!choiceButton || choiceButton.disabled || isSubmitting) return;
+      selectAnswerChoice(Number(choiceButton.dataset.choiceIndex));
     });
 
     customPractice.addEventListener('click', (event) => {
@@ -1240,16 +1258,74 @@ const GameModule = (() => {
     const submitBtn = document.getElementById('submit-answer-btn');
     const nextBtn = document.getElementById('next-btn');
     const hintBtn = document.getElementById('hint-btn');
+    const choices = currentGame?.currentProblem?.choices;
+    const usesChoices = Array.isArray(choices) && choices.length === 4;
 
     submitBtn.classList.remove('hidden');
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Submit ✓';
+    submitBtn.disabled = usesChoices;
+    submitBtn.textContent = usesChoices ? 'Lock in answer' : 'Submit ✓';
     nextBtn.classList.add('hidden');
     hintBtn.disabled = false;
     answerInput.disabled = false;
     answerInput.value = '';
-    answerInput.focus();
+    answerInput.classList.toggle('hidden', usesChoices);
+    answerChoices.classList.toggle('hidden', !usesChoices);
+    renderAnswerChoices(usesChoices ? choices : []);
+    if (usesChoices) {
+      answerChoices.querySelector('.answer-choice')?.focus();
+    } else {
+      answerInput.focus();
+    }
     isSubmitting = false;
+  }
+
+  function renderAnswerChoices(choices) {
+    answerChoices.innerHTML = choices.map((choice, index) => `
+      <button
+        type="button"
+        class="answer-choice"
+        data-choice-index="${index}"
+        role="radio"
+        aria-checked="false"
+      >
+        <span class="answer-choice-letter" aria-hidden="true">${escapeHtml(choice.label)}</span>
+        <span class="answer-choice-value">${escapeHtml(choice.value)}</span>
+      </button>
+    `).join('');
+  }
+
+  function selectAnswerChoice(index) {
+    const choices = currentGame?.currentProblem?.choices;
+    const choice = Array.isArray(choices) ? choices[index] : null;
+    if (!choice) return;
+
+    answerInput.value = choice.value;
+    answerChoices.querySelectorAll('.answer-choice').forEach((button, buttonIndex) => {
+      const selected = buttonIndex === index;
+      button.classList.toggle('selected', selected);
+      button.setAttribute('aria-checked', String(selected));
+    });
+    document.getElementById('submit-answer-btn').disabled = false;
+    playSound('select');
+  }
+
+  function setAnswerChoicesDisabled(disabled) {
+    answerChoices.querySelectorAll('.answer-choice').forEach(button => {
+      button.disabled = disabled;
+    });
+  }
+
+  function showAnswerChoiceResult(data) {
+    if (answerChoices.classList.contains('hidden')) return;
+    const equivalent = window.QuizChoices?.equivalent || ((left, right) => String(left).trim() === String(right).trim());
+    answerChoices.querySelectorAll('.answer-choice').forEach(button => {
+      const choice = currentGame.currentProblem.choices[Number(button.dataset.choiceIndex)];
+      const isCorrectChoice = equivalent(choice.value, data.correctAnswer);
+      const wasSelected = button.classList.contains('selected');
+      button.classList.toggle('correct-answer', isCorrectChoice);
+      button.classList.toggle('wrong-answer', wasSelected && !data.correct);
+      button.disabled = true;
+    });
   }
 
   function normalizeMathPrompt(value = '') {
@@ -1348,7 +1424,9 @@ const GameModule = (() => {
 
     const answer = answerInput.value.trim();
     if (!answer) {
-      answerInput.focus();
+      const firstChoice = answerChoices.querySelector('.answer-choice');
+      if (firstChoice && !answerChoices.classList.contains('hidden')) firstChoice.focus();
+      else answerInput.focus();
       return;
     }
 
@@ -1357,6 +1435,7 @@ const GameModule = (() => {
 
     // Disable input and submit button while processing
     answerInput.disabled = true;
+    setAnswerChoicesDisabled(true);
     const submitBtn = document.getElementById('submit-answer-btn');
     submitBtn.disabled = true;
     submitBtn.textContent = '...';
@@ -1378,6 +1457,7 @@ const GameModule = (() => {
         console.error('Answer error:', data.error);
         isSubmitting = false;
         answerInput.disabled = false;
+        setAnswerChoicesDisabled(false);
         submitBtn.disabled = false;
         submitBtn.textContent = 'Submit ✓';
         return;
@@ -1391,6 +1471,8 @@ const GameModule = (() => {
         explanation: data.explanation,
         solutionGuide: data.solutionGuide
       });
+
+      showAnswerChoiceResult(data);
 
       // Show feedback
       showFeedback(data, answer);
@@ -1415,6 +1497,7 @@ const GameModule = (() => {
       console.error('Error submitting answer:', error);
       isSubmitting = false;
       answerInput.disabled = false;
+      setAnswerChoicesDisabled(false);
       submitBtn.disabled = false;
       submitBtn.textContent = 'Submit ✓';
     }

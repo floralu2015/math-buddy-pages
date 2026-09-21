@@ -924,7 +924,11 @@ Answer: \\(9\\)`
     };
   }
 
-  function formatProblem(problemData, number, total) {
+  function usesAnswerChoices(gameType) {
+    return gameType === 'quiz' || gameType === 'custom';
+  }
+
+  function formatProblem(problemData, number, total, gameType, choiceIndex = 0) {
     return {
       number,
       total: total === 999 ? null : total,
@@ -932,7 +936,10 @@ Answer: \\(9\\)`
       latex: problemData.problemLatex,
       difficulty: problemData.difficulty,
       hint: problemData.hint,
-      topic: problemData.topic
+      topic: problemData.topic,
+      choices: usesAnswerChoices(gameType)
+        ? window.QuizChoices.createChoices(problemData, choiceIndex)
+        : null
     };
   }
 
@@ -968,6 +975,7 @@ Answer: \\(9\\)`
 
     if (topicPool?.length) topic = choice(topicPool);
     const firstProblem = generateProblem(difficulty, topic);
+    const choiceStartIndex = Math.floor(Math.random() * 4);
     activeGames.set(gameId, {
       gameId,
       gameType: body.gameType,
@@ -976,6 +984,7 @@ Answer: \\(9\\)`
       topic,
       topicPool,
       difficultyMix,
+      choiceStartIndex,
       quizName,
       currentProblem: firstProblem,
       problemNumber: 1,
@@ -993,7 +1002,7 @@ Answer: \\(9\\)`
       gameType: body.gameType,
       quizTopic: body.quizTopic || null,
       quizName,
-      problem: formatProblem(firstProblem, 1, maxProblems),
+      problem: formatProblem(firstProblem, 1, maxProblems, body.gameType, choiceStartIndex),
       score: 0,
       streak: 0
     };
@@ -1085,7 +1094,13 @@ Answer: \\(9\\)`
       score: game.score,
       streak: game.currentStreak,
       newBadges: [],
-      nextProblem: formatProblem(nextProblem, game.problemNumber, game.maxProblems)
+      nextProblem: formatProblem(
+        nextProblem,
+        game.problemNumber,
+        game.maxProblems,
+        game.gameType,
+        game.choiceStartIndex + game.problemNumber - 1
+      )
     };
   }
 

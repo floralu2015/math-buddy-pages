@@ -2446,7 +2446,7 @@ header h1 {
 }
 
 .custom-option-row {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
 .custom-subject-grid {
@@ -3221,6 +3221,115 @@ header h1 {
 .game-answer-input:focus {
   border-color: #764ba2;
   box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2);
+}
+
+.answer-choices {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.answer-choice {
+  --choice-color: #4f67df;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  min-height: 74px;
+  padding: 11px 16px 11px 11px;
+  border: 3px solid #d9e1ea;
+  border-radius: 16px;
+  background: #ffffff;
+  color: #223843;
+  box-shadow: 0 7px 0 rgba(34, 56, 67, 0.08);
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  text-align: left;
+  transition: border-color 0.16s ease, box-shadow 0.16s ease, transform 0.16s ease, background 0.16s ease;
+}
+
+.answer-choice:nth-child(2) { --choice-color: #df3f78; }
+.answer-choice:nth-child(3) { --choice-color: #168978; }
+.answer-choice:nth-child(4) { --choice-color: #c26a0a; }
+
+.answer-choice:hover:not(:disabled),
+.answer-choice:focus-visible {
+  border-color: var(--choice-color);
+  box-shadow: 0 7px 0 color-mix(in srgb, var(--choice-color) 28%, transparent), 0 0 0 4px color-mix(in srgb, var(--choice-color) 18%, transparent);
+  outline: none;
+  transform: translateY(-2px);
+}
+
+.answer-choice.selected {
+  border-color: var(--choice-color);
+  background: color-mix(in srgb, var(--choice-color) 10%, white);
+  box-shadow: 0 7px 0 color-mix(in srgb, var(--choice-color) 35%, transparent), 0 0 0 4px color-mix(in srgb, var(--choice-color) 20%, transparent);
+}
+
+.answer-choice-letter {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--choice-color);
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 1000;
+}
+
+.answer-choice-value {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-size: clamp(0.96rem, 1.7vw, 1.18rem);
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.answer-choice.correct-answer {
+  border-color: #168978;
+  background: #ddfaef;
+  box-shadow: 0 7px 0 rgba(22, 137, 120, 0.24);
+}
+
+.answer-choice.correct-answer .answer-choice-letter {
+  background: #168978;
+}
+
+.answer-choice.wrong-answer {
+  border-color: #d84253;
+  background: #fff0f2;
+  box-shadow: 0 7px 0 rgba(216, 66, 83, 0.2);
+}
+
+.answer-choice.wrong-answer .answer-choice-letter {
+  background: #d84253;
+}
+
+.answer-choice:disabled {
+  cursor: default;
+  opacity: 0.82;
+}
+
+@media (max-width: 560px) {
+  .answer-choices {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .answer-choice {
+    min-height: 60px;
+    grid-template-columns: 36px minmax(0, 1fr);
+    gap: 10px;
+    padding: 9px 12px 9px 9px;
+  }
+
+  .answer-choice-letter {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+  }
 }
 
 .game-buttons {
@@ -5036,6 +5145,15 @@ header h1 {
   --tile-selected-muted: rgba(255, 255, 255, 0.84);
 }
 
+#custom-practice .custom-choice:nth-child(5) {
+  --tile-bg: linear-gradient(135deg, #e3fbff 0%, #fff2ce 100%);
+  --tile-selected-bg: linear-gradient(135deg, #7de4f2 0%, #1786a0 50%, #22537a 100%);
+  --tile-border: #1786a0;
+  --tile-accent: #22537a;
+  --tile-selected-ink: #ffffff;
+  --tile-selected-muted: rgba(255, 255, 255, 0.84);
+}
+
 #custom-practice .custom-subject-choice {
   min-height: 104px;
   display: grid;
@@ -5193,6 +5311,15 @@ header h1 {
   --tile-selected-bg: linear-gradient(135deg, #fdba74 0%, #06b6d4 52%, #0e7490 100%);
   --tile-border: #06b6d4;
   --tile-accent: #0e7490;
+  --tile-selected-ink: #ffffff;
+  --tile-selected-muted: rgba(255, 255, 255, 0.84);
+}
+
+#custom-practice .custom-subject-choice:nth-child(18) {
+  --tile-bg: linear-gradient(135deg, #dcf8ff 0%, #fff0c2 100%);
+  --tile-selected-bg: linear-gradient(135deg, #67d9ea 0%, #217c99 48%, #243f70 100%);
+  --tile-border: #217c99;
+  --tile-accent: #243f70;
   --tile-selected-ink: #ffffff;
   --tile-selected-muted: rgba(255, 255, 255, 0.84);
 }
