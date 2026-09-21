@@ -13,7 +13,7 @@
       }
     } catch (error) {}
   </script>
-  <link rel="stylesheet" href="style.css?v=32">
+  <link rel="stylesheet" href="style.css?v=33">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -138,30 +138,39 @@
           <h2 id="mission-title">Three ways to get stronger today</h2>
         </div>
         <div class="club-grid">
-          <button class="club-track-card fact-track" type="button" data-club-mission="multiplicationTables">
+          <article class="club-track-card fact-track">
             <span class="track-code">Power core</span>
             <span class="track-mark" aria-hidden="true">×</span>
             <h3>Fact power</h3>
             <p>Lock in multiplication, division, and missing factors until recall feels automatic.</p>
             <span class="track-topics">2–12 tables <i></i> inverse facts <i></i> speed</span>
-            <strong>Launch arena <span aria-hidden="true">›</span></strong>
-          </button>
-          <button class="club-track-card bridge-track" type="button" data-club-mission="grade6Bridge">
+            <div class="track-actions" aria-label="Fact power options">
+              <button class="track-destination track-games" type="button" data-club-destination="games"><span aria-hidden="true">🎮</span> Games</button>
+              <button class="track-destination track-quizzes" type="button" data-club-destination="quizzes"><span aria-hidden="true">✎</span> Quizzes</button>
+            </div>
+          </article>
+          <article class="club-track-card bridge-track">
             <span class="track-code">Launchpad</span>
             <span class="track-mark" aria-hidden="true">↔</span>
             <h3>6th grade bridge</h3>
             <p>Connect integers, ratios, rates, percents, equations, data, and coordinate planes.</p>
             <span class="track-topics">core skills <i></i> mixed levels <i></i> 24 rounds</span>
-            <strong>Cross the bridge <span aria-hidden="true">›</span></strong>
-          </button>
-          <button class="club-track-card explorer-track" type="button" data-club-mission="course3CumulativeChallenge">
+            <div class="track-actions" aria-label="6th grade bridge options">
+              <button class="track-destination track-games" type="button" data-club-destination="games"><span aria-hidden="true">🎮</span> Games</button>
+              <button class="track-destination track-quizzes" type="button" data-club-destination="quizzes"><span aria-hidden="true">✎</span> Quizzes</button>
+            </div>
+          </article>
+          <article class="club-track-card explorer-track">
             <span class="track-code">Deep space</span>
             <span class="track-mark" aria-hidden="true">△</span>
             <h3>Saxon stretch</h3>
             <p>Take on geometry, functions, probability, powers, transformations, and cumulative review.</p>
             <span class="track-topics">Course 3 <i></i> challenge mix <i></i> detailed help</span>
-            <strong>Enter deep space <span aria-hidden="true">›</span></strong>
-          </button>
+            <div class="track-actions" aria-label="Saxon stretch options">
+              <button class="track-destination track-games" type="button" data-club-destination="games"><span aria-hidden="true">🎮</span> Games</button>
+              <button class="track-destination track-quizzes" type="button" data-club-destination="quizzes"><span aria-hidden="true">✎</span> Quizzes</button>
+            </div>
+          </article>
         </div>
       </section>
     </main>
@@ -207,7 +216,7 @@
   </div>
 
   <script src="static-api.js?v=6"></script>
-  <script src="app.js?v=16"></script>
+  <script src="app.js?v=17"></script>
   <script src="game.js?v=9"></script>
 </body>
 </html>

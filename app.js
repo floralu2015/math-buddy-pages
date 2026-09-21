@@ -35,7 +35,7 @@ const homeworkAdventure = document.getElementById('homework-adventure');
 const homeworkAdventureClose = document.getElementById('homework-adventure-close');
 const homeworkAdventureFrame = document.getElementById('homework-adventure-frame');
 const clubFront = document.querySelector('.club-front');
-const clubMissionButtons = document.querySelectorAll('[data-club-mission]');
+const clubDestinationButtons = document.querySelectorAll('[data-club-destination]');
 const clubHero = document.querySelector('.club-hero');
 const homeTabs = document.querySelectorAll('[data-home-tab]');
 const homePanels = document.querySelectorAll('[data-home-panel]');
@@ -161,11 +161,13 @@ document.addEventListener('keydown', event => {
   }
 });
 
-clubMissionButtons.forEach(button => {
+clubDestinationButtons.forEach(button => {
   button.addEventListener('click', () => {
     if (typeof GameModule === 'undefined') return;
     GameModule.show();
-    GameModule.startQuiz(button.dataset.clubMission);
+    if (button.dataset.clubDestination === 'quizzes') {
+      GameModule.showQuizPicker();
+    }
   });
 });
 
